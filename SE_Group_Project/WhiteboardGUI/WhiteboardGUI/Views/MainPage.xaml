@@ -11,6 +11,9 @@
 			<Button Content="Pencil" Click="Pencil_Click"/>
 			<Button Content="Line" Click="Line_Click"/>
 			<Button Content="Circle" Click="Circle_Click"/>
+			<Button Content="Text" Click="Text_Click" />
+			<TextBox x:Name="textInput" Width="100" Height="30" Visibility="Collapsed" />
+
 			<TextBlock Text="Color:" VerticalAlignment="Center" Margin="10,0"/>
 			<ComboBox x:Name="colorPicker" Width="100" SelectionChanged="ColorPicker_SelectionChanged">
 				<ComboBoxItem Content="Black" IsSelected="True"/>

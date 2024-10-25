@@ -9,29 +9,28 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using WhiteboardGUI.Models;
-using Newtonsoft.Json.Linq;
-using System.Globalization;
-//using ViewModel;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace WhiteboardGUI
 {
-    /// <summary>
-    /// Interaction logic for MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
-        private enum Tool { Pencil, Line, Circle }
+        private enum Tool { Pencil, Line, Circle, Text }
         private Tool currentTool = Tool.Pencil;
         private Point startPoint;
         private Line currentLine;
         private Ellipse currentEllipse;
         private Polyline currentPolyline;
-        private List<Shape> shapes = new List<Shape>();
+        private TextBlock currentTextBlock;
+        private TextBox currentTextBox;
+        private List<UIElement> shapes = new List<UIElement>();
         private Brush selectedColor = Brushes.Black;
         private TcpClient client;
-        /// <summary>
-        /// Creates an instance of the main page.
-        /// </summary>
+
+        private Shape selectedShape = null; // Keep track of the selected shape
+        private Rectangle selectionBox; // To visually indicate selection
         public MainPage()
         {
             InitializeComponent();
@@ -39,20 +38,14 @@ namespace WhiteboardGUI
             drawingCanvas.MouseMove += Canvas_MouseMove;
             drawingCanvas.MouseUp += Canvas_MouseUp;
         }
-        private void Pencil_Click(object sender, RoutedEventArgs e)
+        private void Text_Click(object sender, RoutedEventArgs e)
         {
-            currentTool = Tool.Pencil;
+            currentTool = Tool.Text;
         }
+        private void Pencil_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Pencil;
+        private void Line_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Line;
+        private void Circle_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Circle;
 
-        private void Line_Click(object sender, RoutedEventArgs e)
-        {
-            currentTool = Tool.Line;
-        }
-
-        private void Circle_Click(object sender, RoutedEventArgs e)
-        {
-            currentTool = Tool.Circle;
-        }
 
         private void ColorPicker_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -65,13 +58,65 @@ namespace WhiteboardGUI
                 _ => Brushes.Black
             };
         }
+        private void TextInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && currentTextBox != null)
+            {
+                string inputText = currentTextBox.Text;
+                if (!string.IsNullOrEmpty(inputText))
+                {
+                    // Create a new TextBlock to display the text
+                    currentTextBlock = new TextBlock
+                    {
+                        Text = inputText,
+                        Foreground = selectedColor,
+                        FontSize = 16 // You can customize the font size
+                    };
+
+                    // Get the position of the TextBox and set the position of the TextBlock
+                    double left = Canvas.GetLeft(currentTextBox);
+                    double top = Canvas.GetTop(currentTextBox);
+                    if (double.IsNaN(left) || double.IsNaN(top)) // Fallback if NaN
+                    {
+                        left = (double)currentTextBox.Margin.Left;
+                        top = (double)currentTextBox.Margin.Top;
+                    }
+
+                    // Position the TextBlock the same as the TextBox
+                    Canvas.SetLeft(currentTextBlock, left);
+                    Canvas.SetTop(currentTextBlock, top);
+
+                    // Add the TextBlock to the canvas and remove the TextBox
+                    drawingCanvas.Children.Add(currentTextBlock);
+                    drawingCanvas.Children.Remove(currentTextBox);
+                    currentTextBox = null; // Clear the reference to the TextBox
+                }
+                e.Handled = true; // Prevent further handling of the Enter key
+            }
+        }
+
 
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            startPoint = e.GetPosition(drawingCanvas);
 
+
+            startPoint = e.GetPosition(drawingCanvas);
             switch (currentTool)
             {
+                case Tool.Text:
+                    // Create a new TextBox at the clicked position
+                    currentTextBox = new TextBox
+                    {
+                        Width = 100,
+                        Height = 30,
+                        Margin = new Thickness(startPoint.X, startPoint.Y, 0, 0)
+                    };
+
+                    // Add it to the canvas
+                    drawingCanvas.Children.Add(currentTextBox);
+                    currentTextBox.Focus(); // Set focus to the TextBox
+                    currentTextBox.KeyDown += TextInput_KeyDown; // Subscribe to KeyDown event
+                    break;
                 case Tool.Pencil:
                     currentPolyline = new Polyline
                     {
@@ -106,31 +151,12 @@ namespace WhiteboardGUI
                     break;
             }
         }
-        private void ServerCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            // Re-enable mouse movement
-            IgnoreMouseMovement(false);
-        }
 
-        private void IgnoreMouseMovement(bool ignore)
-        {
-            if (ignore)
-            {
-                // Unsubscribe from mouse move events
-                this.MouseMove -= Canvas_MouseMove; // Assuming MainPage_MouseMove is your mouse move handler
-            }
-            else
-            {
-                // Subscribe to mouse move events
-                this.MouseMove += Canvas_MouseMove; // Re-attach the handler
-            }
-        }
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point endPoint = e.GetPosition(drawingCanvas);
-
                 switch (currentTool)
                 {
                     case Tool.Pencil:
@@ -163,7 +189,7 @@ namespace WhiteboardGUI
             currentLine = null;
             currentEllipse = null;
             currentPolyline = null;
-            // Serialize and send the shape to the server
+
             if (shapes.LastOrDefault() is Shape lastShape)
             {
                 IShape shapeToSend = ConvertToShapeObject(lastShape);
@@ -171,6 +197,7 @@ namespace WhiteboardGUI
                 SendShapeToServer(serializedShape);
             }
         }
+
         private IShape ConvertToShapeObject(Shape shape)
         {
             switch (shape)
@@ -180,11 +207,9 @@ namespace WhiteboardGUI
                     {
                         Color = selectedColor.ToString(),
                         StrokeThickness = polyline.StrokeThickness,
+                        Points = polyline.Points.Select(p => new System.Drawing.Point((int)p.X, (int)p.Y)).ToList(),
+
                     };
-                    foreach (var point in polyline.Points)
-                    {
-                        scribbleShape.Points.Add(WindowToDrawing(point)); // No conversion needed, uses System.Windows.Point
-                    }
                     return scribbleShape;
 
                 case Line line:
@@ -214,7 +239,6 @@ namespace WhiteboardGUI
             }
         }
 
-        // Send the serialized shape to the server
         private async void SendShapeToServer(string serializedShape)
         {
             if (client != null && client.Connected)
@@ -224,20 +248,17 @@ namespace WhiteboardGUI
                 await writer.WriteLineAsync(serializedShape);
             }
         }
+
         private void ServerCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            // Start the server on a specified port
-            int port = 5000; // Choose an appropriate port
-                             //Task.Run(() => StartServer(port));
+            int port = 5000;
             Thread serverThread = new Thread(async () => await StartServer(port));
-            serverThread.IsBackground = true; // Set the thread as a background thread
-            serverThread.Start(); // Start the thread
-            IgnoreMouseMovement(true);
+            serverThread.IsBackground = true;
+            serverThread.Start();
         }
 
         private void ClientCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            // Ask for the server's port and connect as a client
             PortTextBox.Visibility = Visibility.Visible;
         }
 
@@ -248,21 +269,19 @@ namespace WhiteboardGUI
                 Task.Run(() => StartClient(port));
             }
         }
+
         private async Task StartServer(int port)
         {
             TcpListener listener = new TcpListener(IPAddress.Any, port);
             listener.Start();
             Console.WriteLine($"Server started on port {port}");
-
             List<TcpClient> clients = new List<TcpClient>();
 
             while (true)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
                 clients.Add(client);
-
-                // Handle receiving and broadcasting shapes
-                await Task.Run(() => HandleClient(client, clients));
+                _ = Task.Run(() => HandleClient(client, clients));
             }
         }
 
@@ -270,14 +289,12 @@ namespace WhiteboardGUI
         {
             using NetworkStream stream = client.GetStream();
             StreamReader reader = new StreamReader(stream);
-            StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
 
             while (true)
             {
                 string receivedData = await reader.ReadLineAsync();
                 if (string.IsNullOrEmpty(receivedData)) continue;
 
-                // Broadcast to all clients
                 foreach (var otherClient in clients)
                 {
                     if (otherClient != client)
@@ -286,6 +303,11 @@ namespace WhiteboardGUI
                         await clientWriter.WriteLineAsync(receivedData);
                     }
                 }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    IShape shape = DeserializeShape(receivedData);
+                    DrawReceivedShape(shape);
+                });
             }
         }
 
@@ -296,7 +318,6 @@ namespace WhiteboardGUI
 
             NetworkStream stream = client.GetStream();
             StreamReader reader = new StreamReader(stream);
-            StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
 
             while (true)
             {
@@ -304,8 +325,6 @@ namespace WhiteboardGUI
                 if (!string.IsNullOrEmpty(receivedData))
                 {
                     IShape shape = DeserializeShape(receivedData);
-
-                    // Now add the shape to the canvas
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         DrawReceivedShape(shape);
@@ -313,6 +332,7 @@ namespace WhiteboardGUI
                 }
             }
         }
+
         private void DrawReceivedShape(IShape shape)
         {
             switch (shape)
@@ -351,46 +371,15 @@ namespace WhiteboardGUI
                     };
                     foreach (var point in scribble.Points)
                     {
-                        System.Drawing.Point dp = (System.Drawing.Point)point;
-                        polyline.Points.Add(new System.Windows.Point(dp.X, dp.Y));
+                        polyline.Points.Add(new System.Windows.Point(point.X, point.Y));
                     }
+
                     drawingCanvas.Children.Add(polyline);
                     break;
             }
         }
-        public string SerializeShape(IShape shape)
-        {
-            return JsonConvert.SerializeObject(shape);
-        }
 
-        public IShape DeserializeShape(string json)
-        {
-            var baseShape = JsonConvert.DeserializeObject<IShape>(json);
-
-            return baseShape.ShapeType switch
-            {
-                "Circle" => JsonConvert.DeserializeObject<CircleShape>(json),
-                "Line" => JsonConvert.DeserializeObject<LineShape>(json),
-                "Scribble" => JsonConvert.DeserializeObject<ScribbleShape>(json),
-                _ => throw new NotSupportedException("Shape type not supported")
-            };
-        }
-
-        public object Convert(object value, Type targetType,
-        object parameter, CultureInfo culture)
-        {
-            System.Drawing.Point dp = (System.Drawing.Point)value;
-            return new System.Windows.Point(dp.X, dp.Y);
-        }
-        public System.Windows.Point DrawingToWindow(object value)
-        {
-            System.Drawing.Point dp = (System.Drawing.Point)value;
-            return new System.Windows.Point(dp.X, dp.Y);
-        }
-        public System.Drawing.Point WindowToDrawing(object value)
-        {
-            System.Windows.Point wp = (System.Windows.Point)value;
-            return new System.Drawing.Point((int)wp.X, (int)wp.Y);
-        }
+        private string SerializeShape(IShape shape) => JsonConvert.SerializeObject(shape);
+        private IShape DeserializeShape(string data) => JsonConvert.DeserializeObject<IShape>(data);
     }
 }
