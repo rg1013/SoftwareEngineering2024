@@ -9,15 +9,20 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using WhiteboardGUI.Models;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
+using System.Collections.Concurrent;
+using System.Transactions;
+using WhiteboardGUI.ViewModel;
 
 namespace WhiteboardGUI
 {
     public partial class MainPage : Page
     {
-        private enum Tool { Pencil, Line, Circle, Text }
+        private enum Tool { Pencil, Line, Circle, Text, Select }
         private Tool currentTool = Tool.Pencil;
         private Point startPoint;
         private Line currentLine;
@@ -26,26 +31,49 @@ namespace WhiteboardGUI
         private TextBlock currentTextBlock;
         private TextBox currentTextBox;
         private List<UIElement> shapes = new List<UIElement>();
-        private Brush selectedColor = Brushes.Black;
-        private TcpClient client;
 
-        private Shape selectedShape = null; // Keep track of the selected shape
-        private Rectangle selectionBox; // To visually indicate selection
+        private Brush selectedColor = Brushes.Black;
+        private List<UIElement> selectedShapes = new List<UIElement>();
+        private Rectangle selectionRectangle;
+        private bool isSelecting;
+        private Rectangle boundingBox;
+        private bool isDragging;
+        private Point clickPosition; 
+        private bool isServerRunning = false;
+
+        int cuserID = 0;
         public MainPage()
         {
             InitializeComponent();
             drawingCanvas.MouseDown += Canvas_MouseDown;
             drawingCanvas.MouseMove += Canvas_MouseMove;
             drawingCanvas.MouseUp += Canvas_MouseUp;
+
+            try
+            {
+                // Create the ViewModel and set as data context.
+                MainPageViewModel viewModel = new();
+                DataContext = viewModel;
+                viewModel.ShapeReceived += OnShapeReceived; // Subscribe to the event
+            }
+            catch (Exception exception)
+            {
+                _ = MessageBox.Show(exception.Message);
+                Application.Current.Shutdown();
+            }
         }
-        private void Text_Click(object sender, RoutedEventArgs e)
+
+        private void OnShapeReceived(IShape shape)
         {
-            currentTool = Tool.Text;
+            Debug.Write("Drawing Shape");
+            Dispatcher.Invoke(() => DrawReceivedShape(shape)); // Call the method to draw the shape
         }
+
+        private void Text_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Text;
         private void Pencil_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Pencil;
         private void Line_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Line;
         private void Circle_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Circle;
-
+        private void Select_Click(object sender, RoutedEventArgs e) => currentTool = Tool.Select;
 
         private void ColorPicker_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -58,105 +86,106 @@ namespace WhiteboardGUI
                 _ => Brushes.Black
             };
         }
-        private void TextInput_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter && currentTextBox != null)
-            {
-                string inputText = currentTextBox.Text;
-                if (!string.IsNullOrEmpty(inputText))
-                {
-                    // Create a new TextBlock to display the text
-                    currentTextBlock = new TextBlock
-                    {
-                        Text = inputText,
-                        Foreground = selectedColor,
-                        FontSize = 16 // You can customize the font size
-                    };
-
-                    // Get the position of the TextBox and set the position of the TextBlock
-                    double left = Canvas.GetLeft(currentTextBox);
-                    double top = Canvas.GetTop(currentTextBox);
-                    if (double.IsNaN(left) || double.IsNaN(top)) // Fallback if NaN
-                    {
-                        left = (double)currentTextBox.Margin.Left;
-                        top = (double)currentTextBox.Margin.Top;
-                    }
-
-                    // Position the TextBlock the same as the TextBox
-                    Canvas.SetLeft(currentTextBlock, left);
-                    Canvas.SetTop(currentTextBlock, top);
-
-                    // Add the TextBlock to the canvas and remove the TextBox
-                    drawingCanvas.Children.Add(currentTextBlock);
-                    drawingCanvas.Children.Remove(currentTextBox);
-                    currentTextBox = null; // Clear the reference to the TextBox
-                }
-                e.Handled = true; // Prevent further handling of the Enter key
-            }
-        }
-
 
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-
             startPoint = e.GetPosition(drawingCanvas);
-            switch (currentTool)
-            {
-                case Tool.Text:
-                    // Create a new TextBox at the clicked position
-                    currentTextBox = new TextBox
-                    {
-                        Width = 100,
-                        Height = 30,
-                        Margin = new Thickness(startPoint.X, startPoint.Y, 0, 0)
-                    };
 
-                    // Add it to the canvas
-                    drawingCanvas.Children.Add(currentTextBox);
-                    currentTextBox.Focus(); // Set focus to the TextBox
-                    currentTextBox.KeyDown += TextInput_KeyDown; // Subscribe to KeyDown event
-                    break;
-                case Tool.Pencil:
-                    currentPolyline = new Polyline
-                    {
-                        Stroke = selectedColor,
-                        StrokeThickness = 2,
-                    };
-                    currentPolyline.Points.Add(startPoint);
-                    drawingCanvas.Children.Add(currentPolyline);
-                    shapes.Add(currentPolyline);
-                    break;
-                case Tool.Line:
-                    currentLine = new Line
-                    {
-                        Stroke = selectedColor,
-                        StrokeThickness = 2,
-                        X1 = startPoint.X,
-                        Y1 = startPoint.Y
-                    };
-                    drawingCanvas.Children.Add(currentLine);
-                    shapes.Add(currentLine);
-                    break;
-                case Tool.Circle:
-                    currentEllipse = new Ellipse
-                    {
-                        Stroke = selectedColor,
-                        StrokeThickness = 2
-                    };
-                    Canvas.SetLeft(currentEllipse, startPoint.X);
-                    Canvas.SetTop(currentEllipse, startPoint.Y);
-                    drawingCanvas.Children.Add(currentEllipse);
-                    shapes.Add(currentEllipse);
-                    break;
+
+            if (currentTool == Tool.Select)
+            {
+                BeginSelection(startPoint);
+                isSelecting = true;
+            }
+            else
+            {
+                switch (currentTool)
+                {
+                    case Tool.Text:
+                        CreateTextBox();
+                        break;
+                    case Tool.Pencil:
+                        StartDrawingPolyline();
+                        break;
+                    case Tool.Line:
+                        StartDrawingLine();
+                        break;
+                    case Tool.Circle:
+                        StartDrawingEllipse();
+                        break;
+                }
             }
         }
 
+
+
+        private void TextInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // Create a TextBlock with the content of the TextBox
+                if (currentTextBox != null)
+                {
+                    currentTextBlock = new TextBlock
+                    {
+                        Text = currentTextBox.Text,
+                        Foreground = selectedColor,
+                        FontSize = 14,
+                    };
+
+                    // Position the TextBlock at the same location as the TextBox
+                    // using the Margin of the TextBox for accurate placement.
+                    Canvas.SetLeft(currentTextBlock, Canvas.GetLeft(currentTextBox));
+                    Canvas.SetTop(currentTextBlock, Canvas.GetTop(currentTextBox));
+
+                    // Add the TextBlock to the Canvas and store it in the shapes list
+                    drawingCanvas.Children.Add(currentTextBlock);
+                    shapes.Add(currentTextBlock);
+
+                    // Remove the TextBox after confirming input
+                    drawingCanvas.Children.Remove(currentTextBox);
+                    currentTextBox = null;
+                }
+            }
+            else if (e.Key == Key.Escape)
+            {
+                // Remove the TextBox if Escape is pressed
+                if (currentTextBox != null)
+                {
+                    drawingCanvas.Children.Remove(currentTextBox);
+                    currentTextBox = null;
+                }
+            }
+        }
+
+
+
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            Point endPoint = e.GetPosition(drawingCanvas);
+
+            if (isSelecting)
             {
-                Point endPoint = e.GetPosition(drawingCanvas);
+                UpdateSelectionRectangle(endPoint);
+            }
+            else if (isDragging && boundingBox != null)
+            {
+                // Move the bounding box and its contents
+                double offsetX = endPoint.X - startPoint.X;
+                double offsetY = endPoint.Y - startPoint.Y;
+                Canvas.SetLeft(boundingBox, Canvas.GetLeft(boundingBox) + offsetX);
+                Canvas.SetTop(boundingBox, Canvas.GetTop(boundingBox) + offsetY);
+
+                foreach (var shape in selectedShapes)
+                {
+                    Canvas.SetLeft(shape, Canvas.GetLeft(shape) + offsetX);
+                    Canvas.SetTop(shape, Canvas.GetTop(shape) + offsetY);
+                }
+
+                startPoint = endPoint;
+            }
+            else
+            {
                 switch (currentTool)
                 {
                     case Tool.Pencil:
@@ -170,15 +199,7 @@ namespace WhiteboardGUI
                         }
                         break;
                     case Tool.Circle:
-                        if (currentEllipse != null)
-                        {
-                            double radiusX = Math.Abs(endPoint.X - startPoint.X);
-                            double radiusY = Math.Abs(endPoint.Y - startPoint.Y);
-                            currentEllipse.Width = 2 * radiusX;
-                            currentEllipse.Height = 2 * radiusY;
-                            Canvas.SetLeft(currentEllipse, Math.Min(startPoint.X, endPoint.X));
-                            Canvas.SetTop(currentEllipse, Math.Min(startPoint.Y, endPoint.Y));
-                        }
+                        UpdateEllipse(endPoint);
                         break;
                 }
             }
@@ -186,16 +207,235 @@ namespace WhiteboardGUI
 
         private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (isSelecting)
+            {
+                EndSelection();
+                isSelecting = false;
+            }
+            else if (isDragging)
+            {
+                isDragging = false;
+                boundingBox = null; // Clear bounding box after moving
+            }
+            else
+            {
+                FinalizeDrawing();
+            }
+        }
+
+        private void CreateTextBox()
+        {
+            currentTextBox = new TextBox
+            {
+                Width = 100,
+                Height = 30
+            };
+
+            // Add the TextBox to the Canvas
+            drawingCanvas.Children.Add(currentTextBox);
+
+            // Set the absolute position using Canvas.SetLeft and Canvas.SetTop
+            Canvas.SetLeft(currentTextBox, startPoint.X);
+            Canvas.SetTop(currentTextBox, startPoint.Y);
+
+            // Set focus and handle the KeyDown event
+            currentTextBox.Focus();
+            currentTextBox.KeyDown += TextInput_KeyDown;
+        }
+
+
+        private void StartDrawingPolyline()
+        {
+            currentPolyline = new Polyline
+            {
+                Stroke = selectedColor,
+                StrokeThickness = 2,
+            };
+            currentPolyline.Points.Add(startPoint);
+            drawingCanvas.Children.Add(currentPolyline);
+            shapes.Add(currentPolyline);
+        }
+
+        private void StartDrawingLine()
+        {
+            currentLine = new Line
+            {
+                Stroke = selectedColor,
+                StrokeThickness = 2,
+                X1 = startPoint.X,
+                Y1 = startPoint.Y
+            };
+            drawingCanvas.Children.Add(currentLine);
+            shapes.Add(currentLine);
+        }
+
+        private void StartDrawingEllipse()
+        {
+            currentEllipse = new Ellipse
+            {
+                Stroke = selectedColor,
+                StrokeThickness = 2
+            };
+            Canvas.SetLeft(currentEllipse, startPoint.X);
+            Canvas.SetTop(currentEllipse, startPoint.Y);
+            drawingCanvas.Children.Add(currentEllipse);
+            shapes.Add(currentEllipse);
+        }
+
+        private void UpdateEllipse(Point endPoint)
+        {
+            if (currentEllipse != null)
+            {
+                double radiusX = Math.Abs(endPoint.X - startPoint.X);
+                double radiusY = Math.Abs(endPoint.Y - startPoint.Y);
+                currentEllipse.Width = 2 * radiusX;
+                currentEllipse.Height = 2 * radiusY;
+                Canvas.SetLeft(currentEllipse, Math.Min(startPoint.X, endPoint.X));
+                Canvas.SetTop(currentEllipse, Math.Min(startPoint.Y, endPoint.Y));
+            }
+        }
+
+        private void FinalizeDrawing()
+        {
             currentLine = null;
             currentEllipse = null;
             currentPolyline = null;
 
             if (shapes.LastOrDefault() is Shape lastShape)
             {
+
                 IShape shapeToSend = ConvertToShapeObject(lastShape);
-                string serializedShape = SerializeShape(shapeToSend);
-                SendShapeToServer(serializedShape);
+                AddSynchronizedShape(shapeToSend);
+                //string serializedShape = SerializeShape(shapeToSend);
+                //Console.WriteLine("Broadcasting shape data: " + serializedShape);
+
+                MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+                _ = Task.Run(() => viewModel.SerilaizeAndBroadcastShapeData(shapeToSend));
+                // Broadcast to all clients
+
             }
+        }
+
+        private void AddSynchronizedShape(IShape shapeToSend)
+        {
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = Task.Run(() => viewModel.synchronizedShapes.Add(shapeToSend));
+        }
+
+        private void BeginSelection(Point start)
+        {
+            selectionRectangle = new Rectangle
+            {
+                Stroke = Brushes.Blue,
+                StrokeThickness = 1,
+                Fill = new SolidColorBrush(Color.FromArgb(50, 0, 0, 255))
+            };
+            Canvas.SetLeft(selectionRectangle, start.X);
+            Canvas.SetTop(selectionRectangle, start.Y);
+            drawingCanvas.Children.Add(selectionRectangle);
+        }
+
+        private void UpdateSelectionRectangle(Point endPoint)
+        {
+            if (selectionRectangle != null)
+            {
+                double left = Math.Min(startPoint.X, endPoint.X);
+                double top = Math.Min(startPoint.Y, endPoint.Y);
+                double width = Math.Abs(endPoint.X - startPoint.X);
+                double height = Math.Abs(endPoint.Y - startPoint.Y);
+                Canvas.SetLeft(selectionRectangle, left);
+                Canvas.SetTop(selectionRectangle, top);
+                selectionRectangle.Width = width;
+                selectionRectangle.Height = height;
+            }
+        }
+
+        private void EndSelection()
+        {
+            Rect selectionBounds = new Rect(Canvas.GetLeft(selectionRectangle), Canvas.GetTop(selectionRectangle), selectionRectangle.Width, selectionRectangle.Height);
+            selectedShapes.Clear();
+
+            foreach (var shape in shapes)
+            {
+                if (shape is Shape s && s != selectionRectangle)
+                {
+                    Rect shapeBounds = new Rect(Canvas.GetLeft(s), Canvas.GetTop(s), s.Width, s.Height);
+                    if (selectionBounds.IntersectsWith(shapeBounds))
+                    {
+                        selectedShapes.Add(s);
+                        // No color change for selected shapes
+                    }
+                }
+            }
+
+            drawingCanvas.Children.Remove(selectionRectangle);
+            selectionRectangle = null;
+
+            if (selectedShapes.Any())
+            {
+                CreateBoundingBox();
+            }
+        }
+
+
+        private void CreateBoundingBox()
+        {
+            if (boundingBox != null)
+            {
+                drawingCanvas.Children.Remove(boundingBox);
+            }
+
+            // Calculate bounds based on selected shapes
+            double minX = selectedShapes.Min(s => Canvas.GetLeft(s));
+            double minY = selectedShapes.Min(s => Canvas.GetTop(s));
+            double maxX = selectedShapes.Max(s => Canvas.GetLeft(s) + (s is Shape shape ? shape.Width : 0));
+            double maxY = selectedShapes.Max(s => Canvas.GetTop(s) + (s is Shape shape ? shape.Height : 0));
+
+            boundingBox = new Rectangle
+            {
+                Stroke = Brushes.Gray,
+                StrokeThickness = 1,
+                Fill = Brushes.Transparent // No fill color
+            };
+
+            Canvas.SetLeft(boundingBox, minX);
+            Canvas.SetTop(boundingBox, minY);
+            boundingBox.Width = maxX - minX;
+            boundingBox.Height = maxY - minY;
+
+            drawingCanvas.Children.Add(boundingBox);
+
+            boundingBox.MouseLeftButtonDown += (s, e) => isDragging = true;
+            boundingBox.MouseMove += (s, e) =>
+            {
+                if (isDragging)
+                {
+                    Point pos = e.GetPosition(drawingCanvas);
+                    double offsetX = pos.X - (boundingBox.Width / 2);
+                    double offsetY = pos.Y - (boundingBox.Height / 2);
+                    Canvas.SetLeft(boundingBox, offsetX);
+                    Canvas.SetTop(boundingBox, offsetY);
+                }
+            };
+            boundingBox.MouseLeftButtonUp += (s, e) => isDragging = false;
+        }
+
+
+        private void DeleteSelectedShapes()
+        {
+            foreach (var shape in selectedShapes.ToList())
+            {
+                drawingCanvas.Children.Remove(shape);
+                shapes.Remove(shape);
+            }
+            selectedShapes.Clear();
+            drawingCanvas.Children.Remove(boundingBox);
+            boundingBox = null;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteSelectedShapes();
         }
 
         private IShape ConvertToShapeObject(Shape shape)
@@ -208,7 +448,6 @@ namespace WhiteboardGUI
                         Color = selectedColor.ToString(),
                         StrokeThickness = polyline.StrokeThickness,
                         Points = polyline.Points.Select(p => new System.Drawing.Point((int)p.X, (int)p.Y)).ToList(),
-
                     };
                     return scribbleShape;
 
@@ -239,102 +478,59 @@ namespace WhiteboardGUI
             }
         }
 
-        private async void SendShapeToServer(string serializedShape)
+        private void HostCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (client != null && client.Connected)
+            if (isServerRunning)
             {
-                using NetworkStream stream = client.GetStream();
-                using StreamWriter writer = new StreamWriter(stream) { AutoFlush = true };
-                await writer.WriteLineAsync(serializedShape);
+                // If a server is already running, show an error message
+                MessageBox.Show("A server is already running. You cannot start another server.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Uncheck the checkbox to indicate the action was not successful
+                ((CheckBox)sender).IsChecked = false;
+                return;
             }
-        }
 
-        private void ServerCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            int port = 5000;
-            Thread serverThread = new Thread(async () => await StartServer(port));
-            serverThread.IsBackground = true;
-            serverThread.Start();
+            isServerRunning = true; // Set the flag indicating the server is starting
+
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = Task.Run(() => viewModel.StartHost());
+            Debug.WriteLine("Host started");
         }
 
         private void ClientCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            PortTextBox.Visibility = Visibility.Visible;
+            int port = 5000; // Ensure this matches the Host port
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = Task.Run(() => viewModel.StartClient(port));
+            Debug.WriteLine("Client started");
         }
 
-        private void PortTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void HostCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(PortTextBox.Text, out int port))
-            {
-                Task.Run(() => StartClient(port));
-            }
+            isServerRunning = false; // Reset the flag when the server is stopped
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = Task.Run(() => viewModel.HostCheckBox_Unchecked());
+            //listener?.Stop();
+            //clients.Clear();
+            StatusTextBlock.Text = "Host stopped";
         }
 
-        private async Task StartServer(int port)
+        private void ClientCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, port);
-            listener.Start();
-            Console.WriteLine($"Server started on port {port}");
-            List<TcpClient> clients = new List<TcpClient>();
-
-            while (true)
-            {
-                TcpClient client = await listener.AcceptTcpClientAsync();
-                clients.Add(client);
-                _ = Task.Run(() => HandleClient(client, clients));
-            }
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = Task.Run(() => viewModel.ClientCheckBox_Unchecked());
+            StatusTextBlock.Text = "Disconnected from Host";
         }
 
-        private async Task HandleClient(TcpClient client, List<TcpClient> clients)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using NetworkStream stream = client.GetStream();
-            StreamReader reader = new StreamReader(stream);
-
-            while (true)
-            {
-                string receivedData = await reader.ReadLineAsync();
-                if (string.IsNullOrEmpty(receivedData)) continue;
-
-                foreach (var otherClient in clients)
-                {
-                    if (otherClient != client)
-                    {
-                        StreamWriter clientWriter = new StreamWriter(otherClient.GetStream()) { AutoFlush = true };
-                        await clientWriter.WriteLineAsync(receivedData);
-                    }
-                }
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    IShape shape = DeserializeShape(receivedData);
-                    DrawReceivedShape(shape);
-                });
-            }
-        }
-
-        private async Task StartClient(int port)
-        {
-            client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Loopback, port);
-
-            NetworkStream stream = client.GetStream();
-            StreamReader reader = new StreamReader(stream);
-
-            while (true)
-            {
-                string receivedData = await reader.ReadLineAsync();
-                if (!string.IsNullOrEmpty(receivedData))
-                {
-                    IShape shape = DeserializeShape(receivedData);
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        DrawReceivedShape(shape);
-                    });
-                }
-            }
+            // Start the Host when the window loads
+            MainPageViewModel? viewModel = DataContext as MainPageViewModel;
+            _ = viewModel.StartHost();
         }
 
         private void DrawReceivedShape(IShape shape)
         {
+            AddSynchronizedShape(shape);
             switch (shape)
             {
                 case CircleShape circle:
@@ -345,8 +541,8 @@ namespace WhiteboardGUI
                         Stroke = new SolidColorBrush((Color)ColorConverter.ConvertFromString(circle.Color)),
                         StrokeThickness = circle.StrokeThickness
                     };
-                    Canvas.SetLeft(ellipse, circle.CenterX - circle.RadiusX);
-                    Canvas.SetTop(ellipse, circle.CenterY - circle.RadiusY);
+                    Canvas.SetLeft(ellipse, circle.CenterX);
+                    Canvas.SetTop(ellipse, circle.CenterY);
                     drawingCanvas.Children.Add(ellipse);
                     break;
 
@@ -378,8 +574,10 @@ namespace WhiteboardGUI
                     break;
             }
         }
-
-        private string SerializeShape(IShape shape) => JsonConvert.SerializeObject(shape);
-        private IShape DeserializeShape(string data) => JsonConvert.DeserializeObject<IShape>(data);
+        // Event handler for Clear Button Click
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            drawingCanvas.Children.Clear();
+        }
     }
 }
