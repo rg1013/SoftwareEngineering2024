@@ -99,7 +99,7 @@ namespace FileCloner.Models.NetworkService
                 }
             }
 
-            logAction?.Invoke($"[Server] {clientIpAddress} Joined/Updated");
+            logAction?.Invoke($"[Server] {clientIpAddress} Joined");
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace FileCloner.Models.NetworkService
                 {
                     return;
                 }
-                logAction?.Invoke($"[Server] {message.Subject} {message.From} {message.To}");
+                // logAction?.Invoke($"[Server] {message.Subject} {message.From} {message.To}");
                 // Handle broadcast or targeted messages
                 if (message.To == Constants.broadcast)
                 {
