@@ -1,0 +1,165 @@
+﻿<Window x:Class="UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:UI.ViewModels"
+        Title="MainWindow"
+        WindowState="Maximized"
+        Background="#ece5dd">
+        
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+
+        <!-- Style for TabControl -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="#ece5dd"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="BorderThickness" Value="0" />
+
+        </Style>
+
+        <!-- Style for TabItem with larger size and rounded corners -->
+        <Style TargetType="TabItem">
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <!-- Spacing between tabs -->
+            <Setter Property="Padding" Value="0 0 0 0"/>
+            <!-- Increased padding -->
+            <Setter Property="MinWidth" Value="120"/>
+            <!-- Minimum width for tab items -->
+            <Setter Property="MinHeight" Value="40"/>
+            <!-- Minimum height for larger tabs -->
+            <Setter Property="Background" Value="#ece5dd" />
+            <Setter Property="BorderThickness" Value="3"/>
+            <!-- Border thickness for tabs -->
+            <Setter Property="BorderBrush" Value="#123456" />
+            <!-- Border color for unselected tabs -->
+            <Setter Property="Foreground" Value="black" />
+            <Setter Property="FontSize" Value="13" />
+            <!-- Increased font size -->
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="20">
+                            <!-- Rounded corners with CornerRadius -->
+                            <ContentPresenter VerticalAlignment="Center" 
+                                      HorizontalAlignment="Center"
+                                      ContentSource="Header"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Trigger when the TabItem is selected -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#123456" />
+                                <!-- Background for selected tab -->
+                                <Setter Property="Foreground" Value="white" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="BorderBrush" Value="#123456" />
+                                <!-- Change border color for selected tab -->
+                            </Trigger>
+                            <!-- Trigger when the mouse is over the TabItem -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#123456" />
+                                <!-- Background for hover state -->
+                                <Setter Property="BorderBrush" Value="#123456" />
+                                <Setter Property="Foreground" Value="white" />
+                                <!-- Change border color for hovered tab -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+
+    <!-- Main Layout Grid -->
+    <Grid Name="MainGrid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!-- 70% for main tabs -->
+            <ColumnDefinition Width="auto"/>
+            <!-- 30% for Chat panel -->
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <!-- Tab Control for navigation -->
+            <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+                <!-- Dashboard Tab -->
+                <TabItem Header="Dashboard">
+                    <Frame Content="{Binding DashboardPage}" />
+                </TabItem>
+
+                <!-- Whiteboard Tab -->
+                <TabItem Header="Whiteboard">
+                    <Frame Content="{Binding WhiteboardPage}" BorderThickness="20" />
+                </TabItem>
+
+                <!-- Updater Tab -->
+                <TabItem Header="Updater">
+                    <Frame Content="{Binding UpdaterPage}"/>
+                </TabItem>
+
+                <!-- FileCloner Tab -->
+                <TabItem Header="FileCloner">
+                    <Frame Content="{Binding FileClonerPage}"/>
+                </TabItem>
+
+                <!-- Content Tab -->
+                <TabItem Header="Content">
+                    <Frame Content="{Binding ContentPage}"/>
+                </TabItem>
+
+                <!-- Meeting Tab -->
+                <TabItem Header="Analyzer">
+                    <Frame Content="{Binding AnalyzerPage}" />
+                </TabItem>
+
+                <!-- Screenshare Tab -->
+                <TabItem Header="Screenshare">
+                    <Frame Content="{Binding ScreensharePage}" />
+                </TabItem>
+
+                <!-- Chat Tab that toggles the chat panel visibility -->
+                <TabItem Header="Chat" Name="ChatTab" PreviewMouseDown="ChatTab_PreviewMouseDown" >
+                    <!-- Placeholder content for Chat -->
+                    <TextBlock Text="Click to toggle chat panel..." 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               FontSize="16" 
+                               Foreground="Black"/>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+
+        <!-- Chat Panel (Initially hidden, placed in the second column) -->
+        <Border Name="ChatPanel" Background="#123456" Visibility="Collapsed"
+                Grid.Column="1" Grid.RowSpan="1" Margin="0">
+            <TextBlock Text="Chat content goes here..." 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center" 
+                       FontSize="16" 
+                       Foreground="white"/>
+        </Border>
+
+        <!--Updater Page Requirement-->
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+        
+        <Popup IsOpen="{Binding LogServiceViewModel.NotificationVisible}" Placement="Top" HorizontalAlignment="Center">
+            <Border Background="LightGray" BorderBrush="Black" BorderThickness="2" Padding="5">
+                <TextBlock Text="{Binding LogServiceViewModel.NotificationMessage}" />
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

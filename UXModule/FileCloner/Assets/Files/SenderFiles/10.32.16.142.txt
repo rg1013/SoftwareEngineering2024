@@ -1,0 +1,8 @@
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Files\evans.txt.txt, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Files\evans.txt.txt
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Files\input.json, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Files\input.json
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Images\.DS_Store, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Images\.DS_Store
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Images\drive.png, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Images\drive.png
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Images\error.png, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Images\error.png
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Images\loading.png, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Images\loading.png
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\.DS_Store, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\.DS_Store
+C:\Users\sarat\temp\Neeraj\FileCloner\FileCloner\Assets\Sarath\IMG_8443.MOV, C:\dev\FileClonerIterations\FileCloner\FileCloner\Assets\Sarath\IMG_8443.MOV
