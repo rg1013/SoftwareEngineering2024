@@ -1,0 +1,40 @@
+﻿<Page x:Class="UI.Views.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:UI.ViewModels">
+    <Grid>
+        <TextBlock Text="Dashboard" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   FontSize="28" 
+                   Margin="0,20,0,0"/>
+
+        <!-- Display a message when a button is clicked -->
+        <TextBlock Text="{Binding Message}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   FontSize="16" 
+                   Margin="0,60,0,0"/>
+
+        <!-- Buttons that bind to the command in the ViewModel -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="View Reports" Width="200" Height="50" Margin="10" 
+                    Command="{Binding ButtonClickCommand}" 
+                    CommandParameter="View Reports" />
+
+            <Button Content="Manage Users" Width="200" Height="50" Margin="10" 
+                    Command="{Binding ButtonClickCommand}" 
+                    CommandParameter="Manage Users" />
+
+            <Button Content="Settings" Width="200" Height="50" Margin="10" 
+                    Command="{Binding ButtonClickCommand}" 
+                    CommandParameter="Settings" />
+
+            <Button Content="Logout" Width="200" Height="50" Margin="10" 
+                    Command="{Binding ButtonClickCommand}" 
+                    CommandParameter="Logout" />
+        </StackPanel>
+
+    </Grid>
+</Page>
+
