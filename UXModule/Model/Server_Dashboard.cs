@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using FileCloner.Models.NetworkService;
 using Networking;
 using Networking.Communication;
 
@@ -36,6 +37,7 @@ namespace UXModule
         public ObservableCollection<UserDetails> TotalServerUserList { get; private set; } = new ObservableCollection<UserDetails>();
 
 
+        public Server _fileClonerInstance = Server.GetServerInstance();
         public Server_Dashboard(ICommunicator communicator, string username, string useremail, string profilePictureUrl)
         {
             _communicator = communicator;
@@ -70,6 +72,9 @@ namespace UXModule
                 string[] parts = server_credentials.Split(':');
                 string server_ip = parts[0];
                 string server_port = parts[1];
+
+                ICommunicator _client = CommunicationFactory.GetCommunicator(isClientSide: true);
+                _client.Start(server_ip, server_port);
 
                 // Notify that server user is ready
                 OnPropertyChanged(nameof(ServerUserList));
@@ -263,6 +268,7 @@ namespace UXModule
             };
 
             _communicator.AddClient(newUserId, socket);
+            _fileClonerInstance.SetUser(newUserId, socket);
 
             // Send only the userId to the new client
             DashboardDetails dashboardMessage = new DashboardDetails

@@ -174,7 +174,7 @@ namespace FileCloner.Models.NetworkService
                 senderThread.Start();
 
 
-                logAction?.Invoke($"[Client] Response Sent to {from}");
+                // logAction?.Invoke($"[Client] Sent {path} to {from}");
             }
             catch (Exception ex)
             {
@@ -220,8 +220,11 @@ namespace FileCloner.Models.NetworkService
                     };
 
                     client.Send(serializer.Serialize<Message>(message), Constants.moduleName, "");
+                    if (indexOfChunkBeingSent % 10 == 0)
+                    {
+                        logAction?.Invoke($"[Client] Sent {indexOfChunkBeingSent} chunks of {path} to {from}");
+                    }
                     ++indexOfChunkBeingSent;
-                    logAction?.Invoke($"[Client] Response Sent to {from}");
                 }
             }
             catch (Exception ex)
@@ -255,7 +258,7 @@ namespace FileCloner.Models.NetworkService
             // Prevent processing self-sent messages
             if (from != Constants.IPAddress || requestID != data.RequestID)
             {
-                logAction?.Invoke($"[Client] Received {subject} from {from}");
+                //logAction?.Invoke($"[Client] Received {subject} from {from}");
 
                 switch (subject)
                 {
@@ -282,6 +285,7 @@ namespace FileCloner.Models.NetworkService
         {
             try
             {
+                logAction?.Invoke($"[Client] Response received from {data.From}");
                 responders.Add(data.From);
                 string savePath = Path.Combine(Constants.receivedFilesFolderPath, $"{data.From}.json");
                 File.WriteAllText(savePath, data.Body);
@@ -299,6 +303,7 @@ namespace FileCloner.Models.NetworkService
         {
             try
             {
+                logAction?.Invoke($"[Client] Summary received from {data.From}");
                 // Parse each line containing local and requester paths
                 var lines = data.Body.Split("\n", StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines)
@@ -329,13 +334,17 @@ namespace FileCloner.Models.NetworkService
         /// </summary>
         public void OnFileForCloningReceived(Message data)
         {
+            // logAction?.Invoke($"Something received");
             try
             {
                 // Extract the save path from message metadata
                 string requesterPath = data.MetaData;
 
                 // Ensure directory exists for the requester path
-                Directory.CreateDirectory(Path.GetDirectoryName(requesterPath));
+                if (!Directory.Exists(Path.GetDirectoryName(requesterPath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(requesterPath));
+                }
 
                 // Write the file content to the specified path
                 //using (StreamWriter writer = new StreamWriter(requesterPath))

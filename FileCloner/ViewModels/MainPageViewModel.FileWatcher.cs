@@ -20,10 +20,9 @@ namespace FileCloner.ViewModels
             NotifyFilters.FileName |
             NotifyFilters.LastWrite |
             NotifyFilters.Size;
-            watcher.Filter = "*.*"; //only text files to be monitored
-
+            watcher.Filter = "*.*"; 
             watcher.Created += new FileSystemEventHandler(OnChanged);
-            watcher.Changed += new FileSystemEventHandler(OnChanged);
+            //watcher.Changed += new FileSystemEventHandler(OnChanged);
             watcher.Deleted += new FileSystemEventHandler(OnChanged);
             watcher.Renamed += new RenamedEventHandler(OnRenamed);
 
