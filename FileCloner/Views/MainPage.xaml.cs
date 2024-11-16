@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
  * Filename    = MainPage.xaml.cs
  *
- * Author      = Sai Hemanth Reddy
+ * Author(s)      = Sai Hemanth Reddy & Sarath A
  * 
  * Project     = FileCloner
  *
