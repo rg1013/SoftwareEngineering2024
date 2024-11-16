@@ -28,9 +28,9 @@ namespace FileCloner.Models
         );
         
         // Icon Paths
-        public static readonly string loadingIconPath = Path.GetFullPath(Path.Combine("..", "..", "..", "Assets", "Images", "loading.png"));
-        public static readonly string fileIconPath = Path.GetFullPath(Path.Combine("..", "..", "..", "Assets", "Images", "file.png"));
-        public static readonly string folderIconPath = Path.GetFullPath(Path.Combine("..", "..", "..", "Assets", "Images", "folder.png"));
+        public static readonly string loadingIconPath = Path.GetFullPath(Path.Combine("..", "..", "..","..","FileCloner","Assets", "Images", "loading.png"));
+        public static readonly string fileIconPath = Path.GetFullPath(Path.Combine("..", "..", "..","..","FileCloner", "Assets", "Images", "file.png"));
+        public static readonly string folderIconPath = Path.GetFullPath(Path.Combine("..", "..", "..", "..", "FileCloner", "Assets", "Images", "folder.png"));
 
 
         // File & Folder Paths
@@ -51,7 +51,7 @@ namespace FileCloner.Models
         public static string IPAddress = GetIP();
 
         // Size of FileChunk to be sent over network
-        public static int FileChunkSize = 1024 * 1024;
+        public static int FileChunkSize = 5* 1024 * 1024;
         public static int ChunkStartIndex = 1;
 
         private static string GetIP()
