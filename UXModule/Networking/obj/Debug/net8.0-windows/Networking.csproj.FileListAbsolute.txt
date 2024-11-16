@@ -1,0 +1,13 @@
+C:\Users\SEProjectUX\UXModule\Networking\bin\Debug\net8.0-windows\Networking.deps.json
+C:\Users\SEProjectUX\UXModule\Networking\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\SEProjectUX\UXModule\Networking\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.csproj.AssemblyReference.cache
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.AssemblyInfoInputs.cache
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.AssemblyInfo.cs
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.csproj.CoreCompileInputs.cache
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.sourcelink.json
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.dll
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\refint\Networking.dll
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\Networking.pdb
+C:\Users\SEProjectUX\UXModule\Networking\obj\Debug\net8.0-windows\ref\Networking.dll
