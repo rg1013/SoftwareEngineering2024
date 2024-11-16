@@ -1,0 +1,1273 @@
+﻿<Window x:Class="UXModule.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowState="Maximized">
+    <Grid>
+
+        <!-- Animated Gradient Background -->
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#190019" Offset="0.0" x:Name="GradientStop1"/>
+                    <GradientStop Color="#2B124C" Offset="1.0" x:Name="GradientStop2"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Rectangle.Loaded">
+                    <BeginStoryboard >
+                        <Storyboard x:Name="BackgroundStoryboard" RepeatBehavior="Forever">
+                            <ColorAnimation Storyboard.TargetName="GradientStop1" Storyboard.TargetProperty="Color"
+                                            From="#190019" To="#2B124C" Duration="0:0:3" AutoReverse="True"/>
+                            <ColorAnimation Storyboard.TargetName="GradientStop2" Storyboard.TargetProperty="Color"
+                                            From="#190019" To="#2B124C" Duration="0:0:3" AutoReverse="True"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+        </Rectangle>
+
+        <!-- Floating Circles -->
+        <Canvas>
+
+            <Ellipse Width="114" Height="114" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="561" Canvas.Top="440">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle1Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard1">
+                            <Storyboard x:Name="BackgroundStoryboard1" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle1Transform" Storyboard.TargetProperty="X" From="0" To="209" Duration="0:0:5.2" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle1Transform" Storyboard.TargetProperty="Y" From="0" To="-172" Duration="0:0:7.2" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="81" Height="81" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="313" Canvas.Top="350">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle2Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard2">
+                            <Storyboard x:Name="BackgroundStoryboard2" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle2Transform" Storyboard.TargetProperty="X" From="0" To="700" Duration="0:0:6.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle2Transform" Storyboard.TargetProperty="Y" From="0" To="332" Duration="0:0:7.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="63" Height="63" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="732" Canvas.Top="354">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle3Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard3">
+                            <Storyboard x:Name="BackgroundStoryboard3" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle3Transform" Storyboard.TargetProperty="X" From="0" To="754" Duration="0:0:7.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle3Transform" Storyboard.TargetProperty="Y" From="0" To="384" Duration="0:0:4.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="74" Height="74" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="355" Canvas.Top="359">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle4Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard4">
+                            <Storyboard x:Name="BackgroundStoryboard4" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle4Transform" Storyboard.TargetProperty="X" From="0" To="-745" Duration="0:0:4.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle4Transform" Storyboard.TargetProperty="Y" From="0" To="-208" Duration="0:0:4.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="85" Height="85" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="724" Canvas.Top="303">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle5Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard5">
+                            <Storyboard x:Name="BackgroundStoryboard5" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle5Transform" Storyboard.TargetProperty="X" From="0" To="-543" Duration="0:0:6.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle5Transform" Storyboard.TargetProperty="Y" From="0" To="-35" Duration="0:0:6.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="114" Height="114" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="26" Canvas.Top="345">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle6Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard6">
+                            <Storyboard x:Name="BackgroundStoryboard6" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle6Transform" Storyboard.TargetProperty="X" From="0" To="-159" Duration="0:0:6.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle6Transform" Storyboard.TargetProperty="Y" From="0" To="-346" Duration="0:0:7.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="99" Height="99" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="463" Canvas.Top="174">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle7Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard7">
+                            <Storyboard x:Name="BackgroundStoryboard7" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle7Transform" Storyboard.TargetProperty="X" From="0" To="-433" Duration="0:0:7.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle7Transform" Storyboard.TargetProperty="Y" From="0" To="349" Duration="0:0:5.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="53" Height="53" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="405" Canvas.Top="37">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle8Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard8">
+                            <Storyboard x:Name="BackgroundStoryboard8" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle8Transform" Storyboard.TargetProperty="X" From="0" To="-251" Duration="0:0:5.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle8Transform" Storyboard.TargetProperty="Y" From="0" To="87" Duration="0:0:6.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="96" Height="96" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="321" Canvas.Top="393">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle9Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard9">
+                            <Storyboard x:Name="BackgroundStoryboard9" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle9Transform" Storyboard.TargetProperty="X" From="0" To="212" Duration="0:0:4.2" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle9Transform" Storyboard.TargetProperty="Y" From="0" To="-251" Duration="0:0:5.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="77" Height="77" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="467" Canvas.Top="404">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle10Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard10">
+                            <Storyboard x:Name="BackgroundStoryboard10" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle10Transform" Storyboard.TargetProperty="X" From="0" To="-320" Duration="0:0:6.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle10Transform" Storyboard.TargetProperty="Y" From="0" To="282" Duration="0:0:7.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="132" Height="132" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="349" Canvas.Top="181">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle11Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard11">
+                            <Storyboard x:Name="BackgroundStoryboard11" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle11Transform" Storyboard.TargetProperty="X" From="0" To="641" Duration="0:0:5.4" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle11Transform" Storyboard.TargetProperty="Y" From="0" To="247" Duration="0:0:6.6" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="56" Height="56" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="274" Canvas.Top="331">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle12Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard12">
+                            <Storyboard x:Name="BackgroundStoryboard12" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle12Transform" Storyboard.TargetProperty="X" From="0" To="585" Duration="0:0:6.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle12Transform" Storyboard.TargetProperty="Y" From="0" To="24" Duration="0:0:5.6" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="62" Height="62" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="679" Canvas.Top="59">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle13Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard13">
+                            <Storyboard x:Name="BackgroundStoryboard13" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle13Transform" Storyboard.TargetProperty="X" From="0" To="171" Duration="0:0:4.1" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle13Transform" Storyboard.TargetProperty="Y" From="0" To="-245" Duration="0:0:5.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="120" Height="120" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="761" Canvas.Top="88">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle14Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard14">
+                            <Storyboard x:Name="BackgroundStoryboard14" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle14Transform" Storyboard.TargetProperty="X" From="0" To="-529" Duration="0:0:5.4" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle14Transform" Storyboard.TargetProperty="Y" From="0" To="-93" Duration="0:0:6.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="56" Height="56" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="499" Canvas.Top="160">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle15Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard15">
+                            <Storyboard x:Name="BackgroundStoryboard15" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle15Transform" Storyboard.TargetProperty="X" From="0" To="580" Duration="0:0:6.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle15Transform" Storyboard.TargetProperty="Y" From="0" To="114" Duration="0:0:5.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="79" Height="79" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="608" Canvas.Top="171">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle16Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard16">
+                            <Storyboard x:Name="BackgroundStoryboard16" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle16Transform" Storyboard.TargetProperty="X" From="0" To="-405" Duration="0:0:6.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle16Transform" Storyboard.TargetProperty="Y" From="0" To="-373" Duration="0:0:6.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="78" Height="78" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="150" Canvas.Top="139">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle17Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard17">
+                            <Storyboard x:Name="BackgroundStoryboard17" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle17Transform" Storyboard.TargetProperty="X" From="0" To="639" Duration="0:0:5.9" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle17Transform" Storyboard.TargetProperty="Y" From="0" To="-433" Duration="0:0:4.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="144" Height="144" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="577" Canvas.Top="6">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle18Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard18">
+                            <Storyboard x:Name="BackgroundStoryboard18" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle18Transform" Storyboard.TargetProperty="X" From="0" To="-10" Duration="0:0:6.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle18Transform" Storyboard.TargetProperty="Y" From="0" To="339" Duration="0:0:4.5" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="98" Height="98" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="619" Canvas.Top="390">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle19Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard19">
+                            <Storyboard x:Name="BackgroundStoryboard19" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle19Transform" Storyboard.TargetProperty="X" From="0" To="-699" Duration="0:0:4.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle19Transform" Storyboard.TargetProperty="Y" From="0" To="-39" Duration="0:0:4.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="115" Height="115" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="279" Canvas.Top="348">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle20Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard20">
+                            <Storyboard x:Name="BackgroundStoryboard20" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle20Transform" Storyboard.TargetProperty="X" From="0" To="294" Duration="0:0:6.1" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle20Transform" Storyboard.TargetProperty="Y" From="0" To="-94" Duration="0:0:6.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="90" Height="90" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="14" Canvas.Top="55">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle21Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard21">
+                            <Storyboard x:Name="BackgroundStoryboard21" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle21Transform" Storyboard.TargetProperty="X" From="0" To="-369" Duration="0:0:7.4" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle21Transform" Storyboard.TargetProperty="Y" From="0" To="-321" Duration="0:0:4.6" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="101" Height="101" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="412" Canvas.Top="150">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle22Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard22">
+                            <Storyboard x:Name="BackgroundStoryboard22" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle22Transform" Storyboard.TargetProperty="X" From="0" To="336" Duration="0:0:7.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle22Transform" Storyboard.TargetProperty="Y" From="0" To="119" Duration="0:0:6.2" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="64" Height="64" Fill="#572037" Opacity="0.4"
+                     Canvas.Left="404" Canvas.Top="249">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle23Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard23">
+                            <Storyboard x:Name="BackgroundStoryboard23" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle23Transform" Storyboard.TargetProperty="X" From="0" To="-533" Duration="0:0:5.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle23Transform" Storyboard.TargetProperty="Y" From="0" To="343" Duration="0:0:7.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="90" Height="90" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="221" Canvas.Top="140">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle24Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard24">
+                            <Storyboard x:Name="BackgroundStoryboard24" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle24Transform" Storyboard.TargetProperty="X" From="0" To="-97" Duration="0:0:6.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle24Transform" Storyboard.TargetProperty="Y" From="0" To="10" Duration="0:0:5.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="65" Height="65" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="732" Canvas.Top="286">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle25Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard25">
+                            <Storyboard x:Name="BackgroundStoryboard25" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle25Transform" Storyboard.TargetProperty="X" From="0" To="616" Duration="0:0:4.2" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle25Transform" Storyboard.TargetProperty="Y" From="0" To="213" Duration="0:0:5.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="127" Height="127" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="289" Canvas.Top="125">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle26Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard26">
+                            <Storyboard x:Name="BackgroundStoryboard26" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle26Transform" Storyboard.TargetProperty="X" From="0" To="334" Duration="0:0:4.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle26Transform" Storyboard.TargetProperty="Y" From="0" To="265" Duration="0:0:6.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="131" Height="131" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="669" Canvas.Top="278">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle27Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard27">
+                            <Storyboard x:Name="BackgroundStoryboard27" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle27Transform" Storyboard.TargetProperty="X" From="0" To="548" Duration="0:0:7.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle27Transform" Storyboard.TargetProperty="Y" From="0" To="-212" Duration="0:0:7.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="79" Height="79" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="719" Canvas.Top="31">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle28Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard28">
+                            <Storyboard x:Name="BackgroundStoryboard28" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle28Transform" Storyboard.TargetProperty="X" From="0" To="320" Duration="0:0:7.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle28Transform" Storyboard.TargetProperty="Y" From="0" To="147" Duration="0:0:6.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="54" Height="54" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="777" Canvas.Top="80">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle29Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard29">
+                            <Storyboard x:Name="BackgroundStoryboard29" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle29Transform" Storyboard.TargetProperty="X" From="0" To="-352" Duration="0:0:7.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle29Transform" Storyboard.TargetProperty="Y" From="0" To="122" Duration="0:0:5.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="75" Height="75" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="239" Canvas.Top="211">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle30Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard30">
+                            <Storyboard x:Name="BackgroundStoryboard30" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle30Transform" Storyboard.TargetProperty="X" From="0" To="325" Duration="0:0:7.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle30Transform" Storyboard.TargetProperty="Y" From="0" To="341" Duration="0:0:7.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="76" Height="76" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="508" Canvas.Top="128">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle31Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard31">
+                            <Storyboard x:Name="BackgroundStoryboard31" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle31Transform" Storyboard.TargetProperty="X" From="0" To="-793" Duration="0:0:4.1" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle31Transform" Storyboard.TargetProperty="Y" From="0" To="425" Duration="0:0:4.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="73" Height="73" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="278" Canvas.Top="251">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle32Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard32">
+                            <Storyboard x:Name="BackgroundStoryboard32" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle32Transform" Storyboard.TargetProperty="X" From="0" To="-206" Duration="0:0:4.9" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle32Transform" Storyboard.TargetProperty="Y" From="0" To="-20" Duration="0:0:5.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="66" Height="66" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="512" Canvas.Top="238">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle33Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard33">
+                            <Storyboard x:Name="BackgroundStoryboard33" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle33Transform" Storyboard.TargetProperty="X" From="0" To="-576" Duration="0:0:7.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle33Transform" Storyboard.TargetProperty="Y" From="0" To="-53" Duration="0:0:4.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="119" Height="119" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="583" Canvas.Top="425">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle34Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard34">
+                            <Storyboard x:Name="BackgroundStoryboard34" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle34Transform" Storyboard.TargetProperty="X" From="0" To="479" Duration="0:0:6.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle34Transform" Storyboard.TargetProperty="Y" From="0" To="9" Duration="0:0:6.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="76" Height="76" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="85" Canvas.Top="195">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle35Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard35">
+                            <Storyboard x:Name="BackgroundStoryboard35" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle35Transform" Storyboard.TargetProperty="X" From="0" To="295" Duration="0:0:8.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle35Transform" Storyboard.TargetProperty="Y" From="0" To="-140" Duration="0:0:6.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="75" Height="75" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="687" Canvas.Top="187">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle36Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard36">
+                            <Storyboard x:Name="BackgroundStoryboard36" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle36Transform" Storyboard.TargetProperty="X" From="0" To="725" Duration="0:0:4.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle36Transform" Storyboard.TargetProperty="Y" From="0" To="-21" Duration="0:0:4.2" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="105" Height="105" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="744" Canvas.Top="445">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle37Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard37">
+                            <Storyboard x:Name="BackgroundStoryboard37" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle37Transform" Storyboard.TargetProperty="X" From="0" To="423" Duration="0:0:4.1" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle37Transform" Storyboard.TargetProperty="Y" From="0" To="51" Duration="0:0:6.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="145" Height="145" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="774" Canvas.Top="356">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle38Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard38">
+                            <Storyboard x:Name="BackgroundStoryboard38" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle38Transform" Storyboard.TargetProperty="X" From="0" To="-334" Duration="0:0:4.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle38Transform" Storyboard.TargetProperty="Y" From="0" To="-214" Duration="0:0:5.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="124" Height="124" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="45" Canvas.Top="431">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle39Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard39">
+                            <Storyboard x:Name="BackgroundStoryboard39" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle39Transform" Storyboard.TargetProperty="X" From="0" To="-767" Duration="0:0:4.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle39Transform" Storyboard.TargetProperty="Y" From="0" To="-285" Duration="0:0:6.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="80" Height="80" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="364" Canvas.Top="330">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle40Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard40">
+                            <Storyboard x:Name="BackgroundStoryboard40" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle40Transform" Storyboard.TargetProperty="X" From="0" To="329" Duration="0:0:6.9" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle40Transform" Storyboard.TargetProperty="Y" From="0" To="243" Duration="0:0:7.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="138" Height="138" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="426" Canvas.Top="279">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle41Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard41">
+                            <Storyboard x:Name="BackgroundStoryboard41" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle41Transform" Storyboard.TargetProperty="X" From="0" To="33" Duration="0:0:5.9" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle41Transform" Storyboard.TargetProperty="Y" From="0" To="61" Duration="0:0:5.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="72" Height="72" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="575" Canvas.Top="257">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle42Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard42">
+                            <Storyboard x:Name="BackgroundStoryboard42" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle42Transform" Storyboard.TargetProperty="X" From="0" To="-185" Duration="0:0:6.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle42Transform" Storyboard.TargetProperty="Y" From="0" To="88" Duration="0:0:8.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="81" Height="81" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="463" Canvas.Top="76">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle43Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard43">
+                            <Storyboard x:Name="BackgroundStoryboard43" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle43Transform" Storyboard.TargetProperty="X" From="0" To="-753" Duration="0:0:4.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle43Transform" Storyboard.TargetProperty="Y" From="0" To="379" Duration="0:0:6.4" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="105" Height="105" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="66" Canvas.Top="31">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle44Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard44">
+                            <Storyboard x:Name="BackgroundStoryboard44" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle44Transform" Storyboard.TargetProperty="X" From="0" To="415" Duration="0:0:7.2" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle44Transform" Storyboard.TargetProperty="Y" From="0" To="119" Duration="0:0:7.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="113" Height="113" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="655" Canvas.Top="325">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle45Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard45">
+                            <Storyboard x:Name="BackgroundStoryboard45" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle45Transform" Storyboard.TargetProperty="X" From="0" To="365" Duration="0:0:5.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle45Transform" Storyboard.TargetProperty="Y" From="0" To="-43" Duration="0:0:5.7" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="69" Height="69" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="6" Canvas.Top="129">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle46Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard46">
+                            <Storyboard x:Name="BackgroundStoryboard46" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle46Transform" Storyboard.TargetProperty="X" From="0" To="467" Duration="0:0:6.0" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle46Transform" Storyboard.TargetProperty="Y" From="0" To="-372" Duration="0:0:4.0" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="141" Height="141" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="138" Canvas.Top="269">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle47Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard47">
+                            <Storyboard x:Name="BackgroundStoryboard47" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle47Transform" Storyboard.TargetProperty="X" From="0" To="16" Duration="0:0:7.4" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle47Transform" Storyboard.TargetProperty="Y" From="0" To="-377" Duration="0:0:6.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="127" Height="127" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="404" Canvas.Top="394">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle48Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard48">
+                            <Storyboard x:Name="BackgroundStoryboard48" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle48Transform" Storyboard.TargetProperty="X" From="0" To="291" Duration="0:0:4.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle48Transform" Storyboard.TargetProperty="Y" From="0" To="-56" Duration="0:0:4.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="109" Height="109" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="766" Canvas.Top="399">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle49Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard49">
+                            <Storyboard x:Name="BackgroundStoryboard49" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle49Transform" Storyboard.TargetProperty="X" From="0" To="-720" Duration="0:0:5.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle49Transform" Storyboard.TargetProperty="Y" From="0" To="-46" Duration="0:0:7.4" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="70" Height="70" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="225" Canvas.Top="161">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle50Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard50">
+                            <Storyboard x:Name="BackgroundStoryboard50" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle50Transform" Storyboard.TargetProperty="X" From="0" To="778" Duration="0:0:7.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle50Transform" Storyboard.TargetProperty="Y" From="0" To="300" Duration="0:0:5.5" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="52" Height="52" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="748" Canvas.Top="281">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle51Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard51">
+                            <Storyboard x:Name="BackgroundStoryboard51" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle51Transform" Storyboard.TargetProperty="X" From="0" To="205" Duration="0:0:4.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle51Transform" Storyboard.TargetProperty="Y" From="0" To="-318" Duration="0:0:4.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="149" Height="149" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="295" Canvas.Top="235">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle52Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard52">
+                            <Storyboard x:Name="BackgroundStoryboard52" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle52Transform" Storyboard.TargetProperty="X" From="0" To="493" Duration="0:0:5.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle52Transform" Storyboard.TargetProperty="Y" From="0" To="-204" Duration="0:0:7.2" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="81" Height="81" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="565" Canvas.Top="358">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle53Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard53">
+                            <Storyboard x:Name="BackgroundStoryboard53" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle53Transform" Storyboard.TargetProperty="X" From="0" To="-145" Duration="0:0:4.5" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle53Transform" Storyboard.TargetProperty="Y" From="0" To="-236" Duration="0:0:6.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="63" Height="63" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="285" Canvas.Top="261">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle54Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard54">
+                            <Storyboard x:Name="BackgroundStoryboard54" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle54Transform" Storyboard.TargetProperty="X" From="0" To="-780" Duration="0:0:6.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle54Transform" Storyboard.TargetProperty="Y" From="0" To="-188" Duration="0:0:7.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="111" Height="111" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="418" Canvas.Top="81">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle55Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard55">
+                            <Storyboard x:Name="BackgroundStoryboard55" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle55Transform" Storyboard.TargetProperty="X" From="0" To="610" Duration="0:0:5.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle55Transform" Storyboard.TargetProperty="Y" From="0" To="-2" Duration="0:0:5.8" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="66" Height="66" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="608" Canvas.Top="76">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle56Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard56">
+                            <Storyboard x:Name="BackgroundStoryboard56" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle56Transform" Storyboard.TargetProperty="X" From="0" To="-515" Duration="0:0:7.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle56Transform" Storyboard.TargetProperty="Y" From="0" To="-249" Duration="0:0:4.4" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="109" Height="109" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="382" Canvas.Top="44">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle57Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard57">
+                            <Storyboard x:Name="BackgroundStoryboard57" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle57Transform" Storyboard.TargetProperty="X" From="0" To="-83" Duration="0:0:6.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle57Transform" Storyboard.TargetProperty="Y" From="0" To="36" Duration="0:0:6.4" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="125" Height="125" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="488" Canvas.Top="122">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle58Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard58">
+                            <Storyboard x:Name="BackgroundStoryboard58" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle58Transform" Storyboard.TargetProperty="X" From="0" To="566" Duration="0:0:4.4" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle58Transform" Storyboard.TargetProperty="Y" From="0" To="-244" Duration="0:0:6.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="97" Height="97" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="770" Canvas.Top="347">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle59Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard59">
+                            <Storyboard x:Name="BackgroundStoryboard59" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle59Transform" Storyboard.TargetProperty="X" From="0" To="-677" Duration="0:0:4.2" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle59Transform" Storyboard.TargetProperty="Y" From="0" To="-303" Duration="0:0:4.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="121" Height="121" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="89" Canvas.Top="117">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle60Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard60">
+                            <Storyboard x:Name="BackgroundStoryboard60" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle60Transform" Storyboard.TargetProperty="X" From="0" To="727" Duration="0:0:5.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle60Transform" Storyboard.TargetProperty="Y" From="0" To="-186" Duration="0:0:6.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="59" Height="59" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="506" Canvas.Top="361">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle61Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard61">
+                            <Storyboard x:Name="BackgroundStoryboard61" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle61Transform" Storyboard.TargetProperty="X" From="0" To="-280" Duration="0:0:5.8" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle61Transform" Storyboard.TargetProperty="Y" From="0" To="-274" Duration="0:0:6.5" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="92" Height="92" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="148" Canvas.Top="368">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle62Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard62">
+                            <Storyboard x:Name="BackgroundStoryboard62" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle62Transform" Storyboard.TargetProperty="X" From="0" To="216" Duration="0:0:4.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle62Transform" Storyboard.TargetProperty="Y" From="0" To="-193" Duration="0:0:7.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="143" Height="143" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="468" Canvas.Top="310">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle63Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard63">
+                            <Storyboard x:Name="BackgroundStoryboard63" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle63Transform" Storyboard.TargetProperty="X" From="0" To="744" Duration="0:0:4.1" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle63Transform" Storyboard.TargetProperty="Y" From="0" To="78" Duration="0:0:7.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="53" Height="53" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="716" Canvas.Top="84">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle64Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard64">
+                            <Storyboard x:Name="BackgroundStoryboard64" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle64Transform" Storyboard.TargetProperty="X" From="0" To="93" Duration="0:0:7.3" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle64Transform" Storyboard.TargetProperty="Y" From="0" To="170" Duration="0:0:5.1" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="144" Height="144" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="570" Canvas.Top="21">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle65Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard65">
+                            <Storyboard x:Name="BackgroundStoryboard65" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle65Transform" Storyboard.TargetProperty="X" From="0" To="-665" Duration="0:0:7.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle65Transform" Storyboard.TargetProperty="Y" From="0" To="244" Duration="0:0:4.2" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="116" Height="116" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="695" Canvas.Top="25">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle66Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard66">
+                            <Storyboard x:Name="BackgroundStoryboard66" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle66Transform" Storyboard.TargetProperty="X" From="0" To="226" Duration="0:0:5.9" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle66Transform" Storyboard.TargetProperty="Y" From="0" To="434" Duration="0:0:7.5" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="61" Height="61" Fill="#fbe4d8" Opacity="0.4"
+                     Canvas.Left="52" Canvas.Top="260">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle67Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard67">
+                            <Storyboard x:Name="BackgroundStoryboard67" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle67Transform" Storyboard.TargetProperty="X" From="0" To="509" Duration="0:0:4.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle67Transform" Storyboard.TargetProperty="Y" From="0" To="-65" Duration="0:0:4.5" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="133" Height="133" Fill="#522b5b" Opacity="0.4"
+                     Canvas.Left="452" Canvas.Top="27">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle68Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard68">
+                            <Storyboard x:Name="BackgroundStoryboard68" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle68Transform" Storyboard.TargetProperty="X" From="0" To="-512" Duration="0:0:6.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle68Transform" Storyboard.TargetProperty="Y" From="0" To="257" Duration="0:0:7.3" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="148" Height="148" Fill="#854f6c" Opacity="0.4"
+                     Canvas.Left="439" Canvas.Top="419">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle69Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard69">
+                            <Storyboard x:Name="BackgroundStoryboard69" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle69Transform" Storyboard.TargetProperty="X" From="0" To="-283" Duration="0:0:7.7" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle69Transform" Storyboard.TargetProperty="Y" From="0" To="-434" Duration="0:0:5.9" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+            <Ellipse Width="127" Height="127" Fill="#dfb6b2" Opacity="0.4"
+                     Canvas.Left="589" Canvas.Top="212">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="Circle70Transform" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Ellipse.Loaded">
+                        <BeginStoryboard x:Name="FloatingCirclesStoryboard70">
+                            <Storyboard x:Name="BackgroundStoryboard70" RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="Circle70Transform" Storyboard.TargetProperty="X" From="0" To="-566" Duration="0:0:5.6" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="Circle70Transform" Storyboard.TargetProperty="Y" From="0" To="163" Duration="0:0:7.4" AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+
+        </Canvas>
+
+        <!-- Pulsing App Name -->
+        <TextBlock Text="EduLink" FontSize="40" FontWeight="Bold" Foreground="white"
+                   HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.RenderTransform>
+                <ScaleTransform x:Name="EduLinkScaleTransform" ScaleX="1" ScaleY="1"/>
+            </TextBlock.RenderTransform>
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard x:Name="BackgroundStoryboard71">
+                        <Storyboard x:Name="EduLinkStoryboard" RepeatBehavior="Forever" AutoReverse="True">
+                            <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(ScaleTransform.ScaleX)"
+                                             From="1" To="1.1" Duration="0:0:1.5" />
+                            <DoubleAnimation Storyboard.TargetProperty="(TextBlock.RenderTransform).(ScaleTransform.ScaleY)"
+                                             From="1" To="1.1" Duration="0:0:1.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+
+        <!-- Animated Loading Text with Bouncing Dots -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
+            <TextBlock Text="Loading" Foreground="#ecf0f1" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0,0,0">
+                <Ellipse Width="10" Height="10" Fill="#ecf0f1" Margin="2,0,2,0">
+                    <Ellipse.RenderTransform>
+                        <ScaleTransform x:Name="Dot1Scale" ScaleX="1" ScaleY="1"/>
+                    </Ellipse.RenderTransform>
+                    <Ellipse.Triggers>
+                        <EventTrigger RoutedEvent="Ellipse.Loaded">
+                            <BeginStoryboard x:Name="FloatingCirclesStoryboard71">
+                                <Storyboard x:Name="BackgroundStoryboard72" RepeatBehavior="Forever">
+                                    <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)"
+                                                     From="1" To="1.5" Duration="0:0:0.5" AutoReverse="True" BeginTime="0:0:0"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)"
+                                                     From="1" To="1.5" Duration="0:0:0.5" AutoReverse="True" BeginTime="0:0:0"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Ellipse.Triggers>
+                </Ellipse>
+                <!-- Repeat for additional dots -->
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
