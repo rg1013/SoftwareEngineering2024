@@ -27,7 +27,7 @@ namespace UXModule.Views
 
         private static DashboardPage dashboardPage;
         //private static WhiteboardGUI.Views.MainPage whiteboardPage;
-        //private static UpdaterPage updaterPage;
+        private static UpdaterPage updaterPage;
         private static FileCloner.Views.MainPage fileClonerPage;
         //private static ScreensharePage screensharePage;
         //private static AnalyserPage analyserPage;
@@ -79,8 +79,8 @@ namespace UXModule.Views
         private void UpdaterClick(object sender, RoutedEventArgs e)
         {
 
-            //updaterPage = new UpdaterPage();
-            //Main.Content = updaterPage;
+            updaterPage = new UpdaterPage(sessionType);
+            Main.Content = updaterPage;
 
         }
 

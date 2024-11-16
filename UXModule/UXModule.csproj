@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FileCloner\FileCloner.csproj" />
     <ProjectReference Include="..\Networking\Networking.csproj" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>

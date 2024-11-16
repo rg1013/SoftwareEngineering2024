@@ -77,6 +77,7 @@ namespace UXModule
 
         private string UserProfileUrl { get; set; }
 
+        private readonly Updater.Client _client = Updater.Client.GetClientInstance();
 
 
         public ObservableCollection<UserDetails> ClientUserList { get; set; } = new ObservableCollection<UserDetails>();
