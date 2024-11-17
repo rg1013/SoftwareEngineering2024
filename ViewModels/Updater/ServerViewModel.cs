@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Windows;
 using Microsoft.Win32;
 using Updater;
 
@@ -100,6 +101,26 @@ public class ServerViewModel : INotifyPropertyChanged
                         DataPacket.PacketType.Broadcast,
                         new List<FileContent> { fileContentToSend }
                         );
+
+        // Set the target directory where files will be saved
+        string targetDirectory = AppConstants.ToolsDirectory;
+
+        // Create the target file path
+        string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(filePath));
+        try
+        {
+            // Copy the file to the target directory
+            File.Copy(filePath, targetFilePath, overwrite: true);
+            // Notify the user and log success
+            _logServiceViewModel.UpdateLogDetails($"File uploaded successfully: {Path.GetFileName(filePath)}");
+            MessageBox.Show("File uploaded successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            // Handle errors during file copy
+            _logServiceViewModel.UpdateLogDetails($"Failed to upload file: {ex.Message}");
+            MessageBox.Show($"Error uploading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
 
         // Serialize packet
         string serializedPacket = Utils.SerializeObject(dataPacketToSend);

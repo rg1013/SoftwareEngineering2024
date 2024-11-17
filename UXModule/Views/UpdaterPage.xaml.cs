@@ -109,31 +109,6 @@ public partial class UpdaterPage : Page
                     string selectedFileName = Path.GetFileName(selectedFilePath); // Extract the file name from the path
 
                     s_serverViewModel.BroadcastToClients(selectedFilePath, selectedFileName);
-
-                    // Set the target directory where files will be saved
-                    string targetDirectory = AppConstants.ToolsDirectory;
-
-                    // Ensure the directory exists
-                    if (!Directory.Exists(targetDirectory))
-                    {
-                        Directory.CreateDirectory(targetDirectory);
-                    }
-                    // Create the target file path
-                    string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(selectedFilePath));
-                    try
-                    {
-                        // Copy the file to the target directory
-                        File.Copy(selectedFilePath, targetFilePath, overwrite: true);
-                        // Notify the user and log success
-                        LogServiceViewModel.UpdateLogDetails($"File uploaded successfully: {Path.GetFileName(selectedFilePath)}");
-                        MessageBox.Show("File uploaded successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle errors during file copy
-                        LogServiceViewModel.UpdateLogDetails($"Failed to upload file: {ex.Message}");
-                        MessageBox.Show($"Error uploading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
                 }
             }
         }
