@@ -50,7 +50,7 @@ public class DirectoryMetadataGenerator
     /// <param name="directoryPath">Path of directory.</param>
     /// <param name="writeToFile">bool value to write metadata to file.</param>
     /// <returns>List of FileMetadata objects in the directory.</returns>
-    private static List<FileMetadata> CreateFileMetadata(string directoryPath = null)
+    public static List<FileMetadata> CreateFileMetadata(string directoryPath = null)
     {
         directoryPath ??= AppConstants.ToolsDirectory;
         List<FileMetadata> metadata = new List<FileMetadata>();
@@ -58,8 +58,7 @@ public class DirectoryMetadataGenerator
         foreach (string filePath in Directory.GetFiles(directoryPath))
         {
 
-            metadata.Add(new FileMetadata
-            {
+            metadata.Add(new FileMetadata {
                 FileName = Path.GetFileName(filePath),
                 FileHash = ComputeFileHash(filePath)
             });
@@ -73,7 +72,7 @@ public class DirectoryMetadataGenerator
     /// </summary>
     /// <param name="filePath">Path of file</param>
     /// <returns>SHA-256 hash of file</returns>
-    private static string ComputeFileHash(string filePath)
+    public static string ComputeFileHash(string filePath)
     {
         using SHA256 sha256 = SHA256.Create();
         using FileStream stream = File.OpenRead(filePath);

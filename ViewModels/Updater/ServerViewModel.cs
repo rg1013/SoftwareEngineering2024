@@ -15,7 +15,6 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
-using Microsoft.Win32;
 using Updater;
 
 namespace ViewModels.Updater;
@@ -26,7 +25,7 @@ public class ServerViewModel : INotifyPropertyChanged
     private readonly ToolAssemblyLoader _loader;
     private static readonly JsonSerializerOptions s_jsonOptions = new() { WriteIndented = true };
 
-    public ServerViewModel(LogServiceViewModel logServiceViewModel, ToolAssemblyLoader loader)
+    public ServerViewModel(LogServiceViewModel logServiceViewModel, ToolAssemblyLoader loader, Server? server = null)
     {
         _server = Server.GetServerInstance(AddLogMessage);
         _loader = loader;

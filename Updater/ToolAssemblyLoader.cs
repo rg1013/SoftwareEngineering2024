@@ -21,7 +21,7 @@ namespace Updater;
 /// <summary>
 /// Class to Load information of Tools in a hash map.
 /// </summary>
-public class ToolAssemblyLoader : IToolAssemblyLoader
+public class ToolAssemblyLoader
 {
     /// <summary>
     /// Checks if a file is a dll file or not
@@ -33,7 +33,7 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
     }
 
     /// <summary>
-    /// Returns hash map of information of tools.
+    /// Returns map of information of tools.
     /// </summary>
     /// <param name="folder">Path to the target folder</param>
     public Dictionary<string, List<string>> LoadToolsFromFolder(string folder)
@@ -93,13 +93,14 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
                                             {
                                                 if (property.CanRead)  // To ensure the property is readable
                                                 {
+                                                    // converting all values to strings
                                                     object? value = property.GetValue(instance);
                                                     string valueAsString = value switch {
                                                         Version version => version.ToString(),
                                                         DateTime dateTime => dateTime.ToString("yyyy-MM-dd"),
                                                         _ => value?.ToString() ?? "null"
                                                     };
-                                                    // Add other properties to the map (not version related)
+
                                                     if (toolPropertyMap.ContainsKey(property.Name))
                                                     {
                                                         toolPropertyMap[property.Name].Add(valueAsString); // appending to the map values if key exists
@@ -108,6 +109,7 @@ public class ToolAssemblyLoader : IToolAssemblyLoader
                                                     {
                                                         toolPropertyMap[property.Name] = [valueAsString]; // creating a new list for values for new key
                                                     }
+                                                    Trace.WriteLine($"{property.Name}: {valueAsString}");
                                                 }
                                             }
                                         }

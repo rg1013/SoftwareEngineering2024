@@ -125,7 +125,7 @@ public class Utils
     /// Generates serialized SyncUp packet
     /// </summary>
     /// <returns>Serialized SyncUp packet</returns>
-    public static string SerializedSyncUpPacket(string clientId)
+    public static string SerializedSyncUpPacket(string? clientId)
     {
         List<FileContent> fileContents = new List<FileContent>
         {
