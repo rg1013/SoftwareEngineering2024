@@ -17,7 +17,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Updater;
 
-namespace ViewModels;
+namespace ViewModels.Updater;
 
 ///<summary>
 /// The LogServiceViewModel class handles the logic for managing log details,
@@ -54,8 +54,7 @@ public class LogServiceViewModel : INotifyPropertyChanged
     public string LogDetails
     {
         get => _logDetails;
-        set
-        {
+        set {
             // Update the log details and notify the UI of the change
             _logDetails = value;
             OnPropertyChanged(nameof(LogDetails));
@@ -68,8 +67,7 @@ public class LogServiceViewModel : INotifyPropertyChanged
     public string NotificationMessage
     {
         get => _notificationMessage;
-        set
-        {
+        set {
             // Update the notification message and notify the UI of the change
             _notificationMessage = value;
             OnPropertyChanged(nameof(NotificationMessage));
@@ -104,8 +102,7 @@ public class LogServiceViewModel : INotifyPropertyChanged
     public bool IsLogExpanded
     {
         get => _isLogExpanded;
-        set
-        {
+        set {
             // Update the expanded/collapsed state of the log section and notify the UI of the change
             _isLogExpanded = value;
             OnPropertyChanged(nameof(IsLogExpanded));

@@ -11,30 +11,25 @@
 *****************************************************************************/
 
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
-using System.Windows.Documents;
+using Microsoft.Win32;
 using Updater;
 
-namespace ViewModels;
+namespace ViewModels.Updater;
 public class ServerViewModel : INotifyPropertyChanged
 {
-    private Server _server;
+    private readonly Server _server;
     private readonly LogServiceViewModel _logServiceViewModel;
-    private readonly Mutex _mutex;
     private readonly ToolAssemblyLoader _loader;
     private static readonly JsonSerializerOptions s_jsonOptions = new() { WriteIndented = true };
-    private bool _isRunning;
 
     public ServerViewModel(LogServiceViewModel logServiceViewModel, ToolAssemblyLoader loader)
     {
         _server = Server.GetServerInstance(AddLogMessage);
         _loader = loader;
-        _logServiceViewModel = logServiceViewModel; 
-        // Create a named mutex
-        _mutex = new Mutex(false, "Global\\MyUniqueServerMutexName");
+        _logServiceViewModel = logServiceViewModel;
     }
 
     public Server GetServer()
@@ -42,41 +37,9 @@ public class ServerViewModel : INotifyPropertyChanged
         return _server;
     }
 
-    public bool CanStartServer()
-    {
-        return _mutex.WaitOne(0); // Check if the mutex can be acquired
-    }
-
-    public void StartServer(string ip, string port)
-    {
-        if (CanStartServer())
-        {
-            Task.Run(() => {
-                _server.Start(ip, port);
-                _isRunning = true;
-            });
-        }
-        else
-        {
-            _logServiceViewModel.UpdateLogDetails("Server is already running on another instance.");
-        }
-    }
-
-    public void StopServer()
-    {
-        _server.Stop();
-        _mutex.ReleaseMutex();
-        _isRunning = false;
-    }
-
     private void AddLogMessage(string message)
     {
         _logServiceViewModel.UpdateLogDetails(message);
-    }
-
-    public bool IsServerRunning()
-    {
-        return _isRunning;
     }
     public string GetServerData()
     {
@@ -120,6 +83,27 @@ public class ServerViewModel : INotifyPropertyChanged
         // Serialize the list of file data to JSON
         string jsonResult = JsonSerializer.Serialize(fileDataList, s_jsonOptions);
         return jsonResult;
+    }
+
+    public void BroadcastToClients(string filePath, string fileName)
+    {
+        string? content = Utils.ReadBinaryFile(filePath) ?? throw new Exception("Failed to read file");
+        string? serializedContent = Utils.SerializeObject(content) ?? throw new Exception("Failed to serialize content");
+        var fileContentToSend = new FileContent(fileName, serializedContent);
+
+        _logServiceViewModel.UpdateLogDetails("Sending files to all connected clients");
+
+        var fileContentsToSend = new List<FileContent>();
+        fileContentsToSend?.Add(fileContentToSend);
+
+        var dataPacketToSend = new DataPacket(
+                        DataPacket.PacketType.Broadcast,
+                        new List<FileContent> { fileContentToSend }
+                        );
+
+        // Serialize packet
+        string serializedPacket = Utils.SerializeObject(dataPacketToSend);
+        _server.Broadcast(serializedPacket);
     }
 
     /// <summary>

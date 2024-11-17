@@ -16,7 +16,7 @@ using System.Text;
 using System.IO;
 using Updater;
 
-namespace ViewModels;
+namespace ViewModels.Updater;
 
 /// <summary>
 /// The FileMonitor class monitors a specified folder for file creation and deletion events
@@ -55,8 +55,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
     {
         //Returns the current message status
         get => _messageStatus;
-        set
-        {
+        set {
             //updates the message status and notifies the UI about the status change.
             _messageStatus = value;
             OnPropertyChanged(nameof(MessageStatus));
@@ -77,8 +76,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
             Directory.CreateDirectory(folderPath);
             MessageStatus = $"Created folder: {folderPath}";
         }
-        _fileWatcher = new FileSystemWatcher
-        {
+        _fileWatcher = new FileSystemWatcher {
             Path = folderPath,
             NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName,
             Filter = "*.*"
@@ -157,7 +155,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
         }
 
 
-        StringBuilder message = new StringBuilder();
+        var message = new StringBuilder();
 
         if (filesToProcess.Any())
         {

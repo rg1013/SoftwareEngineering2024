@@ -15,7 +15,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Updater;
 
-namespace ViewModels;
+namespace ViewModels.Updater;
 
 /// <summary>
 /// Class to populate list of available analyzers for server-side operations
@@ -34,7 +34,7 @@ public class ToolListViewModel : INotifyPropertyChanged
     }
     public void LoadAvailableTools()
     {
-        ToolAssemblyLoader dllLoader = new ToolAssemblyLoader();
+        var dllLoader = new ToolAssemblyLoader();
         Dictionary<string, List<string>> hashMap = dllLoader.LoadToolsFromFolder(AppConstants.ToolsDirectory);
 
         if (hashMap.Count > 0)

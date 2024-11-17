@@ -39,6 +39,7 @@ namespace UXModule
 
         public Server _fileClonerInstance = Server.GetServerInstance();
         public Updater.Server _updaterServerInstance = Updater.Server.GetServerInstance();
+        public Updater.Client _updaterClientInstance = Updater.Client.GetClientInstance();
 
         public Server_Dashboard(ICommunicator communicator, string username, string useremail, string profilePictureUrl)
         {
@@ -272,6 +273,7 @@ namespace UXModule
             _communicator.AddClient(newUserId, socket);
             _fileClonerInstance.SetUser(newUserId, socket);
             _updaterServerInstance.SetUser(newUserId, socket);
+            _updaterClientInstance.GetClientId(newUserId);
 
             // Send only the userId to the new client
             DashboardDetails dashboardMessage = new DashboardDetails

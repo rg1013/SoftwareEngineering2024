@@ -16,7 +16,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:UXModule"
-      xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+      xmlns:vm="clr-namespace:ViewModels.Updater;assembly=ViewModels"
       mc:Ignorable="d"
       Title="UpdaterPage">
 
@@ -26,9 +26,9 @@
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#c23b22"/>
-            <Setter Property="BorderBrush" Value="#c23b22"/>
+            <Setter Property="Foreground" Value="#190019"/>
+            <Setter Property="Background" Value="#DFB6B2"/>
+            <Setter Property="BorderBrush" Value="#FBE4D8"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="Margin" Value="10,5"/>
@@ -53,7 +53,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#db5856"/>
+                                <Setter Property="Background" Value="#854f6c"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -81,41 +81,55 @@
             <!-- Row for buttons with more spacing from log details -->
         </Grid.RowDefinitions>
 
-
         <!-- Available Tools Section -->
-        <StackPanel Margin="10" Grid.Row="1">
-            <TextBlock Text="Available Tools" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,20,0,10"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="ToolViewList" ItemsSource="{Binding AvailableToolsList}" Margin="0,0,0,0" BorderThickness="2" BorderBrush="Black" Height="168">
+        <StackPanel Margin="20 0 20 0" Grid.Row="1">
+            <TextBlock Text="Available Tools" FontSize="16" FontWeight="Bold" Foreground="#FBE4D8" Margin="10,20,0,20" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#DFB6B2" Grid.Column="1">
+                <ListView x:Name="ToolViewList" ItemsSource="{Binding AvailableToolsList}" Margin="0,0,0,0" BorderThickness="2" BorderBrush="#FBE4D8" Height="190" Background="#DFB6B2" Width="Auto">
+                    <ListView.Resources>
+                        <!-- Style for Column Header -->
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="Background" Value="#190019"/>
+                            <Setter Property="Foreground" Value="#FBE4D8"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.Resources>
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100" />
-                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="60" />
+                            <!-- Set Width="Auto" to ensure the columns adjust based on content -->
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150" />
+                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="120" />
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="200" />
-                            <GridViewColumn Header="Deprecated" DisplayMemberBinding="{Binding Deprecated}" Width="80" />
+                            <GridViewColumn Header="Deprecated" DisplayMemberBinding="{Binding Deprecated}" Width="100" />
                             <GridViewColumn Header="Created By" DisplayMemberBinding="{Binding CreatedBy}" Width="150" />
-                            <GridViewColumn Header="Last Updated" DisplayMemberBinding="{Binding LastUpdated}" Width="150" />
+                            <GridViewColumn Header="Last Updated/Created" DisplayMemberBinding="{Binding LastUpdated}" Width="150" />
                             <GridViewColumn Header="Last Modified" DisplayMemberBinding="{Binding LastModified}" Width="150" />
-                            <GridViewColumn Header="Creator Email" DisplayMemberBinding="{Binding CreatorEmail}" Width="180"/>
+                            <GridViewColumn Header="Creator Email" DisplayMemberBinding="{Binding CreatorEmail}" Width="200"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </ScrollViewer>
-            <TextBlock Text="{Binding ToolsDirectoryMessage}" FontSize="12" FontStyle="Italic" Margin="0,10,0,10" Foreground="Gray"/>
+            <TextBlock Text="{Binding ToolsDirectoryMessage}" FontSize="12" FontStyle="Italic" Margin="0,10,0,10" Foreground="#854f6c"/>
         </StackPanel>
 
-        <StackPanel Margin="10,258,10,37" Grid.Row="1" Grid.RowSpan="2">
-            <TextBlock Text="Log Details:" FontSize="16" FontWeight="Bold" Margin="0,20,0,10" Foreground="White"/>
+
+
+        <StackPanel Margin="20,278,20,37" Grid.Row="1" Grid.RowSpan="2">
+            <TextBlock Text="Log Details:" FontSize="16" FontWeight="Bold" Margin="10,20,0,20" Foreground="#FBE4D8"/>
 
             <!-- Expand/Collapse Toggle Button with Show/Hide Text -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <ToggleButton x:Name="ExpandCollapseButton" 
                               IsChecked="{Binding IsLogExpanded}" 
                               FontSize="13" FontWeight="Bold" 
-                              Foreground="white" 
+                              Foreground="#854F6C" 
                               Background="Transparent" 
                               BorderThickness="0" 
-                              Margin="0,0,10,0">
+                              Margin="0,0,10,10"
+                              FontFamily="Segoe UI">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton">
                             <Setter Property="Content" Value="▼ Show Logs" />
@@ -130,25 +144,29 @@
             </StackPanel>
 
             <!-- Log Details ScrollViewer -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="150" Visibility="{Binding LogDetailsVisibility}" Background="White">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="250" Visibility="{Binding LogDetailsVisibility}" Background="Transparent">
                 <StackPanel>
-                    <TextBlock Text="{Binding LogDetails}" TextWrapping="Wrap" Margin="0,0,0,10" FontSize="12" Foreground="Black"/>
+                    <TextBlock Text="{Binding LogDetails}" TextWrapping="Wrap" Margin="0,0,0,10" FontSize="12" Foreground="#Dfb6b2"/>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
 
         <!-- Buttons for Upload and Update in a separate row for more space from log details -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,509,0,37" RenderTransformOrigin="0.628,0.52">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,620,0,10" RenderTransformOrigin="0.628,0.52">
             <Button Content="Sync up" Click="SyncButtonClick" Width="170" Height="35"/>
             <Button Content="Cloud Sync" Click="SyncCloudButtonClick" x:Name="CloudSyncButton" Width="156"/>
         </StackPanel>
 
 
         <!-- Notification Popup -->
-        <Popup IsOpen="{Binding NotificationVisible}" Placement="Top" HorizontalAlignment="Right" Margin="0,10,10,0">
-            <Border Background="LightGray" Padding="5">
-                <TextBlock Text="{Binding NotificationMessage}" FontSize="12" />
+        <Popup IsOpen="{Binding NotificationVisible}" Placement="Absolute" HorizontalAlignment="Right" VerticalAlignment="Top" Width="Auto" Height="Auto">
+            <Border Background="#522B5B" Padding="5" CornerRadius="8">
+                <Grid>
+                    <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="13" Height="13" Background="Red" Foreground="White" BorderBrush="Red" Click="ClosePopup" FontSize="9" Margin="0 2 0 15" Grid.Column="1"/>
+                    <TextBlock Text="{Binding NotificationMessage}" FontSize="12" Foreground="#FBE4D8" Margin="5 10 10 0" Grid.Column="0"/>
+                </Grid>
             </Border>
         </Popup>
+
     </Grid>
 </Page>

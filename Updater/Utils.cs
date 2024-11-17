@@ -11,6 +11,7 @@
 *****************************************************************************/
 
 using System.Diagnostics;
+using System.Text;
 using Networking.Serialization;
 
 namespace Updater;
@@ -110,19 +111,8 @@ public class Utils
     /// <returns>Serialized packet containing metadata of files in a directory.</returns>
     public static string SerializedMetadataPacket()
     {
-        DirectoryMetadataGenerator metadataGenerator = new DirectoryMetadataGenerator();
-
-        if (metadataGenerator == null)
-        {
-            throw new Exception("Failed to create DirectoryMetadataGenerator");
-        }
-
-        List<FileMetadata>? metadata = metadataGenerator.GetMetadata();
-        if (metadata == null)
-        {
-            throw new Exception("Failed to get metadata");
-        }
-
+        DirectoryMetadataGenerator metadataGenerator = new DirectoryMetadataGenerator() ?? throw new Exception("Failed to create DirectoryMetadataGenerator");
+        List<FileMetadata>? metadata = metadataGenerator.GetMetadata() ?? throw new Exception("Failed to get metadata");
         string serializedMetadata = Utils.SerializeObject(metadata);
         FileContent fileContent = new FileContent("metadata.json", serializedMetadata);
         List<FileContent> fileContents = new List<FileContent> { fileContent };
@@ -135,9 +125,13 @@ public class Utils
     /// Generates serialized SyncUp packet
     /// </summary>
     /// <returns>Serialized SyncUp packet</returns>
-    public static string SerializedSyncUpPacket()
+    public static string SerializedSyncUpPacket(string clientId)
     {
-        DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, new List<FileContent>());
+        List<FileContent> fileContents = new List<FileContent>
+        {
+            new FileContent(clientId, clientId) // clientId as both the name and content
+        };
+        DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, fileContents);
         return SerializeObject(dataPacket);
     }
 }

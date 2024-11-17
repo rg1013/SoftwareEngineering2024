@@ -22,12 +22,12 @@ using SECloud.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Text;
-using static ViewModels.CloudViewModel;
+using static ViewModels.Updater.CloudViewModel;
 using System.Reflection.Metadata;
 using SECloud.Models;
 using System.Diagnostics;
 using Networking.Communication;
-namespace ViewModels;
+namespace ViewModels.Updater;
 
 /// <summary>
 /// 
@@ -199,13 +199,13 @@ public class CloudViewModel
         serverFiles = RemoveNAEntries(serverFiles);
 
         // Initialize a new list to hold files that need to be added to the cloud
-        List<FileData> newFilesToCloud = new List<FileData>();
+        var newFilesToCloud = new List<FileData>();
 
         // Iterate over each file in the server list
         foreach (FileData serverFile in serverFiles)
         {
             // Check if the server file exists in the cloud
-            foreach (var index in Enumerable.Range(0, serverFile.Name.Count))
+            foreach (int index in Enumerable.Range(0, serverFile.Name.Count))
             {
                 bool fileExists = cloudFiles.Any(cloudFile =>
                     cloudFile.Name.Contains(serverFile.Name[index]) &&
@@ -311,12 +311,12 @@ public class CloudViewModel
 
         string? content = Utils.ReadBinaryFile(destinationPath) ?? throw new Exception("Failed to read file");
         string? serializedContent = Utils.SerializeObject(content) ?? throw new Exception("Failed to serialize content");
-        FileContent fileContentToSend = new FileContent("Cloud.json", serializedContent);
+        var fileContentToSend = new FileContent("Cloud.json", serializedContent);
 
-        List<FileContent> fileContentsToSend = new List<FileContent>();
+        var fileContentsToSend = new List<FileContent>();
         fileContentsToSend?.Add(fileContentToSend);
 
-        DataPacket dataPacketToSend = new DataPacket(
+        var dataPacketToSend = new DataPacket(
                         DataPacket.PacketType.Broadcast,
                         new List<FileContent> { fileContentToSend }
                         );

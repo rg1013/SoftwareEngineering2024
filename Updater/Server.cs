@@ -57,44 +57,6 @@ public class Server : INotificationHandler
         return s_instance;
     }
 
-    /// <summary>
-    /// Start the server
-    /// </summary>
-    /// <param name="ip">IP address of server</param>
-    /// <param name="port">port number of server</param>
-    public void Start(string ip, string port)
-    {
-        try
-        {
-            _communicator = CommunicationFactory.GetCommunicator(false);
-
-            // Starting the server
-            string result = _communicator.Start(ip, port);
-            UpdateUILogs($"Server started on {result}");
-            UpdateUILogs($"Monitoring {s_serverDirectory}");
-        }
-        catch (Exception ex)
-        {
-            UpdateUILogs($"Error in server start: {ex.Message}");
-        }
-    }
-
-    /// <summary>
-    /// Stop the server
-    /// </summary>
-    public void Stop()
-    {
-        try
-        {
-            _communicator?.Stop();
-            UpdateUILogs("Server stopped.");
-        }
-        catch (Exception ex)
-        {
-            UpdateUILogs($"Error stopping the server: {ex.Message}");
-        }
-    }
-
     private void Broadcasting(string serializedPacket)
     {
         _semaphore.Wait();
@@ -129,7 +91,7 @@ public class Server : INotificationHandler
         try
         {
             UpdateUILogs($"Sending sync up request to client {clientId}");
-            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket();
+            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId);
 
             // Write equivalent of this: 
             // UpdateUILogs("Syncing Up with the server");
@@ -251,6 +213,18 @@ public class Server : INotificationHandler
     {
         try
         {
+            List<FileContent> fileContents = dataPacket.FileContentList;
+
+            if (!fileContents.Any())
+            {
+                UpdateUILogs("No client ID received.");
+                throw new Exception("[Updater] No client ID received");
+            }
+
+            // Process the first file content
+            FileContent fileContent = fileContents[0];
+            clientId = fileContent.SerializedContent;
+
             // Start new thread for client for communication
             Thread thread = new Thread(() => server.RequestSyncUp(clientId));
             thread.Start();
@@ -519,7 +493,6 @@ public class Server : INotificationHandler
         {
         }
     }
-
     public void SetUser(string clientId, TcpClient socket)
     {
         try

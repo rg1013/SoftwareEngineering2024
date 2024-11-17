@@ -10,10 +10,12 @@
  * Description = Initialize a page for Updater 
  *****************************************************************************/
 
+using System.IO;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 using Updater;
-using ViewModels;
+using ViewModels.Updater;
 
 namespace UXModule.Views;
 
@@ -26,9 +28,9 @@ public partial class UpdaterPage : Page
     public LogServiceViewModel LogServiceViewModel { get; }
     private readonly FileChangeNotifier _analyzerNotificationService;
     private readonly ToolListViewModel _toolListViewModel;
-    private static CloudViewModel _cloudViewModel;
-    private static ServerViewModel _serverViewModel; // Added server view model 
-    private static ClientViewModel _clientViewModel; // Added client view model 
+    private static CloudViewModel? s_cloudViewModel;
+    private static ServerViewModel? s_serverViewModel; // Added server view model 
+    private static ClientViewModel? s_clientViewModel; // Added client view model 
     private readonly ToolAssemblyLoader _loader;
 
     private readonly string _sessionType;
@@ -50,21 +52,20 @@ public partial class UpdaterPage : Page
 
         _sessionType = sessionType;
 
-        
+
 
         if (sessionType != "server")
         {
-            _clientViewModel = new ClientViewModel(LogServiceViewModel); // Initialize the client view model 
+            s_clientViewModel = new ClientViewModel(LogServiceViewModel); // Initialize the client view model 
         }
         else
         {
-            _serverViewModel = new ServerViewModel(LogServiceViewModel, _loader); // Initialize the server view model 
-            _cloudViewModel = new CloudViewModel(LogServiceViewModel, _serverViewModel);
+            s_serverViewModel = new ServerViewModel(LogServiceViewModel, _loader); // Initialize the server view model 
+            s_cloudViewModel = new CloudViewModel(LogServiceViewModel, s_serverViewModel);
         }
-        
 
         this.DataContext = LogServiceViewModel;
-        
+
     }
 
     private void OnMessageReceived(string message)
@@ -74,19 +75,66 @@ public partial class UpdaterPage : Page
         LogServiceViewModel.UpdateLogDetails(message); // Update log with received message 
     }
 
-    
     private async void SyncButtonClick(object sender, RoutedEventArgs e)
     {
-        if (_sessionType != "server")
+        if (s_clientViewModel != null)
         {
-            try
+            if (_sessionType != "server")
             {
-                LogServiceViewModel.UpdateLogDetails("Initiating sync with the server...\n");
-                await _clientViewModel.SyncUpAsync(); // Call the sync method on the ViewModel
+                try
+                {
+                    LogServiceViewModel.UpdateLogDetails("Initiating sync with the server...\n");
+                    await s_clientViewModel.SyncUpAsync(); // Call the sync method on the ViewModel
+                }
+                catch (Exception)
+                {
+                    LogServiceViewModel.UpdateLogDetails("Client is not connected. Please connect first.\n");
+                }
             }
-            catch (Exception ex)
+        }
+        else
+        {
+            // Open File Dialog
+            OpenFileDialog openFileDialog = new OpenFileDialog {
+                Title = "Select a File to Upload",
+                Filter = "All Files (*.*)|*.*",
+                Multiselect = false // Allow selecting only one file
+            };
+
+            if (s_serverViewModel != null)
             {
-                LogServiceViewModel.UpdateLogDetails("Client is not connected. Please connect first.\n");
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string selectedFilePath = openFileDialog.FileName; // Get the selected file path
+                    string selectedFileName = Path.GetFileName(selectedFilePath); // Extract the file name from the path
+
+                    s_serverViewModel.BroadcastToClients(selectedFilePath, selectedFileName);
+
+                    // Set the target directory where files will be saved
+                    string targetDirectory = AppConstants.ToolsDirectory;
+
+                    // Ensure the directory exists
+                    if (!Directory.Exists(targetDirectory))
+                    {
+                        Directory.CreateDirectory(targetDirectory);
+                    }
+                    // Create the target file path
+                    string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(selectedFilePath));
+                    try
+                    {
+                        // Copy the file to the target directory
+                        File.Copy(selectedFilePath, targetFilePath, overwrite: true);
+                        // Notify the user and log success
+                        LogServiceViewModel.UpdateLogDetails($"File uploaded successfully: {Path.GetFileName(selectedFilePath)}");
+                        MessageBox.Show("File uploaded successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle errors during file copy
+                        LogServiceViewModel.UpdateLogDetails($"Failed to upload file: {ex.Message}");
+                        MessageBox.Show($"Error uploading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
         }
     }
@@ -95,33 +143,33 @@ public partial class UpdaterPage : Page
     {
         // Disable the Sync button to prevent multiple syncs at the same time
         CloudSyncButton.IsEnabled = false;
-        if (_sessionType=="server")
+        if (s_cloudViewModel != null)
         {
-            try
+            if (_sessionType == "server")
             {
-                // Check if the server is running
-                if (!_serverViewModel.IsServerRunning())
+                try
                 {
-                    LogServiceViewModel.UpdateLogDetails("Cloud sync aborted. Please start the server first.");
-                    return;
+                    LogServiceViewModel.UpdateLogDetails("Server is running. Starting cloud sync.");
+
+                    // Perform cloud sync asynchronously
+                    await s_cloudViewModel.PerformCloudSync();
+
+                    LogServiceViewModel.UpdateLogDetails("Cloud sync completed.");
                 }
-
-                LogServiceViewModel.UpdateLogDetails("Server is running. Starting cloud sync.");
-
-                // Perform cloud sync asynchronously
-                await _cloudViewModel.PerformCloudSync();
-
-                LogServiceViewModel.UpdateLogDetails("Cloud sync completed.");
-            }
-            catch (Exception ex)
-            {
-                LogServiceViewModel.UpdateLogDetails($"Error during cloud sync: {ex.Message}");
-            }
-            finally
-            {
-                CloudSyncButton.IsEnabled = true; // Re-enable Sync button
+                catch (Exception ex)
+                {
+                    LogServiceViewModel.UpdateLogDetails($"Error during cloud sync: {ex.Message}");
+                }
+                finally
+                {
+                    CloudSyncButton.IsEnabled = true; // Re-enable Sync button
+                }
             }
         }
     }
 
+    private void ClosePopup(object sender, RoutedEventArgs e)
+    {
+        LogServiceViewModel.NotificationVisible = false;
+    }
 }

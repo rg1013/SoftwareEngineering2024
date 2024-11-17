@@ -20,8 +20,9 @@ public class Client : INotificationHandler
 {
     private readonly ICommunicator _communicator;
     private static readonly string s_clientDirectory = AppConstants.ToolsDirectory;
-    private static Client s_instance;
+    private static Client? s_instance;
     private static readonly object s_lock = new object();
+    private string? _clientId;
 
     private Client()
     {
@@ -29,6 +30,10 @@ public class Client : INotificationHandler
         _communicator.Subscribe("FileTransferHandler", this);
     }
 
+    public void GetClientId(string clientId)
+    {
+        _clientId = clientId;
+    }
     public static Client GetClientInstance(Action<string> notificationReceived = null)
     {
         lock (s_lock)
@@ -69,7 +74,7 @@ public class Client : INotificationHandler
     {
         try
         {
-            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket();
+            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(_clientId);
 
             // UpdateUILogs("Sending syncup request to the server");
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler...");

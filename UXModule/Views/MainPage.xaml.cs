@@ -44,10 +44,12 @@ namespace UXModule.Views
             InitializeComponent();
             sessionType = _sessionType;
             dashboardPage = new DashboardPage();
-            _currentPage = currentPage; 
+            _currentPage = currentPage;
+
+            updaterPage = new UpdaterPage(sessionType);
 
             Main.Content = dashboardPage;
-           
+
         }
 
         private void DashboardClick(object sender, RoutedEventArgs e)
@@ -78,10 +80,7 @@ namespace UXModule.Views
 
         private void UpdaterClick(object sender, RoutedEventArgs e)
         {
-
-            updaterPage = new UpdaterPage(sessionType);
             Main.Content = updaterPage;
-
         }
 
         private void AnalyserClick(object sender, RoutedEventArgs e)
