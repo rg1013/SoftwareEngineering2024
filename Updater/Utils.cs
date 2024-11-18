@@ -143,9 +143,13 @@ public class Utils
     /// Generates serialized SyncUp packet
     /// </summary>
     /// <returns>Serialized SyncUp packet</returns>
-    public static string? SerializedSyncUpPacket()
+    public static string? SerializedSyncUpPacket(string clientId)
     {
-        DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, new List<FileContent>());
+        List<FileContent> fileContents = new List<FileContent>
+        {
+            new FileContent(clientId, clientId)
+        };
+        DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, fileContents);
         if (dataPacket == null)
         {
             Trace.WriteLine("Failed to create DataPacket");

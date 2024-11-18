@@ -50,7 +50,7 @@ public class DirectoryMetadataGenerator
     /// <param name="directoryPath">Path of directory.</param>
     /// <param name="writeToFile">bool value to write metadata to file.</param>
     /// <returns>List of FileMetadata objects in the directory.</returns>
-    public static List<FileMetadata> CreateFileMetadata(string directoryPath)
+    public static List<FileMetadata> CreateFileMetadata(string? directoryPath)
     {
         directoryPath ??= AppConstants.ToolsDirectory;
         List<FileMetadata> metadata = new List<FileMetadata>();

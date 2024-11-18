@@ -120,7 +120,7 @@ public class Client : INotificationHandler
         }
     }
 
-    private static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator)
+    public static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
