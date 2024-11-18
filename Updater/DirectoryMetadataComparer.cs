@@ -1,13 +1,13 @@
 ﻿/******************************************************************************
 * Filename    = DirectoryMetadataComparer.cs
 *
-* Author      = Amithabh A
+* Author      = Garima Ranjan and Amithabh A
 *
 * Product     = Updater
 * 
 * Project     = Lab Monitoring Software
 *
-* Description = 
+* Description = Compares metadata of two directories and generates differences.
 *****************************************************************************/
 
 using System.Xml.Serialization;
@@ -162,7 +162,7 @@ namespace Updater
     public class MetadataDifference
     {
         [XmlElement("Key")]
-        public string Key { get; set; }
+        public string? Key { get; set; }
 
         [XmlArray("Value")]
         [XmlArrayItem("FileDetail")] // Define individual item
@@ -173,15 +173,15 @@ namespace Updater
     public class FileDetail
     {
         [XmlElement("FileName")]
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
 
         [XmlElement("FileHash")]
-        public string FileHash { get; set; }
+        public string? FileHash { get; set; }
 
         [XmlElement("RenameFrom")]
-        public string RenameFrom { get; set; }
+        public string? RenameFrom { get; set; }
 
         [XmlElement("RenameTo")]
-        public string RenameTo { get; set; }
+        public string? RenameTo { get; set; }
     }
 }
