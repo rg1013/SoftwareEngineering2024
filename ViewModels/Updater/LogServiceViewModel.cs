@@ -26,12 +26,12 @@ namespace ViewModels.Updater;
 ///</summary>
 public class LogServiceViewModel : INotifyPropertyChanged
 {
-    private string _logDetails = "";  // Holds the current log details to be displayed
-    private string _notificationMessage = "";  // Stores the current notification message
-    private bool _notificationVisible = false;  // Controls whether the notification is visible
-    private string _toolsDirectoryMessage;  // Message for displaying the tools directory
-    private bool _isLogExpanded = false;  // Tracks whether the log section is expanded or collapsed
-    private DispatcherTimer _timer;  // Timer to auto-hide notifications after a set interval
+    private string _logDetails = "";
+    private string _notificationMessage = "";
+    private bool _notificationVisible = false;
+    private readonly string _toolsDirectoryMessage;
+    private bool _isLogExpanded = false;
+    private readonly DispatcherTimer _timer;  // Timer to auto-hide notifications after a set interval
 
     ///<summary>
     /// Constructor for LogServiceViewModel.
@@ -123,7 +123,7 @@ public class LogServiceViewModel : INotifyPropertyChanged
     /// This method is used to update the log with new messages, prefixed with a timestamp.
     ///</summary>
     ///<param name="message">The message to append to the log.</param>
-    public void UpdateLogDetails(string message)
+    public virtual void UpdateLogDetails(string message)
     {
         // Get the current timestamp in HH:mm:ss dd-MM-yyyy format
         string timestamp = DateTime.Now.ToString("HH:mm:ss dd-MM-yyyy");
