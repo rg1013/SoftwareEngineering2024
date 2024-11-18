@@ -8,6 +8,12 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="TestResults\**" />
+    <EmbeddedResource Remove="TestResults\**" />
+    <None Remove="TestResults\**" />
+  </ItemGroup>
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.2">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,7 +48,6 @@
   <ItemGroup>
     <Folder Include="CopyTestFolder\" />
     <Folder Include="EmptyTestingFolder\" />
-    <Folder Include="TestResults\" />
   </ItemGroup>
 
 </Project>
