@@ -125,6 +125,7 @@ namespace UXModule
                 },
                 Action = Action.ClientUserConnected
             };
+            _updaterClient.GetClientId(UserID);
             string json_message = JsonSerializer.Serialize(details);
             try
             {
@@ -227,7 +228,6 @@ namespace UXModule
                 UserDetails userData = message.User;
                 string newuserid = userData.userId;
 
-                _updaterClient.GetClientId(newuserid);
 
                 Trace.WriteLine($"[Dash client] User Connected: {userData.userName}, {userData.ProfilePictureUrl}");
 
