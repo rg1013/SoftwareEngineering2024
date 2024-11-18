@@ -1,8 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/******************************************************************************
+* Filename    = AppConstants.cs
+*
+* Author      = 
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = 
+*****************************************************************************/
 
 namespace Updater;
 

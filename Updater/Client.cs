@@ -58,7 +58,17 @@ public class Client : INotificationHandler
     {
         try
         {
-            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId: _clientId) ?? throw new Exception("Failed to serialize SyncUpPacket");
+            if (_clientId == null)
+            {
+                throw new Exception("Client ID is null");
+            }
+
+            string? serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId: _clientId);
+
+            if (serializedSyncUpPacket == null)
+            {
+                throw new Exception("Failed to serialize SyncUpPacket");
+            }
 
             UpdateUILogs("Sending syncup request to the server");
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler from Manual Sync up...");
