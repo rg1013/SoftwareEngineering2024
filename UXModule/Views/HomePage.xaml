@@ -1,0 +1,171 @@
+﻿<Page x:Class="UXModule.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UXModule.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid>
+        <Grid Background="#190019">
+            <!-- Define two columns: one for buttons (left) and one for input fields (right) -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.4*"/>
+                <!-- Left column for buttons -->
+                <ColumnDefinition Width="3*"/>
+                <!-- Right column for text fields -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Side - Buttons -->
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Button with rounded corners -->
+                <Button Background="#FBE4D8" 
+            Content="Create Session" 
+            Height="40" 
+            Width="150" 
+            Margin="20 0 15 15" 
+            Click="CreateSession_Click" 
+            FontWeight="Bold"
+                        FontSize="15">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="10" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Second button with rounded corners -->
+                <Button Background="#FBE4D8" 
+            Content="Join Session" 
+            Height="40" 
+            Width="150" 
+            Margin="20 15 15 0" 
+            Click="JoinSession_Click" 
+            FontWeight="Bold"
+                        FontSize="15">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="10" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <!-- Right Side - Input Fields -->
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- ProfilePic Field -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" >
+                    <Ellipse Width="75" Height="75">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding ElementName=UserProfilePicture, Path=Source}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Image Name="UserProfilePicture" Width="0" Height="0" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <!-- Username Field -->
+                <StackPanel Orientation="Horizontal" >
+                    <TextBox Tag="UserName" Name="UserName" Width="200" HorizontalAlignment="Center" Margin="10" Height="30" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="15">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="#FBE4D8" 
+                                        CornerRadius="10" 
+                                        BorderBrush="Gray" 
+                                        BorderThickness="1">
+                                                <ScrollViewer Margin="2" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+
+                <!-- User Email Field -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Tag="UserEmail" Name="UserEmail" Width="200" HorizontalAlignment="Center" Margin="10" Height="30" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="15">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="#FBE4D8" 
+                                        CornerRadius="10" 
+                                        BorderBrush="Gray" 
+                                        BorderThickness="1">
+                                                <ScrollViewer Margin="2" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+
+                <!-- Server IP Field -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Tag="ServerIP" Name="ServerIP" Width="200" HorizontalAlignment="Center" Margin="10" Height="30" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="15" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="#FBE4D8" 
+                                        CornerRadius="10" 
+                                        BorderBrush="Gray" 
+                                        BorderThickness="1">
+                                                <ScrollViewer Margin="2" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+
+                <!-- Server Port Field -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Tag="ServerPort" Name="ServerPort" Width="200" HorizontalAlignment="Center" Margin="10" Height="30" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="15" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="#FBE4D8" 
+                                        CornerRadius="10" 
+                                        BorderBrush="Gray" 
+                                        BorderThickness="1">
+                                                <ScrollViewer Margin="2" x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>
