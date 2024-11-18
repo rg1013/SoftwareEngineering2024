@@ -69,9 +69,12 @@ public class ToolListViewModelTests
 
         // Assert: Verify that the newer version replaced the older one
         Assert.AreEqual(1, updatedTools?.Count);
-        Tool updatedTool = updatedTools.First();
-        Assert.AreEqual("OtherExample", updatedTool.Name);
-        Assert.AreEqual("2.0.0", updatedTool.Version);
+        if (updatedTools != null)
+        {
+            Tool updatedTool = updatedTools.First();
+            Assert.AreEqual("OtherExample", updatedTool.Name);
+            Assert.AreEqual("2.0.0", updatedTool.Version);
+        }
     }
 
 
