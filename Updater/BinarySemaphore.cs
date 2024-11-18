@@ -13,25 +13,34 @@
 
 namespace Updater;
 
+/// <summary>
+/// BinarySemaphore class
+/// </summary>
 public class BinarySemaphore
 {
     private SemaphoreSlim _semaphore;
 
-    // Constructor to initialize the _semaphore with an initial count of 1 (binary state)
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public BinarySemaphore()
     {
-        _semaphore = new SemaphoreSlim(1, 1);  // Initial count of 1, maximum count of 1
+        // Create a semaphore with an initial count of 1 and a maximum count of 1
+        _semaphore = new SemaphoreSlim(1, 1);
     }
 
-    // Wait method that blocks until the _semaphore is available
+    /// <summary>
+    /// Wait method that blocks the current thread until it can enter
     public void Wait()
     {
-        _semaphore.Wait();  // Blocks the current thread until it can enter
+        _semaphore.Wait();
     }
 
-    // Signal method that releases the _semaphore, allowing a waiting thread to proceed
+    /// <summary>
+    /// Release semaphore
+    /// </summary>
     public void Signal()
     {
-        _semaphore.Release();  // Releases the _semaphore, allowing one thread to enter
+        _semaphore.Release();
     }
 }

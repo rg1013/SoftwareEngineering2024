@@ -14,9 +14,15 @@ using System.Xml.Serialization;
 
 namespace Updater;
 
+/// <summary>
+/// Class to encapsulate data for client-server communication
+/// </summary>
 [Serializable]
 public class DataPacket
 {
+    /// <summary>
+    /// Different types of data packets
+    /// </summary>
     public enum PacketType
     {
         SyncUp,        // No files
@@ -34,9 +40,14 @@ public class DataPacket
     [XmlArrayItem("FileContent")]
     public List<FileContent> FileContentList { get; set; } = new List<FileContent>();
 
+    /// <summary>
+    /// Parameterless constructor for serialization
+    /// </summary>
     public DataPacket() { }
 
-    // Constructor for multiple files.
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public DataPacket(PacketType packetType, List<FileContent> fileContents)
     {
         DataPacketType = packetType;

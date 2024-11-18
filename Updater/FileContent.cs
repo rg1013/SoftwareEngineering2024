@@ -14,6 +14,9 @@ using System.Xml.Serialization;
 
 namespace Updater;
 
+/// <summary>
+/// Class to encapsulate file content
+/// </summary>
 [Serializable]
 public class FileContent
 {
@@ -23,15 +26,23 @@ public class FileContent
     [XmlElement("SerializedContent")]
     public string? SerializedContent { get; set; }
 
-    // Parameterless constructor is required for XML serialization
+    /// <summary>
+    /// Parameterless constructor for serialization
+    /// </summary>
     public FileContent() { }
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public FileContent(string fileName, string serializedContent)
     {
         FileName = fileName;
         SerializedContent = serializedContent;
     }
 
+    /// <summary>
+    /// Override ToString method
+    /// </summary>
     public override string ToString()
     {
         return $"FileName: {FileName ?? "N/A"}, Content Length: {SerializedContent?.Length ?? 0}";

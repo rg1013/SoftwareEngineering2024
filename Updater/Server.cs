@@ -17,6 +17,9 @@ using System.Diagnostics;
 
 namespace Updater;
 
+/// <summary>
+/// Class to handle server side logic
+/// </summary>
 public class Server : INotificationHandler
 {
     static int s_clientCounter = 0; // Counter for unique client IDs
@@ -32,6 +35,9 @@ public class Server : INotificationHandler
     private static Server s_instance;
     private static readonly object s_lock = new object();
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
     private Server()
     {
         // Subscribing the "FileTransferHandler" for handling notifications
@@ -39,7 +45,7 @@ public class Server : INotificationHandler
         _communicator.Subscribe("FileTransferHandler", this);
     }
 
-    public static Server GetServerInstance(Action<string>? notificationReceived)
+    public static Server GetServerInstance(Action<string>? notificationReceived = null)
     {
         lock (s_lock)
         {
@@ -140,18 +146,18 @@ public class Server : INotificationHandler
         }
     }
 
-    private static void InvalidSyncUp(DataPacket dataPacket, ICommunicator communicator, string clientId, DirectoryMetadataComparer comparerInstance)
-    {
-        try
-        {
-            UpdateUILogs("Invalid SyncUp request received");
-            Trace.WriteLine("[Updater] Invalid SyncUp request received");
-        }
-        catch (Exception ex)
-        {
-            Trace.WriteLine($"[Updater] Error in InvalidSyncUp: {ex.Message}");
-        }
-    }
+    // private static void InvalidSyncUp(DataPacket dataPacket, ICommunicator communicator, string clientId, DirectoryMetadataComparer comparerInstance)
+    // {
+    //     try
+    //     {
+    //         UpdateUILogs("Invalid SyncUp request received");
+    //         Trace.WriteLine("[Updater] Invalid SyncUp request received");
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Trace.WriteLine($"[Updater] Error in InvalidSyncUp: {ex.Message}");
+    //     }
+    // }
 
 
     /// <summary>
@@ -254,7 +260,7 @@ public class Server : INotificationHandler
     }
 
     /// <summary>
-    /// Metadata dataPacket Handler
+    /// Metadata dataPacket Handler + validate sync up
     /// </summary>
     /// <param name="dataPacket">Data packet</param>
     /// <param name="communicator">Communicator object</param>
@@ -527,6 +533,9 @@ public class Server : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Handle data received from client
+    /// </summary>
     public void OnDataReceived(string serializedData)
     {
         try
@@ -559,6 +568,8 @@ public class Server : INotificationHandler
         {
         }
     }
+
+
     public void SetUser(string clientId, TcpClient socket)
     {
         try
@@ -581,6 +592,9 @@ public class Server : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Handle client left event
+    /// </summary>
     public void OnClientLeft(string clientId)
     {
         try

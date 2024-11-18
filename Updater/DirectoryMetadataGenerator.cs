@@ -15,6 +15,9 @@ using System.Diagnostics;
 
 namespace Updater;
 
+/// <summary>
+/// Class to generate metadata of a directory
+/// </summary>
 public class DirectoryMetadataGenerator
 {
 

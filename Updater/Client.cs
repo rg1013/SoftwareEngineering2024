@@ -16,6 +16,9 @@ using System.Diagnostics;
 
 namespace Updater;
 
+/// <summary>
+/// Client class
+/// </summary>
 public class Client : INotificationHandler
 {
     private readonly ICommunicator _communicator;
@@ -24,6 +27,9 @@ public class Client : INotificationHandler
     private static readonly object s_lock = new object();
     private string? _clientId;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
     private Client()
     {
         _communicator = CommunicationFactory.GetCommunicator(isClientSide: true);
@@ -34,6 +40,7 @@ public class Client : INotificationHandler
     {
         _clientId = clientId;
     }
+
     public static Client GetClientInstance(Action<string>? notificationReceived = null)
     {
         lock (s_lock)
@@ -97,6 +104,9 @@ public class Client : INotificationHandler
         UpdateUILogs("Sync up failed");
     }
 
+    /// <summary>
+    /// Identifies the type of packet and calls the appropriate handler
+    /// </summary>
     public static void PacketDemultiplexer(string serializedData, ICommunicator communicator)
     {
         try
@@ -130,12 +140,20 @@ public class Client : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Handler for SyncUp packet. Sends metadata to server. 
+    /// </summary>
     public static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
             UpdateUILogs("Received SyncUp request from server");
-            string serializedMetaData = Utils.SerializedMetadataPacket() ?? throw new Exception("Failed to serialize metadata");
+            string? serializedMetaData = Utils.SerializedMetadataPacket();
+
+            if (serializedMetaData == null)
+            {
+                throw new Exception("Failed to serialize metadata");
+            }
 
             // Sending data to server
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler...");
@@ -169,6 +187,9 @@ public class Client : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Handler for Broadcast packet. Updates client with files from server.
+    /// </summary>
     private static void BroadcastHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
@@ -200,6 +221,9 @@ public class Client : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Handler for Differences packet. Sends requested files to server.
+    /// </summary>
     private static void DifferencesHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
@@ -295,6 +319,9 @@ public class Client : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Method to handle data received from the server
+    /// </summary>
     public void OnDataReceived(string serializedData)
     {
         try
