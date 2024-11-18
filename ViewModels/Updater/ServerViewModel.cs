@@ -87,6 +87,10 @@ public class ServerViewModel : INotifyPropertyChanged
 
     public void BroadcastToClients(string filePath, string fileName)
     {
+        if (!File.Exists(filePath))
+        {
+            throw new FileNotFoundException($"File not found: {filePath}");
+        }
         string? content = Utils.ReadBinaryFile(filePath) ?? throw new Exception("Failed to read file");
         string? serializedContent = Utils.SerializeObject(content) ?? throw new Exception("Failed to serialize content");
         var fileContentToSend = new FileContent(fileName, serializedContent);

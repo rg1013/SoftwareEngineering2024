@@ -34,7 +34,7 @@ public class ClientViewModel : INotifyPropertyChanged
 
     public async Task SyncUpAsync()
     {
-        await Task.Run(()=>_client.SyncUp()); // Call the SyncUp method on the client asynchronously
+        await Task.Run(() => _client.SyncUp()); // Call the SyncUp method on the client asynchronously
 
         UpdateLog("Sync completed.");
     }
