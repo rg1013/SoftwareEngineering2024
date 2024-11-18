@@ -1,0 +1,16 @@
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\bin\Debug\net8.0-windows\Screenshare.deps.json
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\bin\Debug\net8.0-windows\Screenshare.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\bin\Debug\net8.0-windows\Screenshare.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.csproj.AssemblyReference.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.AssemblyInfoInputs.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.AssemblyInfo.cs
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.csproj.CoreCompileInputs.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.sourcelink.json
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screensh.75F9272A.Up2Date
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\refint\Screenshare.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\Screenshare.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Screenshare\obj\Debug\net8.0-windows\ref\Screenshare.dll
