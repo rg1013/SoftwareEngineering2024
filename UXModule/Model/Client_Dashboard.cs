@@ -77,7 +77,7 @@ namespace UXModule
 
         private string UserProfileUrl { get; set; }
 
-        private readonly Updater.Client _client = Updater.Client.GetClientInstance();
+        private readonly Updater.Client _updaterClient = Updater.Client.GetClientInstance();
 
 
         public ObservableCollection<UserDetails> ClientUserList { get; set; } = new ObservableCollection<UserDetails>();
@@ -226,6 +226,8 @@ namespace UXModule
             {
                 UserDetails userData = message.User;
                 string newuserid = userData.userId;
+
+                _updaterClient.GetClientId(newuserid);
 
                 Trace.WriteLine($"[Dash client] User Connected: {userData.userName}, {userData.ProfilePictureUrl}");
 

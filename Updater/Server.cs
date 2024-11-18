@@ -295,7 +295,7 @@ public class Server : INotificationHandler
             // Check if the sync up is invalid
             // If it is invalid, server will send an InvalidSync response packet to
             // client along with list of filenames that needs to be changed in the client side
-            if (comparerInstance.ValidateSync())
+            if (!comparerInstance.ValidateSync())
             {
                 List<string> invalidFileNames = comparerInstance.InvalidSyncUpFiles;
 

@@ -28,14 +28,27 @@ public class ToolListViewModel : INotifyPropertyChanged
     /// Loads available analyzers from the specified folder using the DllLoader.
     /// Populates the AnalyzerInfo property with the retrieved data.
     /// </summary>
-    public ToolListViewModel()
+    public ToolListViewModel(string? folder = null)
     {
-        LoadAvailableTools();
+        if (folder == null)
+        {
+            folder = AppConstants.ToolsDirectory;
+        }
+        LoadAvailableTools(folder);
     }
-    public void LoadAvailableTools()
+    /// <summary>
+    /// Loads tools from the specified folder, ensuring only the latest versions
+    /// of tools are added to the list. Updates the UI via data binding.
+    /// </summary>
+    /// <param name="folder">Optional folder path to load tools from.</param>
+    public void LoadAvailableTools(string? folder = null)
     {
+        if (folder == null)
+        {
+            folder = AppConstants.ToolsDirectory;
+        }
         var dllLoader = new ToolAssemblyLoader();
-        Dictionary<string, List<string>> hashMap = dllLoader.LoadToolsFromFolder(AppConstants.ToolsDirectory);
+        Dictionary<string, List<string>> hashMap = dllLoader.LoadToolsFromFolder(folder);
 
         if (hashMap.Count > 0)
         {
@@ -55,7 +68,7 @@ public class ToolListViewModel : INotifyPropertyChanged
                     LastModified = hashMap["LastModified"][i],
                     LastUpdated = hashMap["LastUpdated"][i]
                 };
-
+                // Check if a tool with the same unique key exists
                 Tool? existingTool = AvailableToolsList.FirstOrDefault(tool =>
                 tool.Name == newTool.Name &&
                 tool.CreatedBy == newTool.CreatedBy &&
@@ -92,19 +105,9 @@ public class ToolListViewModel : INotifyPropertyChanged
 
         OnPropertyChanged(nameof(AvailableToolsList));
     }
-
     /// <summary>
-    /// Gets or sets the list of available analyzers.
+    /// Event triggered when a property value changes to notify the UI.
     /// </summary>
-    public ObservableCollection<Tool> ToolInfo
-    {
-        get => AvailableToolsList ?? [];
-        set {
-            AvailableToolsList = value;
-            OnPropertyChanged(nameof(ToolInfo));
-        }
-    }
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void OnPropertyChanged(string? propertyName)

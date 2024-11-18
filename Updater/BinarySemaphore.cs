@@ -1,3 +1,16 @@
+﻿/******************************************************************************
+*
+* Filename    = Client.cs
+*
+* Author      = Amithabh A
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = Semaphore class to enforce mutual exclusion among client-server communications
+*****************************************************************************/
+
 namespace Updater;
 
 public class BinarySemaphore

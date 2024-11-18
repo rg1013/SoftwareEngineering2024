@@ -20,11 +20,7 @@ namespace ViewModels.Updater;
 public class ClientViewModel : INotifyPropertyChanged
 {
     private Client _client;
-    private string _statusMessage = string.Empty;
-    private bool _isConnected;
     private LogServiceViewModel _logServiceViewModel;
-
-
     public ClientViewModel(LogServiceViewModel logServiceViewModel)
     {
         _logServiceViewModel = logServiceViewModel;
@@ -41,11 +37,6 @@ public class ClientViewModel : INotifyPropertyChanged
         await Task.Run(_client.SyncUp); // Call the SyncUp method on the client asynchronously
 
         UpdateLog("Sync completed.");
-    }
-    public void Disconnect()
-    {
-        _client.Stop();
-        UpdateLog("Disconnected from server."); // Log the disconnection
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

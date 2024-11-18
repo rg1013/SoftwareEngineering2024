@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+﻿/******************************************************************************************************
 * Filename    = DataPacket.cs
 *
 * Author      = Amithabh A
@@ -7,8 +7,8 @@
 * 
 * Project     = Lab Monitoring Software
 *
-* Description = 
-*****************************************************************************/
+* Description = Application Data Packet class to encapsulate data for client-server communication
+******************************************************************************************************/
 
 using System.Text;
 using System.Xml.Serialization;

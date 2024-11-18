@@ -34,7 +34,7 @@ public class Client : INotificationHandler
     {
         _clientId = clientId;
     }
-    public static Client GetClientInstance(Action<string> notificationReceived = null)
+    public static Client GetClientInstance(Action<string>? notificationReceived = null)
     {
         lock (s_lock)
         {
@@ -51,22 +51,6 @@ public class Client : INotificationHandler
         return s_instance;
     }
 
-    public async Task<string> StartAsync(string ipAddress, string port)
-    {
-        UpdateUILogs($"Attempting to connect to server at {ipAddress}:{port}...");
-        string result = await Task.Run(() => _communicator.Start(ipAddress, port));
-        if (result == "success")
-        {
-            UpdateUILogs("Successfully connected to server.");
-        }
-        else
-        {
-            UpdateUILogs("Failed to connect to server.");
-        }
-        return result;
-    }
-
-
     /// <summary>
     /// Sends a SyncUp request to the server
     /// </summary>
@@ -74,10 +58,10 @@ public class Client : INotificationHandler
     {
         try
         {
-            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(_clientId);
+            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId: _clientId) ?? throw new Exception("Failed to serialize SyncUpPacket");
 
-            // UpdateUILogs("Sending syncup request to the server");
-            Trace.WriteLine("[Updater] Sending data as FileTransferHandler...");
+            UpdateUILogs("Sending syncup request to the server");
+            Trace.WriteLine("[Updater] Sending data as FileTransferHandler from Manual Sync up...");
             _communicator.Send(serializedSyncUpPacket, "FileTransferHandler", null);
         }
         catch (Exception ex)
@@ -118,24 +102,20 @@ public class Client : INotificationHandler
                 case DataPacket.PacketType.InvalidSync:
                     InvalidSyncHandler(dataPacket, communicator);
                     break;
-                case DataPacket.PacketType.Metadata:
-                    MetadataHandler(dataPacket, communicator);
-                    break;
                 case DataPacket.PacketType.Broadcast:
                     BroadcastHandler(dataPacket, communicator);
-                    break;
-                case DataPacket.PacketType.ClientFiles:
-                    ClientFilesHandler(dataPacket);
                     break;
                 case DataPacket.PacketType.Differences:
                     DifferencesHandler(dataPacket, communicator);
                     break;
                 default:
-                    throw new Exception("Invalid PacketType");
+                    UpdateUILogs("Something went wrong! Please try manual sync up after some time");
+                    throw new Exception("[Updater] Invalid PacketType");
             }
         }
         catch (Exception ex)
         {
+            UpdateUILogs("Something went wrong! Please try manual sync up after some time");
             Trace.WriteLine($"[Updater] Error in PacketDemultiplexer: {ex.Message}");
         }
     }
@@ -145,7 +125,7 @@ public class Client : INotificationHandler
         try
         {
             UpdateUILogs("Received SyncUp request from server");
-            string serializedMetaData = Utils.SerializedMetadataPacket();
+            string serializedMetaData = Utils.SerializedMetadataPacket() ?? throw new Exception("Failed to serialize metadata");
 
             // Sending data to server
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler...");
@@ -164,7 +144,11 @@ public class Client : INotificationHandler
         try
         {
             FileContent fileContent = dataPacket.FileContentList[0];
-            string? serializedContent = fileContent.SerializedContent;
+            if (fileContent.SerializedContent == null)
+            {
+                throw new Exception("SerializedContent in FileContent is null");
+            }
+            string serializedContent = fileContent.SerializedContent;
             List<string> invalidFileNames = Utils.DeserializeObject<List<string>>(serializedContent);
             UpdateUILogs("Received invalid file names from server");
             ShowInvalidFilesInUI(invalidFileNames);
@@ -172,18 +156,6 @@ public class Client : INotificationHandler
         catch (Exception ex)
         {
             Trace.WriteLine($"Error in InvalidSyncHandler: {ex.Message}");
-        }
-    }
-
-    private static void MetadataHandler(DataPacket dataPacket, ICommunicator communicator)
-    {
-        try
-        {
-            throw new NotImplementedException();
-        }
-        catch (Exception ex)
-        {
-            Trace.WriteLine($"Error in MetadataHandler: {ex.Message}");
         }
     }
 
@@ -215,18 +187,6 @@ public class Client : INotificationHandler
         catch (Exception ex)
         {
             Trace.WriteLine($"[Updater] Error in BroadcastHandler: {ex.Message}");
-        }
-    }
-
-    private static void ClientFilesHandler(DataPacket dataPacket)
-    {
-        try
-        {
-            throw new NotImplementedException();
-        }
-        catch (Exception ex)
-        {
-            Trace.WriteLine($"Error in ClientFilesHandler: {ex.Message}");
         }
     }
 
@@ -314,8 +274,7 @@ public class Client : INotificationHandler
             DataPacket dataPacketToSend = new DataPacket(DataPacket.PacketType.ClientFiles, fileContentToSend);
 
             // Serialize and send DataPacket
-            string? serializedDataPacket = Utils.SerializeObject(dataPacketToSend);
-
+            string? serializedDataPacket = Utils.SerializeObject(dataPacketToSend) ?? throw new Exception("Failed to serialize DataPacket");
             UpdateUILogs("Sending requested files to server");
             Trace.WriteLine("Sending files to server");
             communicator.Send(serializedDataPacket, "FileTransferHandler", null);

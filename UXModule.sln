@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Updater", "Updater\Updater.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "ViewModels\ViewModels.csproj", "{7DF41BDC-DCDD-4C49-AC60-6458EC2F83AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsUpdater", "TestsUpdater\TestsUpdater.csproj", "{C38430E3-37E2-434F-BABA-405A5F8AC4F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{7DF41BDC-DCDD-4C49-AC60-6458EC2F83AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF41BDC-DCDD-4C49-AC60-6458EC2F83AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DF41BDC-DCDD-4C49-AC60-6458EC2F83AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38430E3-37E2-434F-BABA-405A5F8AC4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38430E3-37E2-434F-BABA-405A5F8AC4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38430E3-37E2-434F-BABA-405A5F8AC4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38430E3-37E2-434F-BABA-405A5F8AC4F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
