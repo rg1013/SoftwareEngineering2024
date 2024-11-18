@@ -123,7 +123,7 @@ public class LogServiceViewModel : INotifyPropertyChanged
     /// This method is used to update the log with new messages, prefixed with a timestamp.
     ///</summary>
     ///<param name="message">The message to append to the log.</param>
-    public void UpdateLogDetails(string message)
+    public virtual void UpdateLogDetails(string message)
     {
         // Get the current timestamp in HH:mm:ss dd-MM-yyyy format
         string timestamp = DateTime.Now.ToString("HH:mm:ss dd-MM-yyyy");

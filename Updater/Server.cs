@@ -25,7 +25,7 @@ public class Server : INotificationHandler
 
     private readonly BinarySemaphore _semaphore = new();
 
-    private ICommunicator? _communicator;
+    public ICommunicator? _communicator;
 
     public static event Action<string>? NotificationReceived; // Event to notify the view model
     public string _clientID = "";
@@ -33,11 +33,17 @@ public class Server : INotificationHandler
     private static Server s_instance;
     private static readonly object s_lock = new object();
 
-    private Server()
+    public object AddLogMessage { get; set; }
+
+    private Server(object addLogMessage)
     {
         // Subscribing the "FileTransferHandler" for handling notifications
         _communicator = CommunicationFactory.GetCommunicator(isClientSide:false);
         _communicator.Subscribe("FileTransferHandler", this);
+    }
+
+    public Server()
+    {
     }
 
     public static Server GetServerInstance(Action<string> notificationReceived = null)
@@ -533,6 +539,11 @@ public class Server : INotificationHandler
         {
             Trace.WriteLine($"[Updater] Error in OnClientLeft: {ex.Message}");
         }
+    }
+
+    public void GetServerData()
+    {
+        throw new NotImplementedException();
     }
 }
 
