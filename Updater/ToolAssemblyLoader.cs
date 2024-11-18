@@ -21,7 +21,7 @@ namespace Updater;
 /// <summary>
 /// Class to Load information of Tools in a hash map.
 /// </summary>
-public class ToolAssemblyLoader
+public class ToolAssemblyLoader : IToolAssemblyLoader
 {
     /// <summary>
     /// Checks if a file is a dll file or not

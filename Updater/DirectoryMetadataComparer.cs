@@ -143,7 +143,7 @@ namespace Updater
                 if (fileB != null && fileA.FileHash != fileB.FileHash)
                 {
                     // Found files with the same name but different hashes
-                    InvalidSyncUpFiles.Append(fileA.FileName);
+                    InvalidSyncUpFiles.Add(fileA.FileName);
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace Updater
         public bool ValidateSync()
         {
             // If there are any filenames in InvalidSyncUpFiles, directories can't be synced. 
-            return InvalidSyncUpFiles.Any();
+            return !InvalidSyncUpFiles.Any();
         }
     }
 

@@ -28,14 +28,22 @@ public class ToolListViewModel : INotifyPropertyChanged
     /// Loads available analyzers from the specified folder using the DllLoader.
     /// Populates the AnalyzerInfo property with the retrieved data.
     /// </summary>
-    public ToolListViewModel()
+    public ToolListViewModel(string? folder = null)
     {
-        LoadAvailableTools();
+        if (folder == null)
+        {
+            folder = AppConstants.ToolsDirectory;
+        }
+        LoadAvailableTools(folder);
     }
-    public void LoadAvailableTools()
+    public void LoadAvailableTools(string? folder = null)
     {
+        if (folder == null)
+        {
+            folder = AppConstants.ToolsDirectory;
+        }
         var dllLoader = new ToolAssemblyLoader();
-        Dictionary<string, List<string>> hashMap = dllLoader.LoadToolsFromFolder(AppConstants.ToolsDirectory);
+        Dictionary<string, List<string>> hashMap = dllLoader.LoadToolsFromFolder(folder);
 
         if (hashMap.Count > 0)
         {
@@ -91,18 +99,6 @@ public class ToolListViewModel : INotifyPropertyChanged
         }
 
         OnPropertyChanged(nameof(AvailableToolsList));
-    }
-
-    /// <summary>
-    /// Gets or sets the list of available analyzers.
-    /// </summary>
-    public ObservableCollection<Tool> ToolInfo
-    {
-        get => AvailableToolsList ?? [];
-        set {
-            AvailableToolsList = value;
-            OnPropertyChanged(nameof(ToolInfo));
-        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

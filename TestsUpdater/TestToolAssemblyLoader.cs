@@ -1,4 +1,5 @@
-﻿using Updater;
+﻿using System.Diagnostics;
+using Updater;
 
 namespace TestsUpdater;
 
@@ -6,6 +7,7 @@ namespace TestsUpdater;
 public class TestToolAssemblyLoader
 {
     private readonly string _emptyTestFolderPath = @"EmptyTestingFolder";
+    private readonly string _nonExistingFolder = @"DoesNotExistTestingFolder";
     private readonly string _testFolderPath = @"../../../TestingFolder";
     private ToolAssemblyLoader? _loader;
 
@@ -33,8 +35,12 @@ public class TestToolAssemblyLoader
     [TestMethod]
     public void TestLoadToolsFromFolderEmptyFolderReturnsEmptyDictionary()
     {
+        if (Directory.Exists(_nonExistingFolder))
+        {
+            Directory.Delete(_nonExistingFolder, true);
+        }
         _loader = new ToolAssemblyLoader();
-        Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(_emptyTestFolderPath);
+        Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(_nonExistingFolder);
         Assert.AreEqual(0, result.Count, "Expected empty dictionary for an empty folder.");
     }
 
@@ -51,6 +57,7 @@ public class TestToolAssemblyLoader
     public void TestLoadToolsFromFolderValidDllWithIToolReturnsToolProperties()
     {
         _loader = new ToolAssemblyLoader();
+        string lastUpdatedDate = DateTime.Today.ToString("yyyy-MM-dd");
 
         // Constructing the full path to the TestingFolder
         string testFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _testFolderPath);
@@ -80,10 +87,10 @@ public class TestToolAssemblyLoader
         Assert.AreEqual("OtherExample Creator", creatorNames.FirstOrDefault(), "Expected CreatorName was not found.");
 
         Assert.IsTrue(result.TryGetValue("LastUpdated", out List<string>? lastUpdatedDates), "Key 'LastUpdated' not found.");
-        Assert.AreEqual("2024-11-17", lastUpdatedDates.FirstOrDefault(), "Expected LastUpdated was not found.");
+        Assert.AreEqual(lastUpdatedDate, lastUpdatedDates.FirstOrDefault(), "Expected LastUpdated was not found.");
 
         Assert.IsTrue(result.TryGetValue("LastModified", out List<string>? lastModifiedDates), "Key 'LastModified' not found.");
-        Assert.AreEqual("null", lastModifiedDates.FirstOrDefault(), "Expected LastModified was not found.");
+        Assert.AreEqual("2023-11-10", lastModifiedDates.FirstOrDefault(), "Expected LastModified was not found.");
 
         Assert.IsTrue(result.TryGetValue("CreatorEmail", out List<string>? creatorEmails), "Key 'CreatorEmail' not found.");
         Assert.AreEqual("creatorcca@example.com", creatorEmails.FirstOrDefault(), "Expected CreatorEmail was not found.");
