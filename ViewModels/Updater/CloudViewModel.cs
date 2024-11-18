@@ -30,7 +30,9 @@ using Networking.Communication;
 namespace ViewModels.Updater;
 
 /// <summary>
-/// 
+/// CloudViewModel handles synchronization and file exchange between the server and cloud.
+/// It manages cloud data download/upload, file comparison between server and cloud, 
+/// and facilitates server updates with cloud data and vice versa.
 /// </summary>
 public class CloudViewModel
 {
@@ -41,9 +43,13 @@ public class CloudViewModel
     private static readonly JsonSerializerOptions s_jsonOptions = new() { WriteIndented = true };
 
     public static string NameToSaveCloudFiles => CloudFilesName;
+    /// <summary>
+    /// Constructor to initialize CloudViewModel with necessary services and configuration.
+    /// </summary>
 
     public CloudViewModel(LogServiceViewModel logServiceViewModel, ServerViewModel serverViewModel)
     {
+        // Setting up service provider for dependency injection
         ServiceProvider serviceProvider = new ServiceCollection()
         .AddLogging(builder => {
             builder.AddConsole();
@@ -51,10 +57,11 @@ public class CloudViewModel
         })
         .AddHttpClient()
         .BuildServiceProvider();
+        // Logger for CloudService
         ILogger<CloudService> logger = Provider(serviceProvider);
         var httpClient = new HttpClient(); // Simplified for testing
 
-        // Configuration values - replace with your actual values
+        // Configuration values
         string baseUrl = BaseUrl();
         string team = Team();
         string sasToken = Token();
@@ -71,29 +78,34 @@ public class CloudViewModel
         _serverViewModel = serverViewModel;
     }
 
+    //Method to retrieve the SAS token
     private static string Token()
     {
         return "sp=racwdli&st=2024-11-12T08:57:21Z&se=2024-11-12T18:57:21Z&spr=https&sv=2022-11-02&sr=c&sig=0EwLtsdRB%2FfYBYImEucoLROlQD6yBWLktzPHoKfm6ik%3D";
     }
 
+    // Method to retrieve the team name for cloud configuration
     private static string Team()
     {
         return "updater";
     }
 
+    // Method to retrieve the base URL for the cloud service API
     private static string BaseUrl()
     {
         return "https://secloudapp-2024.azurewebsites.net/api";
     }
 
+    // Method to provide logger for the CloudService using Dependency Injection
     private static ILogger<CloudService> Provider(ServiceProvider serviceProvider)
     {
         return serviceProvider.GetRequiredService<ILogger<CloudService>>();
     }
 
     /// <summary>
-    /// 
+    /// Data structure to represent the file information that will be exchanged between the server and cloud.
     /// </summary>
+
     public class FileData
     {
         public List<string>? Id { get; set; }
@@ -105,10 +117,15 @@ public class CloudViewModel
         public List<string>? CreatorName { get; set; }
         public List<string>? CreatorMail { get; set; }
     }
+    /// <summary>
+    /// This method performs the cloud synchronization, comparing data between cloud and server, 
+    /// uploading new files to the cloud, and downloading newer files from the cloud.
+    /// </summary>
 
     public async Task PerformCloudSync()
     {
         _logServiceViewModel.UpdateLogDetails("Cloud starting sync..");
+        // Download current cloud data
         ServiceResponse<Stream> downloadResponse = await DownloadResponseMethod();
         string cloudData;
         if (downloadResponse == null || downloadResponse.Data == null)
@@ -120,15 +137,14 @@ public class CloudViewModel
             using var reader = new StreamReader(downloadResponse.Data);
             cloudData = await CloudDataMethod(reader);
         }
+        //Retrieve server data
         string? serverData = ServerDataMethod();
 
-
-        //analogy to set difference between cloud and server
-        List<FileData> onlyCloudFiles = CloudHasMoreData(cloudData, serverData);
+        // Determine which files are new in cloud compared to server
+        List<FileData> onlyCloudFiles = CloudHasMoreData(cloudData, serverData ?? throw new ArgumentNullException(nameof(serverData)));
         string jsonCloudFiles = JsonSerializer.Serialize(onlyCloudFiles, s_jsonOptions);
 
-
-        //analogy to set differnce between server and cloud
+        // Determine which files are new on the server compared to cloud
         List<FileData> onlyServerFiles = OnlyServerFileMethod(cloudData, serverData);
         string jsonServerFiles = JsonSerializer.Serialize(onlyServerFiles, s_jsonOptions);
 
@@ -138,8 +154,7 @@ public class CloudViewModel
         {
             _logServiceViewModel.UpdateLogDetails("Cloud has more Data than server. Sending JSON file to server....");
             UpdateServerWithCloudData(jsonCloudFiles);
-
-            //BroadCastNewFiles(onlyCloudFiles);
+            _logServiceViewModel.UpdateLogDetails("A file from cloud is received. Please check the directory");
         }
 
         //send the files to cloud using upload function.
@@ -147,17 +162,18 @@ public class CloudViewModel
         {
             _logServiceViewModel.UpdateLogDetails("Server has more data than cloud. Sending JSON to cloud");
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonServerFiles));
-            ServiceResponse<string> response = await ResponseMethod(stream);
-            _logServiceViewModel.UpdateLogDetails(response.Data);
+            ServiceResponse<string>? response = await ResponseMethod(stream);
+            _logServiceViewModel.UpdateLogDetails(response.Data ?? "");
         }
     }
+    // Method to upload data to the cloud using CloudService
 
-    private async Task<ServiceResponse<string>> ResponseMethod(MemoryStream stream)
+    public async Task<ServiceResponse<string>> ResponseMethod(MemoryStream stream)
     {
         return await _cloudService.UploadAsync("ServerFiles.json", stream, "file/json");
     }
 
-    private static List<FileData> OnlyServerFileMethod(string cloudData, string? serverData)
+    private static List<FileData> OnlyServerFileMethod(string cloudData, string serverData)
     {
         return ServerHasMoreData(cloudData, serverData);
     }
@@ -179,20 +195,28 @@ public class CloudViewModel
         return await _cloudService.DownloadAsync("ServerFiles.json");
     }
 
+    /// <summary>
+    /// Helper method to remove entries with "N/A" or null values from the list of files.
+    /// </summary>
 
     public static List<FileData> RemoveNAEntries(List<FileData> files)
     {
         // Remove any entries where Name or Id or any other critical field contains "N/A" or is null.
         return files
-            .Where(file => !file.Name.Contains("N/A") && file.Id != null && file.Id.All(id => id != "N/A"))
+            .Where(file => file.Name != null && !file.Name.Contains("N/A")
+                           && file.Id != null
+                           && file.Id.All(id => id != "N/A"))
             .ToList();
     }
+    /// <summary>
+    /// Compares server data against cloud data to find files that need to be uploaded to the cloud.
+    /// </summary>
 
     public static List<FileData> ServerHasMoreData(string cloudData, string serverData)
     {
         // Deserialize the JSON strings into lists of FileData objects
-        List<FileData>? cloudFiles = JsonSerializer.Deserialize<List<FileData>>(cloudData) ?? new List<FileData>();
-        List<FileData>? serverFiles = JsonSerializer.Deserialize<List<FileData>>(serverData) ?? new List<FileData>();
+        List<FileData>? cloudFiles = JsonSerializer.Deserialize<List<FileData>>(cloudData) ?? [];
+        List<FileData>? serverFiles = JsonSerializer.Deserialize<List<FileData>>(serverData) ?? [];
 
         // Remove entries with "N/A" values from both cloud and server files
         cloudFiles = RemoveNAEntries(cloudFiles);
@@ -205,31 +229,48 @@ public class CloudViewModel
         foreach (FileData serverFile in serverFiles)
         {
             // Check if the server file exists in the cloud
-            foreach (int index in Enumerable.Range(0, serverFile.Name.Count))
+            foreach (int index in Enumerable.Range(0, serverFile.Name?.Count ?? 0))
             {
                 bool fileExists = cloudFiles.Any(cloudFile =>
-                    cloudFile.Name.Contains(serverFile.Name[index]) &&
-                    cloudFile.FileVersion.Contains(serverFile.FileVersion[index]));
+                    cloudFile.Name != null && cloudFile.Name.Contains(serverFile.Name?[index] ?? "") &&
+                    cloudFile.FileVersion != null && cloudFile.FileVersion.Contains(serverFile.FileVersion?[index] ?? ""));
 
                 // If the file does not exist in the cloud, add it to the list
                 if (!fileExists)
                 {
                     newFilesToCloud.Add(new FileData {
-                        Id = new List<string> { serverFile.Id?[index] },
-                        Name = new List<string> { serverFile.Name?[index] },
-                        Description = new List<string> { serverFile.Description?[index] },
-                        FileVersion = new List<string> { serverFile.FileVersion?[index] },
-                        LastModified = new List<string> { serverFile.LastModified?[index] },
-                        CreatorName = new List<string> { serverFile.CreatorName?[index] },
-                        CreatorMail = new List<string> { serverFile.CreatorMail?[index] }
+                        Id = serverFile.Id != null && serverFile.Id.Count > index
+                            ? new List<string> { serverFile.Id[index] }
+                            : new List<string> { "N/A" },
+                        Name = serverFile.Name != null && serverFile.Name.Count > index
+                            ? new List<string> { serverFile.Name[index] }
+                            : new List<string> { "N/A" },
+                        Description = serverFile.Description != null && serverFile.Description.Count > index
+                            ? new List<string> { serverFile.Description[index] }
+                            : new List<string> { "N/A" },
+                        FileVersion = serverFile.FileVersion != null && serverFile.FileVersion.Count > index
+                            ? new List<string> { serverFile.FileVersion[index] }
+                            : new List<string> { "N/A" },
+                        LastModified = serverFile.LastModified != null && serverFile.LastModified.Count > index
+                            ? new List<string> { serverFile.LastModified[index] }
+                            : new List<string> { "N/A" },
+                        CreatorName = serverFile.CreatorName != null && serverFile.CreatorName.Count > index
+                            ? new List<string> { serverFile.CreatorName[index] }
+                            : new List<string> { "N/A" },
+                        CreatorMail = serverFile.CreatorMail != null && serverFile.CreatorMail.Count > index
+                            ? new List<string> { serverFile.CreatorMail[index] }
+                            : new List<string> { "N/A" }
                     });
                 }
+
             }
         }
 
         return newFilesToCloud;
     }
-
+    /// <summary>
+    /// Compares cloud data against server data to find files that need to be send to the server.
+    /// </summary>
 
     public static List<FileData> CloudHasMoreData(string cloudData, string serverData)
     {
@@ -248,19 +289,19 @@ public class CloudViewModel
         foreach (FileData cloudFile in cloudFiles)
         {
             // Find indices in cloudFile.Name that should be removed because they exist in serverFiles
-            var indicesToRemove = cloudFile.Name
-                .Select((name, index) => new { name, index })
-                .Where(item => serverFiles
-                    .Any(serverFile => serverFile.Name.Contains(item.name) &&
-                                       serverFile.FileVersion.Contains(cloudFile.FileVersion[item.index])))
-                .Select(item => item.index)
-                .ToList();
+            List<int> indicesToRemove = cloudFile.Name?
+            .Select((name, index) => new { name, index })
+            .Where(item => serverFiles
+                .Any(serverFile => serverFile.Name != null && serverFile.Name.Contains(item.name) &&
+                                    serverFile.FileVersion != null && serverFile.FileVersion.Contains(cloudFile.FileVersion?[item.index] ?? "")))
+            .Select(item => item.index)
+            .ToList() ?? new List<int>();
 
             // Remove the items at these indices across all fields in cloudFile
             foreach (int index in indicesToRemove.OrderByDescending(i => i))
             {
                 // Remove data at the specified index in each field, if they are not null and have enough elements
-                if (cloudFile.Name.Count > index)
+                if (cloudFile.Name?.Count > index)
                 {
                     cloudFile.Name.RemoveAt(index);
                 }
@@ -293,9 +334,11 @@ public class CloudViewModel
         }
 
         // Return only cloud files with remaining unique entries
-        return cloudFiles.Where(file => file.Name.Any()).ToList();
+        return cloudFiles.Where(file => file.Name != null && file.Name.Any()).ToList();
+
     }
 
+    //save the file from cloud to server
 
     private void UpdateServerWithCloudData(string file)
     {

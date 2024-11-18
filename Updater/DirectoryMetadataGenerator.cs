@@ -80,7 +80,7 @@ public class DirectoryMetadataGenerator
     {
         using SHA256 sha256 = SHA256.Create();
         using FileStream stream = File.OpenRead(filePath);
-        Byte[] hashBytes = sha256.ComputeHash(stream);
+        byte[] hashBytes = sha256.ComputeHash(stream);
         return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
     }
 }

@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+﻿/*********************************************************************************************************
 * Filename    = FileChangeNotifier.cs
 *
 * Author      = Karumudi Harika
@@ -8,7 +8,7 @@
 * Project     = File Watcher
 *
 * Description = Notifies if any new analyzer file(dll) either added or deleted to the watching folder.
-*****************************************************************************/
+************************************************************************************************************/
 
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -51,7 +51,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
     /// Gets or sets the current status message of the file monitoring process.
     /// This message is updated when files are created or deleted.
     /// </summary>
-    public string MessageStatus
+    public string? MessageStatus
     {
         //Returns the current message status
         get => _messageStatus;
@@ -100,6 +100,10 @@ public class FileChangeNotifier : INotifyPropertyChanged
     /// <param name="e">A FileSystemEventArgs thta contains the event data.</param>
     private void OnFileCreated(object sender, FileSystemEventArgs e)
     {
+        if (_createdFiles == null)
+        {
+            _createdFiles = new List<string>(); // Initialize the list if null
+        }
         // Add the file to the list
         lock (_createdFiles)
         {
@@ -107,7 +111,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
         }
 
         // Restart the timer for debouncing
-        _timer.Change(1000, Timeout.Infinite); // 1 second delay before processing (adjust as needed)
+        _timer?.Change(1000, Timeout.Infinite); // 1 second delay before processing (adjust as needed)
     }
 
 
@@ -120,6 +124,10 @@ public class FileChangeNotifier : INotifyPropertyChanged
 
     private void OnFileDeleted(object sender, FileSystemEventArgs e)
     {
+        if (_deletedFiles == null)
+        {
+            _deletedFiles = new List<string>(); // Initialize the list if null
+        }
         // Add the file to the list
         lock (_deletedFiles)
         {
@@ -127,7 +135,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
         }
 
         // Restart the timer for debouncing
-        _timer.Change(1000, Timeout.Infinite); // 1 second delay before processing (adjust as needed)
+        _timer?.Change(1000, Timeout.Infinite); // 1 second delay before processing (adjust as needed)
     }
 
     /// <summary>
@@ -135,12 +143,12 @@ public class FileChangeNotifier : INotifyPropertyChanged
     /// and updates the MessageStatus property with the appropriate messages.
     /// </summary>
     /// <param name="state">An object containing information about the timer event.</param>
-    private void OnTimerElapsed(object state)
+    private void OnTimerElapsed(object? state)
     {
         List<string> filesToProcess;
 
         // Lock and extract the current batch of files
-        lock (_createdFiles)
+        lock (_createdFiles ??= new List<string>())
         {
             filesToProcess = new List<string>(_createdFiles);
             _createdFiles.Clear();
@@ -148,7 +156,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
 
         List<string> deletedFilesToProcess;
 
-        lock (_deletedFiles)
+        lock (_deletedFiles ??= new List<string>())
         {
             deletedFilesToProcess = new List<string>(_deletedFiles);
             _deletedFiles.Clear();
@@ -179,14 +187,14 @@ public class FileChangeNotifier : INotifyPropertyChanged
     /// <summary>
     /// Occurs when a property value changes.
     /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>
     /// Raises the PropertyChanged event.
     /// </summary>
     /// <param name="propertyName">The name of the property that changed.</param>
 
-    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

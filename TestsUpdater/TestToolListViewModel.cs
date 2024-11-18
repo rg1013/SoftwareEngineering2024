@@ -1,4 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/******************************************************************************
+* Filename    = TestToolListViewModel.cs
+*
+* Author      = Garima Ranjan 
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = Unit tests for ToolListViewModel.cs
+*****************************************************************************/
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -14,8 +25,8 @@ namespace TestsUpdater;
 [TestClass]
 public class ToolListViewModelTests
 {
-    private Mock<IToolAssemblyLoader> _mockDllLoader;
-    private ToolListViewModel _viewModel;
+    private Mock<IToolAssemblyLoader>? _mockDllLoader;
+    private ToolListViewModel? _viewModel;
     // contains both v1 and v2 of a tool
     private string _testFolderPath = @"../../../TestingFolder";
 
@@ -58,9 +69,12 @@ public class ToolListViewModelTests
 
         // Assert: Verify that the newer version replaced the older one
         Assert.AreEqual(1, updatedTools?.Count);
-        Tool updatedTool = updatedTools.First();
-        Assert.AreEqual("OtherExample", updatedTool.Name);
-        Assert.AreEqual("2.0.0", updatedTool.Version);
+        if (updatedTools != null)
+        {
+            Tool updatedTool = updatedTools.First();
+            Assert.AreEqual("OtherExample", updatedTool.Name);
+            Assert.AreEqual("2.0.0", updatedTool.Version);
+        }
     }
 
 

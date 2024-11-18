@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
 * Filename    = ServerViewModel.cs
 *
-* Author      = Garima Ranjan
+* Author      = Garima Ranjan and Karumudi Harika
 *
 * Product     = Updater
 * 
@@ -18,6 +18,11 @@ using System.Windows;
 using Updater;
 
 namespace ViewModels.Updater;
+
+/// <summary>
+/// ViewModel responsible for server-related functionality, including 
+/// broadcasting files and retrieving tool data stored on the server.
+/// </summary>
 public class ServerViewModel : INotifyPropertyChanged
 {
     private readonly Server _server;
@@ -25,22 +30,41 @@ public class ServerViewModel : INotifyPropertyChanged
     private readonly ToolAssemblyLoader _loader;
     private static readonly JsonSerializerOptions s_jsonOptions = new() { WriteIndented = true };
 
+    /// <summary>
+    /// Constructor initializes the server instance, log service, and tool loader.
+    /// </summary>
+    /// <param name="logServiceViewModel">Log service for handling log updates.</param>
+    /// <param name="loader">Tool loader for managing tools in the server directory.</param>
+    /// <param name="server">Optional server instance; defaults to a singleton instance.</param>
     public ServerViewModel(LogServiceViewModel logServiceViewModel, ToolAssemblyLoader loader, Server? server = null)
     {
-        _server = Server.GetServerInstance(AddLogMessage);
+        server = Server.GetServerInstance(AddLogMessage);
+        _server = server;
         _loader = loader;
         _logServiceViewModel = logServiceViewModel;
     }
 
+    /// <summary>
+    /// Retrieves the server instance associated with the ViewModel.
+    /// </summary>
+    /// <returns>The current server instance.</returns>
     public Server GetServer()
     {
         return _server;
     }
 
+    /// <summary>
+    /// Adds a log message to the log service ViewModel.
+    /// </summary>
+    /// <param name="message">The log message to add.</param>
     private void AddLogMessage(string message)
     {
         _logServiceViewModel.UpdateLogDetails(message);
     }
+    /// <summary>
+    /// Retrieves metadata about tools stored in the server directory and returns it as a JSON string.
+    /// </summary>
+    /// <returns>JSON-formatted string containing tool metadata.</returns>
     public string GetServerData()
     {
         string serverFolderPath = AppConstants.ToolsDirectory;
@@ -85,6 +109,11 @@ public class ServerViewModel : INotifyPropertyChanged
         return jsonResult;
     }
 
+    /// <summary>
+    /// Broadcasts a file to all connected clients.
+    /// </summary>
+    /// <param name="filePath">Path of the file to be broadcasted.</param>
+    /// <param name="fileName">Name of the file to be broadcasted.</param>
     public void BroadcastToClients(string filePath, string fileName)
     {
         string? content = Utils.ReadBinaryFile(filePath) ?? throw new Exception("Failed to read file");
@@ -96,6 +125,7 @@ public class ServerViewModel : INotifyPropertyChanged
         var fileContentsToSend = new List<FileContent>();
         fileContentsToSend?.Add(fileContentToSend);
 
+        // Create data packet to send
         var dataPacketToSend = new DataPacket(
                         DataPacket.PacketType.Broadcast,
                         new List<FileContent> { fileContentToSend }
@@ -121,7 +151,7 @@ public class ServerViewModel : INotifyPropertyChanged
             MessageBox.Show($"Error uploading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        // Serialize packet
+        // Broadcast the serialized packet
         string serializedPacket = Utils.SerializeObject(dataPacketToSend);
         _server.Broadcast(serializedPacket);
     }
@@ -133,6 +163,10 @@ public class ServerViewModel : INotifyPropertyChanged
 
 
     public event PropertyChangedEventHandler? PropertyChanged;
+    /// <summary>
+    /// Triggers the PropertyChanged event for a specific property.
+    /// </summary>
+    /// <param name="propertyName">Name of the property that changed.</param>
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

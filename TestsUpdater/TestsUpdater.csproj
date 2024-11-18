@@ -50,4 +50,10 @@
     <Folder Include="EmptyTestingFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SECloud">
+      <HintPath>..\SECloud.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

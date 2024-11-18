@@ -1,8 +1,21 @@
-﻿using System.Diagnostics;
+﻿/******************************************************************************
+* Filename    = TestToolAssemblyLoader.cs
+*
+* Author      = Garima Ranjan 
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = Unit tests for ToolAssemblyLoader.cs
+*****************************************************************************/
 using Updater;
 
 namespace TestsUpdater;
 
+/// <summary>
+/// Test class for testing the ToolAssemblyLoader class.
+/// </summary>
 [TestClass]
 public class TestToolAssemblyLoader
 {
@@ -10,6 +23,9 @@ public class TestToolAssemblyLoader
     private readonly string _nonExistingFolder = @"DoesNotExistTestingFolder";
     private readonly string _testFolderPath = @"../../../TestingFolder";
     private ToolAssemblyLoader? _loader;
+    /// <summary>
+    /// Set up the testing environment by ensuring the empty test folder is created and clean.
+    /// </summary>
 
     [TestInitialize]
     public void SetUp()
@@ -21,6 +37,9 @@ public class TestToolAssemblyLoader
         }
         Directory.CreateDirectory(_emptyTestFolderPath);
     }
+    /// <summary>
+    /// Clean up the testing environment by deleting the empty test folder after tests.
+    /// </summary>
 
     [TestCleanup]
     public void CleanUp()
@@ -31,6 +50,9 @@ public class TestToolAssemblyLoader
             Directory.Delete(_emptyTestFolderPath, true);
         }
     }
+    /// <summary>
+    /// Test case to verify that an empty folder returns an empty dictionary when loading tools.
+    /// </summary>
 
     [TestMethod]
     public void TestLoadToolsFromFolderEmptyFolderReturnsEmptyDictionary()
@@ -43,6 +65,9 @@ public class TestToolAssemblyLoader
         Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(_nonExistingFolder);
         Assert.AreEqual(0, result.Count, "Expected empty dictionary for an empty folder.");
     }
+    /// <summary>
+    /// Test case to verify that non-DLL files are ignored when loading tools.
+    /// </summary>
 
     [TestMethod]
     public void TestLoadToolsFromFolderIgnoresNonDllFiles()
@@ -52,6 +77,9 @@ public class TestToolAssemblyLoader
         Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(_emptyTestFolderPath);
         Assert.AreEqual(0, result.Count, "Expected empty dictionary when no DLL files are present.");
     }
+    /// <summary>
+    /// Test case to verify that valid DLL files are loaded correctly and return expected tool properties.
+    /// </summary>
 
     [TestMethod]
     public void TestLoadToolsFromFolderValidDllWithIToolReturnsToolProperties()

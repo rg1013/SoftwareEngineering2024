@@ -13,6 +13,9 @@
 using System.ComponentModel;
 
 namespace ViewModels.Updater;
+/// <summary>
+/// ViewModel class representing a single tool's metadata and properties.
+/// </summary>
 public class Tool : INotifyPropertyChanged
 {
 
@@ -26,6 +29,9 @@ public class Tool : INotifyPropertyChanged
     private string? _lastUpdated;
     private string? _lastModified;
 
+    /// <summary>
+    /// Unique identifier for the tool.
+    /// </summary>
     public string ID
     {
         get => _id ?? "N/A";
@@ -37,7 +43,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Name of the tool.
+    /// </summary>
     public string Name
     {
         get => _name ?? "N/A";
@@ -49,7 +57,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Version of the tool.
+    /// </summary>
     public string Version
     {
         get => _version ?? "N/A";
@@ -61,7 +71,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Description of the tool.
+    /// </summary>
     public string Description
     {
         get => _description ?? "N/A";
@@ -73,7 +85,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Indicates whether the tool is deprecated.
+    /// </summary>
     public string Deprecated
     {
         get => _deprecated ?? "N/A";
@@ -85,7 +99,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Name of the tool's creator.
+    /// </summary>
     public string CreatedBy
     {
         get => _createdBy ?? "N/A";
@@ -97,7 +113,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Email address of the tool's creator.
+    /// </summary>
     public string CreatorEmail
     {
         get => _creatorEmail ?? "N/A";
@@ -109,6 +127,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
+    /// <summary>
+    /// Last modified date of the tool.
+    /// </summary>
     public string LastModified
     {
         get => _lastModified ?? "N/A";
@@ -120,6 +141,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
+    /// <summary>
+    /// Last updated date of the tool.
+    /// </summary>
     public string LastUpdated
     {
         get => _lastUpdated ?? "N/A";
@@ -131,7 +155,9 @@ public class Tool : INotifyPropertyChanged
             }
         }
     }
-
+    /// <summary>
+    /// Event to notify UI when a property value changes.
+    /// </summary>
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged(string? propertyName)

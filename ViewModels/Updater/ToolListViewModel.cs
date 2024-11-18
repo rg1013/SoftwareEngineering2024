@@ -36,6 +36,11 @@ public class ToolListViewModel : INotifyPropertyChanged
         }
         LoadAvailableTools(folder);
     }
+    /// <summary>
+    /// Loads tools from the specified folder, ensuring only the latest versions
+    /// of tools are added to the list. Updates the UI via data binding.
+    /// </summary>
+    /// <param name="folder">Optional folder path to load tools from.</param>
     public void LoadAvailableTools(string? folder = null)
     {
         if (folder == null)
@@ -63,7 +68,7 @@ public class ToolListViewModel : INotifyPropertyChanged
                     LastModified = hashMap["LastModified"][i],
                     LastUpdated = hashMap["LastUpdated"][i]
                 };
-
+                // Check if a tool with the same unique key exists
                 Tool? existingTool = AvailableToolsList.FirstOrDefault(tool =>
                 tool.Name == newTool.Name &&
                 tool.CreatedBy == newTool.CreatedBy &&
@@ -100,7 +105,9 @@ public class ToolListViewModel : INotifyPropertyChanged
 
         OnPropertyChanged(nameof(AvailableToolsList));
     }
-
+    /// <summary>
+    /// Event triggered when a property value changes to notify the UI.
+    /// </summary>
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void OnPropertyChanged(string? propertyName)

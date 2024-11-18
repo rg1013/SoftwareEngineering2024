@@ -1,4 +1,14 @@
-﻿using TestsUpdater;
+﻿/******************************************************************************
+* Filename    = TestFileChangeNotifier.cs
+*
+* Author      = Karumudi Harika
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = Unit Tests for FileChangeNotifier.cs
+*****************************************************************************/
 using ViewModels.Updater;
 
 namespace TestsUpdater;
@@ -10,6 +20,7 @@ namespace TestsUpdater;
 [TestClass]
 public class TestFileChangeNotifier
 {
+
     private FileChangeNotifier? _fileMonitor;
     private string _testFolderPath = @"C:\temp";
 
@@ -56,15 +67,15 @@ public class TestFileChangeNotifier
         string testFilePath = @"C:\temp\createfile.dll";
 
         // Act: Simulate file creation event using reflection to call private method
-        _fileMonitor.GetType()
+        _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(testFilePath), Path.GetFileName(testFilePath)) });
+            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath)) });
 
         // Simulate timer elapse
         Thread.Sleep(1100);
 
         // Check if the MessageStatus reflects the correct message
-        Assert.AreEqual("Files created: createfile.dll", _fileMonitor.MessageStatus.TrimEnd());
+        Assert.AreEqual("Files created: createfile.dll", _fileMonitor?.MessageStatus?.TrimEnd());
     }
 
     /// <summary>
@@ -78,15 +89,15 @@ public class TestFileChangeNotifier
         string testFilePath = @"C:\temp\deletefile.dll";
 
         // Simulate file deletion event using reflection
-        _fileMonitor.GetType()
+        _fileMonitor?.GetType()
             .GetMethod("OnFileDeleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(testFilePath), Path.GetFileName(testFilePath)) });
+            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath)) });
 
         // Simulate timer elapse
         Thread.Sleep(1100);
 
         // Assert
-        Assert.AreEqual("Files removed: deletefile.dll", _fileMonitor.MessageStatus.TrimEnd());
+        Assert.AreEqual("Files removed: deletefile.dll", _fileMonitor?.MessageStatus?.TrimEnd());
     }
 
     /// <summary>
@@ -102,17 +113,17 @@ public class TestFileChangeNotifier
         string deletedFile = @"C:\temp\deletedfile.dll";
 
         // Simulate multiple file events using reflection
-        _fileMonitor.GetType()
+        _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1), Path.GetFileName(file1)) });
+            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file1)) });
 
-        _fileMonitor.GetType()
+        _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file2), Path.GetFileName(file2)) });
+            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file2)) });
 
-        _fileMonitor.GetType()
+        _fileMonitor?.GetType()
             .GetMethod("OnFileDeleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(deletedFile), Path.GetFileName(deletedFile)) });
+            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(deletedFile)) });
 
         // Simulate timer elapse
         Thread.Sleep(1100);
@@ -120,7 +131,7 @@ public class TestFileChangeNotifier
         // Ensure that the MessageStatus is correctly updated for multiple files
         Assert.AreEqual(
             "Files created: file1.dll, file2.dll\nFiles removed: deletedfile.dll".Replace("\r\n", "\n").Trim(),
-            _fileMonitor.MessageStatus.Replace("\r\n", "\n").Trim()
+            _fileMonitor?.MessageStatus?.Replace("\r\n", "\n").Trim()
         );
     }
 }
