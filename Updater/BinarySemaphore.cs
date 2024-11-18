@@ -1,6 +1,6 @@
 ﻿/******************************************************************************
 *
-* Filename    = Client.cs
+* Filename    = BinarySemaphore.cs
 *
 * Author      = Amithabh A
 *

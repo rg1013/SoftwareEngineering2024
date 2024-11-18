@@ -7,7 +7,7 @@
 * 
 * Project     = Lab Monitoring Software
 *
-* Description = 
+* Description = Class to encapsulate file metadata for client-server communication
 *****************************************************************************/
 
 namespace Updater;
@@ -22,3 +22,4 @@ public class FileMetadata
         return $"FileName: {FileName ?? "N/A"}, FileHash: {FileHash ?? "N/A"}";
     }
 }
+

@@ -1,4 +1,4 @@
-﻿/******************************************************************************************************
+﻿/******************************************************************************
 * Filename    = DataPacket.cs
 *
 * Author      = Amithabh A
@@ -8,9 +8,8 @@
 * Project     = Lab Monitoring Software
 *
 * Description = Application Data Packet class to encapsulate data for client-server communication
-******************************************************************************************************/
+*****************************************************************************/
 
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Updater;
@@ -28,15 +27,6 @@ public class DataPacket
         Broadcast      // multiple files
     }
 
-    public DataPacket() { }
-
-    // Constructor for multiple files.
-    public DataPacket(PacketType packetType, List<FileContent> fileContents)
-    {
-        DataPacketType = packetType;
-        FileContentList = fileContents ?? new List<FileContent>();
-    }
-
     [XmlElement("PacketType")]
     public PacketType DataPacketType { get; set; }
 
@@ -44,24 +34,13 @@ public class DataPacket
     [XmlArrayItem("FileContent")]
     public List<FileContent> FileContentList { get; set; } = new List<FileContent>();
 
-    public override string ToString()
+    public DataPacket() { }
+
+    // Constructor for multiple files.
+    public DataPacket(PacketType packetType, List<FileContent> fileContents)
     {
-        StringBuilder formattedOutput = new StringBuilder();
-        formattedOutput.AppendLine($"Packet Type: {DataPacketType}");
-
-        if (FileContentList.Count > 0)
-        {
-            formattedOutput.AppendLine("Multiple Files:");
-            foreach (FileContent file in FileContentList)
-            {
-                formattedOutput.AppendLine(file.ToString()); // Assuming FileContent has a ToString method
-            }
-        }
-        else
-        {
-            formattedOutput.AppendLine("No files in the packet.");
-        }
-
-        return formattedOutput.ToString();
+        DataPacketType = packetType;
+        FileContentList = fileContents;
     }
 }
+
