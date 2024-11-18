@@ -1,17 +1,16 @@
 ﻿/******************************************************************************
 * Filename    = Utils.cs
 *
-* Author      = Amithabh A
+* Author      = Amithabh A and Garima Ranjan
 *
 * Product     = Updater
 * 
 * Project     = Lab Monitoring Software
 *
-* Description = 
+* Description = Utility class for common functions
 *****************************************************************************/
 
 using System.Diagnostics;
-using System.Text;
 using Networking.Serialization;
 
 namespace Updater;
@@ -28,7 +27,7 @@ public class Utils
     {
         if (!File.Exists(filePath))
         {
-            Debug.WriteLine("File not found. Please check the path and try again.");
+            Trace.WriteLine("File not found. Please check the path and try again.");
             return null;
         }
 
@@ -69,17 +68,18 @@ public class Utils
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"An error occurred while writing to the file: {ex.Message}");
+            Trace.WriteLine($"An error occurred while writing to the file: {ex.Message}");
             return false;
         }
     }
 
-    /// <summary> Serializes an object to its string representation.
+    /// <summary> 
+    /// Serializes an object to its string representation.
     /// </summary>
     /// <typeparam name="T">The type of the object to serialize.</typeparam>
     /// <param name="obj">The object to serialize.</param>
     /// <returns>A string representation of the serialized object.</returns>
-    public static string SerializeObject<T>(T obj)
+    public static string? SerializeObject<T>(T obj)
     {
         try
         {
@@ -89,7 +89,7 @@ public class Utils
         catch (Exception ex)
         {
             Trace.WriteLine(ex.ToString());
-            return "";
+            return null;
         }
     }
 
@@ -109,11 +109,29 @@ public class Utils
     /// Generates serialized packet containing metadata of files in a directory.
     /// </summary>
     /// <returns>Serialized packet containing metadata of files in a directory.</returns>
-    public static string SerializedMetadataPacket()
+    public static string? SerializedMetadataPacket()
     {
-        DirectoryMetadataGenerator metadataGenerator = new DirectoryMetadataGenerator() ?? throw new Exception("Failed to create DirectoryMetadataGenerator");
-        List<FileMetadata>? metadata = metadataGenerator.GetMetadata() ?? throw new Exception("Failed to get metadata");
-        string serializedMetadata = Utils.SerializeObject(metadata);
+        DirectoryMetadataGenerator metadataGenerator = new DirectoryMetadataGenerator(AppConstants.ToolsDirectory);
+
+        if (metadataGenerator == null)
+        {
+            Trace.WriteLine("Failed to create DirectoryMetadataGenerator");
+            return null;
+        }
+
+        List<FileMetadata>? metadata = metadataGenerator.GetMetadata();
+        if (metadata == null)
+        {
+            Trace.WriteLine("Failed to get metadata");
+            return null;
+        }
+
+        string? serializedMetadata = Utils.SerializeObject(metadata);
+        if (serializedMetadata == null)
+        {
+            Trace.WriteLine("Failed to serialize metadata");
+            return null;
+        }
         FileContent fileContent = new FileContent("metadata.json", serializedMetadata);
         List<FileContent> fileContents = new List<FileContent> { fileContent };
 
@@ -125,13 +143,18 @@ public class Utils
     /// Generates serialized SyncUp packet
     /// </summary>
     /// <returns>Serialized SyncUp packet</returns>
-    public static string SerializedSyncUpPacket(string? clientId)
+    public static string? SerializedSyncUpPacket(string clientId)
     {
         List<FileContent> fileContents = new List<FileContent>
         {
-            new FileContent(clientId, clientId) // clientId as both the name and content
+            new FileContent(clientId, clientId)
         };
         DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, fileContents);
+        if (dataPacket == null)
+        {
+            Trace.WriteLine("Failed to create DataPacket");
+            return null;
+        }
         return SerializeObject(dataPacket);
     }
 }

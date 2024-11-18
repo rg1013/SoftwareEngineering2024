@@ -1,13 +1,13 @@
 ﻿/******************************************************************************
 * Filename    = DirectoryMetadataComparer.cs
 *
-* Author      = Amithabh A
+* Author      = Garima Ranjan and Amithabh A
 *
 * Product     = Updater
 * 
 * Project     = Lab Monitoring Software
 *
-* Description = 
+* Description = Compares metadata of two directories and generates differences.
 *****************************************************************************/
 
 using System.Xml.Serialization;

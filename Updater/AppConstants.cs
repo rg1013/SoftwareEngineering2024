@@ -8,7 +8,6 @@
 * Project     = Lab Monitoring Software
 *
 * Description = This class contains constant values used for configuration within the Updater product
-* 
 *****************************************************************************/
 
 namespace Updater;
