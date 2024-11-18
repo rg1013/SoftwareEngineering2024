@@ -1,3 +1,4 @@
-*/obj
-*/debug
-*/.vs
+**/.vs
+**/obj
+**/debug
+**/bin
