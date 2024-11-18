@@ -1,0 +1,16 @@
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\bin\Debug\net8.0-windows\Dashboard.deps.json
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\bin\Debug\net8.0-windows\Dashboard.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\bin\Debug\net8.0-windows\Dashboard.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\bin\Debug\net8.0-windows\Networking.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\bin\Debug\net8.0-windows\Networking.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.csproj.AssemblyReference.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.AssemblyInfoInputs.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.AssemblyInfo.cs
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.csproj.CoreCompileInputs.cache
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.sourcelink.json
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.csproj.Up2Date
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\refint\Dashboard.dll
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\Dashboard.pdb
+C:\Users\Asus\OneDrive\Documents\SoftwareEngineering2024\UXModule\UXModule\Dashboard\obj\Debug\net8.0-windows\ref\Dashboard.dll

@@ -105,27 +105,24 @@ public class ServerViewModel : INotifyPropertyChanged
                         new List<FileContent> { fileContentToSend }
                         );
 
-        // Set the target directory where files will be saved
+        // Target directory where files will be saved
         string targetDirectory = AppConstants.ToolsDirectory;
-
-        // Create the target file path
         string targetFilePath = Path.Combine(targetDirectory, Path.GetFileName(filePath));
+
         try
         {
             // Copy the file to the target directory
             File.Copy(filePath, targetFilePath, overwrite: true);
-            // Notify the user and log success
             _logServiceViewModel.UpdateLogDetails($"File uploaded successfully: {Path.GetFileName(filePath)}");
             MessageBox.Show("File uploaded successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
         {
-            // Handle errors during file copy
             _logServiceViewModel.UpdateLogDetails($"Failed to upload file: {ex.Message}");
             MessageBox.Show($"Error uploading file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        // Serialize packet
+        // Serialized packet
         string serializedPacket = Utils.SerializeObject(dataPacketToSend);
         _server.Broadcast(serializedPacket);
     }
@@ -134,8 +131,6 @@ public class ServerViewModel : INotifyPropertyChanged
     /// Notify property changed
     /// </summary>
     /// <param name="propertyName">Property name</param>
-
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
