@@ -190,7 +190,7 @@ public class CloudViewModel
         return await reader.ReadToEndAsync();
     }
 
-    private async Task<ServiceResponse<Stream>> DownloadResponseMethod()
+    public virtual async Task<ServiceResponse<Stream>> DownloadResponseMethod()
     {
         return await _cloudService.DownloadAsync("ServerFiles.json");
     }

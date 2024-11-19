@@ -37,7 +37,7 @@ public class Server : INotificationHandler
     /// <summary>
     /// Constructor
     /// </summary>
-    private Server()
+    public Server()
     {
         // Subscribing the "FileTransferHandler" for handling notifications
         _communicator = CommunicationFactory.GetCommunicator(isClientSide: false);
@@ -220,7 +220,7 @@ public class Server : INotificationHandler
     /// <param name="communicator">Communicator object</param>
     /// <param name="server">Server object</param>
     /// <param name="clientId">Client ID</param>
-    private static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
+    public static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
     {
         try
         {
@@ -259,7 +259,7 @@ public class Server : INotificationHandler
     /// <param name="dataPacket">Data packet</param>
     /// <param name="communicator">Communicator object</param>
     /// <param name="clientId">Client ID</param>
-    private static void MetadataHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
+    public static void MetadataHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
     {
         try
         {
@@ -466,7 +466,7 @@ public class Server : INotificationHandler
     /// <param name="communicator">Communicator object</param>
     /// <param name="server">Server object</param>
     /// <param name="clientId">Client ID</param>
-    private static void ClientFilesHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
+    public static void ClientFilesHandler(DataPacket dataPacket, ICommunicator communicator, Server server, string clientId)
     {
         try
         {
