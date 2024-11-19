@@ -10,12 +10,6 @@
 * Description = Interface for ToolAssemblyLoader
 *****************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Updater;
 /// <summary>
 /// Interface for loading tool assemblies from a specified folder.

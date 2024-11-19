@@ -22,7 +22,6 @@ namespace Updater;
 /// </summary>
 public class Server : INotificationHandler
 {
-    static int s_clientCounter = 0; // Counter for unique client IDs
     private static readonly string s_serverDirectory = AppConstants.ToolsDirectory;
 
     private readonly BinarySemaphore _semaphore = new();
@@ -32,7 +31,7 @@ public class Server : INotificationHandler
     public static event Action<string>? NotificationReceived; // Event to notify the view model
     public string _clientID = "";
     private readonly Dictionary<string, TcpClient> _clientConnections = []; // Track clients
-    private static Server s_instance;
+    private static Server? s_instance;
     private static readonly object s_lock = new object();
 
     /// <summary>
@@ -103,12 +102,7 @@ public class Server : INotificationHandler
         try
         {
             UpdateUILogs($"Sending sync up request to client {clientId}");
-            string? serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId);
-
-            if (serializedSyncUpPacket == null)
-            {
-                throw new Exception("Serialized SyncUp packet is null");
-            }
+            string? serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId) ?? throw new Exception("Serialized SyncUp packet is null");
 
             // Write equivalent of this: 
             // UpdateUILogs("Syncing Up with the server");
@@ -273,7 +267,7 @@ public class Server : INotificationHandler
             // Extract metadata of client directory
             List<FileContent> fileContents = dataPacket.FileContentList;
 
-            if (!fileContents.Any())
+            if (fileContents.Count == 0)
             {
                 UpdateUILogs("No file content received in the data packet.");
                 throw new Exception("No file content received in the data packet.");
@@ -323,9 +317,8 @@ public class Server : INotificationHandler
             {
                 try
                 {
-                    List<string> invalidFileNames = comparerInstance.InvalidSyncUpFiles;
-
-                    if (invalidFileNames.Count == 0)
+                    List<string>? invalidFileNames = comparerInstance.InvalidSyncUpFiles;
+                    if (invalidFileNames?.Count == 0)
                     {
                         UpdateUILogs("InvalidSyncUpFiles is empty");
                         throw new Exception("InvalidSyncUpFiles is empty");
@@ -346,7 +339,7 @@ public class Server : INotificationHandler
 
                     DataPacket dataPacketToSend = new DataPacket(
                             DataPacket.PacketType.InvalidSync,
-                            new List<FileContent> { fileContentToSend }
+                            [fileContentToSend]
                             );
 
 
@@ -403,11 +396,11 @@ public class Server : INotificationHandler
                 }
 
                 // Prepare data to send to client
-                List<FileContent> fileContentsToSend = new List<FileContent>
-                    {
+                List<FileContent> fileContentsToSend =
+                    [
                         // Added difference file to be sent to client
-                        new FileContent("differences.xml", serializedDifferences)
-                    };
+                        new("differences.xml", serializedDifferences)
+                    ];
 
                 // Retrieve and add unique server files to fileContentsToSend
                 foreach (string filename in comparerInstance.UniqueServerFiles)

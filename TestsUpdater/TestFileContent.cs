@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Updater;
+﻿using Updater;
 
 namespace TestsUpdater;
 
@@ -10,7 +9,7 @@ public class TestFileContent
     /// Verifies that the default constructor sets both FileName and SerializedContent to null.
     /// </summary>
     [TestMethod]
-    public void Test_FileContent_DefaultConstructor()
+    public void TestFileContentDefaultConstructor()
     {
         // Arrange & Act
         var fileContent = new FileContent();
@@ -24,11 +23,11 @@ public class TestFileContent
     /// Verifies that the constructor sets the FileName and SerializedContent correctly when valid values are provided.
     /// </summary>
     [TestMethod]
-    public void Test_FileContent_Constructor_WithValidParams()
+    public void TestFileContentConstructorWithValidParams()
     {
         // Arrange
-        var fileName = "example.txt";
-        var serializedContent = "Some content";
+        string fileName = "example.txt";
+        string serializedContent = "Some content";
 
         // Act
         var fileContent = new FileContent(fileName, serializedContent);
@@ -42,13 +41,13 @@ public class TestFileContent
     /// Verifies that ToString() returns the correct format when both properties are null.
     /// </summary>
     [TestMethod]
-    public void Test_FileContent_ToString_ForDefaultConstructor()
+    public void TestFileContentToStringForDefaultConstructor()
     {
         // Arrange
         var fileContent = new FileContent();
 
         // Act
-        var result = fileContent.ToString();
+        string result = fileContent.ToString();
 
         // Assert
         Assert.AreEqual("FileName: N/A, Content Length: 0", result);
@@ -58,13 +57,13 @@ public class TestFileContent
     /// Verifies that ToString() returns the correct format when both FileName and SerializedContent are not null.
     /// </summary>
     [TestMethod]
-    public void Test_FileContent_ToString_BothPropertiesNotNull()
+    public void TestFileContentToStringBothPropertiesNotNull()
     {
         // Arrange
         var fileContent = new FileContent("example.txt", "Some content");
 
         // Act
-        var result = fileContent.ToString();
+        string result = fileContent.ToString();
 
         // Assert
         Assert.AreEqual("FileName: example.txt, Content Length: 12", result);

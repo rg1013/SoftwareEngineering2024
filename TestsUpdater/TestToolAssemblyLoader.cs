@@ -123,4 +123,18 @@ public class TestToolAssemblyLoader
         Assert.IsTrue(result.TryGetValue("CreatorEmail", out List<string>? creatorEmails), "Key 'CreatorEmail' not found.");
         Assert.AreEqual("creatorcca@example.com", creatorEmails.FirstOrDefault(), "Expected CreatorEmail was not found.");
     }
+    /// <summary>
+    /// Test case to verify that an exception is thrown when attempting to load an invalid DLL file.
+    /// </summary>
+    [TestMethod]
+    public void TestLoadToolsFromFolderHandlesInvalidDllFiles()
+    {
+        _loader = new ToolAssemblyLoader();
+        string testFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../CopyTestFolder");
+        string invalidDllPath = Path.Combine(testFolderPath, "InvalidDLL.dll");
+
+        // Attempting to load tools from the folder containing the invalid DLL
+        Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(testFolderPath);
+        Assert.AreEqual(1, result["Id"].Count, "Invalid DLL files should not populate the toolPropertyMap.");
+    }
 }

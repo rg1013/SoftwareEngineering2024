@@ -1,74 +1,70 @@
 ﻿using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using Updater;
 
 namespace TestsUpdater;
 
 [TestClass]
-public class UtilsTests
+public class TestUtils
 {
-    private string testFilePath = Path.Combine(Path.GetTempPath(), "testFile.bin");
-    private string testTextFilePath = Path.Combine(Path.GetTempPath(), "testTextFile.txt");
-    private string base64TestData = Convert.ToBase64String(Encoding.UTF8.GetBytes("test binary content"));
+    private string _testFilePath = Path.Combine(Path.GetTempPath(), "testFile.bin");
+    private string _testTextFilePath = Path.Combine(Path.GetTempPath(), "testTextFile.txt");
+    private string _base64TestData = Convert.ToBase64String(Encoding.UTF8.GetBytes("test binary content"));
 
     [TestMethod]
-    public void ReadBinaryFile_ShouldReturnNull_WhenFileDoesNotExist()
+    public void TestReadBinaryFileShouldReturnNullWhenFileDoesNotExist()
     {
-        // Arrange
         string nonExistentFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
-        // Act
         string? result = Utils.ReadBinaryFile(nonExistentFilePath);
 
-        // Assert
         Assert.IsNull(result, "Expected result to be null when the file doesn't exist.");
     }
 
     [TestMethod]
-    public void ReadBinaryFile_ShouldReturnBase64String_WhenFileExists()
+    public void TestReadBinaryFileShouldReturnBase64StringWhenFileExists()
     {
         // Arrange
-        File.WriteAllBytes(testFilePath, Encoding.UTF8.GetBytes("test binary content"));
+        File.WriteAllBytes(_testFilePath, Encoding.UTF8.GetBytes("test binary content"));
 
         // Act
-        string? result = Utils.ReadBinaryFile(testFilePath);
+        string? result = Utils.ReadBinaryFile(_testFilePath);
 
         // Assert
         Assert.IsNotNull(result, "Expected a result when the file exists.");
-        Assert.AreEqual(base64TestData, result, "Expected the base64 content to match.");
+        Assert.AreEqual(_base64TestData, result, "Expected the base64 content to match.");
     }
 
     [TestMethod]
-    public void WriteToFileFromBinary_ShouldWriteFile_WhenValidBase64String()
+    public void TestWriteToFileFromBinaryShouldWriteFileWhenValidBase64String()
     {
         // Act
-        bool result = Utils.WriteToFileFromBinary(testFilePath, base64TestData);
+        bool result = Utils.WriteToFileFromBinary(_testFilePath, _base64TestData);
 
         // Assert
         Assert.IsTrue(result, "Expected the file writing to succeed.");
 
         // Verify file content
-        string content = File.ReadAllText(testFilePath);
+        string content = File.ReadAllText(_testFilePath);
         Assert.AreEqual("test binary content", content, "Expected the written content to match.");
     }
 
     [TestMethod]
-    public void WriteToFileFromBinary_ShouldWriteText_WhenNotBase64()
+    public void TestWriteToFileFromBinaryShouldWriteTextWhenNotBase64()
     {
         // Act
-        bool result = Utils.WriteToFileFromBinary(testTextFilePath, "This is a regular text.");
+        bool result = Utils.WriteToFileFromBinary(_testTextFilePath, "This is a regular text.");
 
         // Assert
         Assert.IsTrue(result, "Expected the text writing to succeed.");
 
         // Verify file content
-        string content = File.ReadAllText(testTextFilePath);
+        string content = File.ReadAllText(_testTextFilePath);
         Assert.AreEqual("This is a regular text.", content, "Expected the written text to match.");
     }
 
     [TestMethod]
-    public void SerializeObject_ShouldReturnSerializedString_WhenObjectIsValid()
+    public void TestSerializeObjectShouldReturnSerializedStringWhenObjectIsValid()
     {
         // Arrange
         var testObject = new FileMetadata { FileName = "test.txt", FileHash = "abcdef123456" };
@@ -82,7 +78,7 @@ public class UtilsTests
     }
 
     [TestMethod]
-    public void DeserializeObject_ShouldReturnObject_WhenSerializedDataIsValid()
+    public void TestDeserializeObjectShouldReturnObjectWhenSerializedDataIsValid()
     {
         // Arrange
         var testObject = new FileMetadata { FileName = "test.txt", FileHash = "abcdef123456" };
@@ -91,7 +87,7 @@ public class UtilsTests
         // Act
         if (serializedData != null)
         {
-            var deserializedObject = Utils.DeserializeObject<FileMetadata>(serializedData);
+            FileMetadata deserializedObject = Utils.DeserializeObject<FileMetadata>(serializedData);
 
             // Assert
             Assert.IsNotNull(deserializedObject, "Expected the object to deserialize successfully.");
@@ -107,7 +103,7 @@ public class UtilsTests
     // NOTE: This test is specifically for windows 
 
     [TestMethod]
-    public void SerializedMetadataPacket_ShouldReturnValidPacket_WhenCalled()
+    public void TestSerializedMetadataPacketShouldReturnValidPacketWhenCalled()
     {
         // Arrange
         string toolsDirectory = Path.Combine(Path.GetTempPath(), "ToolsDirectory");
@@ -126,7 +122,7 @@ public class UtilsTests
     }
 
     [TestMethod]
-    public void SerializedSyncUpPacket_ShouldReturnValidSyncUpPacket_WhenCalled()
+    public void TestSerializedSyncUpPacketShouldReturnValidSyncUpPacketWhenCalled()
     {
         string sampleClientId = "2";
         // Act
@@ -139,52 +135,78 @@ public class UtilsTests
     }
 
     [TestMethod]
-    public void Constructor_ShouldLogMessage_WhenDirectoryDoesNotExist()
+    public void TestConstructorShouldLogMessageWhenDirectoryDoesNotExist()
     {
         // Arrange
         string nonExistentDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
-        using (var stringWriter = new System.IO.StringWriter())
-        {
-            // Add a `trace` listener to capture the log message
-            Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
+        using var stringWriter = new System.IO.StringWriter();
+        // Add a `trace` listener to capture the log message
+        Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
 
-            // Act
-            var generator = new DirectoryMetadataGenerator(nonExistentDirectory);
+        // Act
+        var generator = new DirectoryMetadataGenerator(nonExistentDirectory);
 
-            // Assert
-            string output = stringWriter.ToString();
-            Assert.IsTrue(output.Contains("Directory does not exist"), "Log message not found.");
-        }
+        // Assert
+        string output = stringWriter.ToString();
+        Assert.IsTrue(output.Contains("Directory does not exist"), "Log message not found.");
     }
 
     [TestMethod]
-    public void SerializeObject_ShouldLogError_WhenSerializationFails()
+    public void TestSerializeObjectShouldLogErrorWhenSerializationFails()
     {
         // Arrange
         var invalidObject = new { InvalidProperty = new object() }; // This can be an invalid type for the serializer
 
-        using (var stringWriter = new System.IO.StringWriter())
-        {
-            // Add a `trace` listener to capture the log message
-            Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
+        using var stringWriter = new System.IO.StringWriter();
+        // Add a `trace` listener to capture the log message
+        Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
 
-            // Act
-            string? result = Utils.SerializeObject(invalidObject);
+        // Act
+        string? result = Utils.SerializeObject(invalidObject);
 
-            // Assert
-            string output = stringWriter.ToString();
-            Assert.IsTrue(output.Contains("Exception caught in Serializer.Serialize()"), "Error message not logged.");
-            Assert.IsNull(result, "Expected serialization to fail.");
-        }
+        // Assert
+        string output = stringWriter.ToString();
+        Assert.IsTrue(output.Contains("Exception caught in Serializer.Serialize()"), "Error message not logged.");
+        Assert.IsNull(result, "Expected serialization to fail.");
+    }
+
+    [TestMethod]
+    public void TestWriteToFileFromBinaryShouldLogErrorAndReturnFalseWhenExceptionOccurs()
+    {
+        // Arrange: Set up a path to a file in a non-existent directory
+        string invalidFilePath = Path.Combine(Path.GetTempPath(), "nonexistentDir", "testFile.bin");
+
+        using var stringWriter = new System.IO.StringWriter();
+        Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));  // Capture logs
+
+        // Act: Try writing to the file path that doesn't exist
+        bool result = Utils.WriteToFileFromBinary(invalidFilePath, _base64TestData);
+
+        Assert.IsFalse(result, "Expected the method to return false when an error occurs.");
+
+        // Check the log output to ensure the error is logged
+        string output = stringWriter.ToString();
+        Assert.IsTrue(output.Contains("An error occurred while writing to the file"), "Error message not logged correctly.");
     }
 
     // Clean up temporary test files
     [TestCleanup]
     public void Cleanup()
     {
-        if (File.Exists(testFilePath)) File.Delete(testFilePath);
-        if (File.Exists(testTextFilePath)) File.Delete(testTextFilePath);
-        if (Directory.Exists(Path.GetTempPath() + "ToolsDirectory")) Directory.Delete(Path.GetTempPath() + "ToolsDirectory", true);
+        if (File.Exists(_testFilePath))
+        {
+            File.Delete(_testFilePath);
+        }
+
+        if (File.Exists(_testTextFilePath))
+        {
+            File.Delete(_testTextFilePath);
+        }
+
+        if (Directory.Exists(Path.GetTempPath() + "ToolsDirectory"))
+        {
+            Directory.Delete(Path.GetTempPath() + "ToolsDirectory", true);
+        }
     }
 }

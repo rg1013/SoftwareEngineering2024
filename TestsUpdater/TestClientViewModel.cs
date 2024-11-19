@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System.Threading.Tasks;
+﻿using Moq;
 using Updater;
 using ViewModels.Updater;
 
@@ -39,14 +37,14 @@ public class TestClientViewModel
         // Initializing ClientViewModel and inject the mock LogServiceViewModel
         _viewModel = new ClientViewModel(_mockLogServiceViewModel.Object);
 
-        // Injecting the private _client field in ClientViewModel with our mock
+        // Injecting the private s_client field in ClientViewModel with our mock
         typeof(ClientViewModel)
-            .GetField("_client", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            .GetField("s_client", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
             ?.SetValue(_viewModel, _mockClient);
     }
 
     [TestMethod]
-    public async Task TestSyncUpAsync_InvokesClientAndLogsCompletion()
+    public async Task TestSyncUpAsyncInvokesClientAndLogsCompletion()
     {
         bool syncUpCalled = false;
 
@@ -81,5 +79,25 @@ public class TestClientViewModel
             Times.Once,
             "LogServiceViewModel.UpdateLogDetails should be called with 'Sync completed.'"
         );
+    }
+
+    [TestMethod]
+    public void TestOnPropertyChangedEventIsRaised()
+    {
+        bool eventRaised = false;
+        string? raisedPropertyName = null;
+
+        Assert.IsNotNull(_viewModel, "ClientViewModel should be initialized.");
+        _viewModel!.PropertyChanged += (sender, args) => {
+            eventRaised = true;
+            raisedPropertyName = args.PropertyName;
+        };
+
+        _viewModel.GetType()
+            .GetMethod("OnPropertyChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+            ?.Invoke(_viewModel, ["TestProperty"]);
+
+        Assert.IsTrue(eventRaised, "PropertyChanged event should be raised.");
+        Assert.AreEqual("TestProperty", raisedPropertyName, "PropertyChanged event should be raised with the correct property name.");
     }
 }

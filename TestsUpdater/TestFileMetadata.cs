@@ -3,13 +3,13 @@ using Updater;
 namespace TestsUpdater;
 
 [TestClass]
-public class FileMetadataTests
+public class TestFileMetadata
 {
     /// <summary>
     /// Verifies that the default constructor sets both FileName and FileHash to null.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_DefaultConstructor()
+    public void TestFileMetadataDefaultConstructor()
     {
         // Arrange & Act
         var fileMetadata = new FileMetadata();
@@ -23,11 +23,11 @@ public class FileMetadataTests
     /// Verifies that the constructor sets the FileName and FileHash correctly when valid values are provided.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_Constructor_WithValidParams()
+    public void TestFileMetadataConstructorWithValidParams()
     {
         // Arrange
-        var fileName = "example.txt";
-        var fileHash = "abc123";
+        string fileName = "example.txt";
+        string fileHash = "abc123";
 
         // Act
         var fileMetadata = new FileMetadata {
@@ -44,13 +44,13 @@ public class FileMetadataTests
     /// Verifies that ToString() returns the correct format when both properties are null.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_ToString_BothPropertiesNull()
+    public void TestFileMetadataToStringBothPropertiesNull()
     {
         // Arrange
         var fileMetadata = new FileMetadata();
 
         // Act
-        var result = fileMetadata.ToString();
+        string result = fileMetadata.ToString();
 
         // Assert
         Assert.AreEqual("FileName: N/A, FileHash: N/A", result);
@@ -60,7 +60,7 @@ public class FileMetadataTests
     /// Verifies that ToString() returns the correct format when FileName is null and FileHash is set.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_ToString_FileNameNull_FileHashNotNull()
+    public void TestFileMetadataToStringFileNameNullFileHashNotNull()
     {
         // Arrange
         var fileMetadata = new FileMetadata {
@@ -69,7 +69,7 @@ public class FileMetadataTests
         };
 
         // Act
-        var result = fileMetadata.ToString();
+        string result = fileMetadata.ToString();
 
         // Assert
         Assert.AreEqual("FileName: N/A, FileHash: abc123", result);
@@ -79,7 +79,7 @@ public class FileMetadataTests
     /// Verifies that ToString() returns the correct format when FileName is set and FileHash is null.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_ToString_FileNameNotNull_FileHashNull()
+    public void TestFileMetadataToStringFileNameNotNullFileHashNull()
     {
         // Arrange
         var fileMetadata = new FileMetadata {
@@ -88,7 +88,7 @@ public class FileMetadataTests
         };
 
         // Act
-        var result = fileMetadata.ToString();
+        string result = fileMetadata.ToString();
 
         // Assert
         Assert.AreEqual("FileName: example.txt, FileHash: N/A", result);
@@ -98,7 +98,7 @@ public class FileMetadataTests
     /// Verifies that ToString() returns the correct format when both FileName and FileHash are set.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_ToString_BothPropertiesNotNull()
+    public void TestFileMetadataToStringBothPropertiesNotNull()
     {
         // Arrange
         var fileMetadata = new FileMetadata {
@@ -107,7 +107,7 @@ public class FileMetadataTests
         };
 
         // Act
-        var result = fileMetadata.ToString();
+        string result = fileMetadata.ToString();
 
         // Assert
         Assert.AreEqual("FileName: example.txt, FileHash: abc123", result);
@@ -117,11 +117,11 @@ public class FileMetadataTests
     /// Verifies that FileName and FileHash handle empty strings correctly.
     /// </summary>
     [TestMethod]
-    public void Test_FileMetadata_Constructor_EmptyStrings()
+    public void TestFileMetadataConstructorEmptyStrings()
     {
         // Arrange
-        var fileName = string.Empty;
-        var fileHash = string.Empty;
+        string fileName = string.Empty;
+        string fileHash = string.Empty;
 
         // Act
         var fileMetadata = new FileMetadata {

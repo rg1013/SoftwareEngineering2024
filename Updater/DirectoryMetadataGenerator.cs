@@ -61,8 +61,7 @@ public class DirectoryMetadataGenerator
         foreach (string filePath in Directory.GetFiles(directoryPath))
         {
 
-            metadata.Add(new FileMetadata
-            {
+            metadata.Add(new FileMetadata {
                 FileName = Path.GetFileName(filePath),
                 FileHash = ComputeFileHash(filePath)
             });

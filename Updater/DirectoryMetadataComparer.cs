@@ -27,7 +27,7 @@ public class DirectoryMetadataComparer
     [XmlElement("UniqueClientFiles")]
 
     public List<string> UniqueClientFiles { get; private set; } = new List<string>();
-    public List<string> InvalidSyncUpFiles { get; private set; } = new List<string>();
+    public List<string>? InvalidSyncUpFiles { get; private set; } = new List<string>();
 
     // Parameterless constructor for XML serialization
     public DirectoryMetadataComparer() { }
@@ -50,8 +50,8 @@ public class DirectoryMetadataComparer
     private void CompareMetadata(List<FileMetadata> metadataA, List<FileMetadata> metadataB)
     {
         // Initialize differences for three cases
-        Differences.Add(new MetadataDifference { Key = "-1", Value = new List<FileDetail>() }); // In B but not in A
-        Differences.Add(new MetadataDifference { Key = "0", Value = new List<FileDetail>() });  // Files with same hash but different names
+        Differences.Add(new MetadataDifference { Key = "-1", Value = [] }); // In B but not in A
+        Differences.Add(new MetadataDifference { Key = "0", Value = [] });  // Files with same hash but different names
         Differences.Add(new MetadataDifference { Key = "1", Value = new List<FileDetail>() });    // In A but not in B
 
         List<KeyValuePair<string, string>> hashToFileA = CreateHashToFileDictionary(metadataA);
@@ -135,12 +135,12 @@ public class DirectoryMetadataComparer
         foreach (FileMetadata fileA in metadataA)
         {
             // Find a file in directory B that has the same name as fileA
-            FileMetadata fileB = metadataB.FirstOrDefault(fb => fb.FileName == fileA.FileName);
+            FileMetadata? fileB = metadataB.FirstOrDefault(fb => fb.FileName == fileA.FileName);
 
             if (fileB != null && fileA.FileHash != fileB.FileHash)
             {
                 // Found files with the same name but different hashes
-                InvalidSyncUpFiles.Add(fileA.FileName);
+                InvalidSyncUpFiles?.Add(fileA.FileName);
             }
         }
     }
@@ -151,7 +151,7 @@ public class DirectoryMetadataComparer
     public bool ValidateSync()
     {
         // If there are any filenames in InvalidSyncUpFiles, directories can't be synced. 
-        return !InvalidSyncUpFiles.Any();
+        return InvalidSyncUpFiles?.Count == 0;
     }
 }
 
@@ -159,25 +159,25 @@ public class DirectoryMetadataComparer
 public class MetadataDifference
 {
     [XmlElement("Key")]
-    public string Key { get; set; }
+    public string? Key { get; set; }
 
     [XmlArray("Value")]
     [XmlArrayItem("FileDetail")] // Define individual item
-    public List<FileDetail> Value { get; set; } = new List<FileDetail>();
+    public List<FileDetail> Value { get; set; } = [];
 }
 
 [Serializable]
 public class FileDetail
 {
     [XmlElement("FileName")]
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     [XmlElement("FileHash")]
-    public string FileHash { get; set; }
+    public string? FileHash { get; set; }
 
     [XmlElement("RenameFrom")]
-    public string RenameFrom { get; set; }
+    public string? RenameFrom { get; set; }
 
     [XmlElement("RenameTo")]
-    public string RenameTo { get; set; }
+    public string? RenameTo { get; set; }
 }
