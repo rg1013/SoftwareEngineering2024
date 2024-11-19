@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/******************************************************************************
+* Filename    = TestCloudViewModel.cs
+*
+* Author      = Karumudi Harika
+*
+* Product     = Updater
+* 
+* Project     = Lab Monitoring Software
+*
+* Description = Unit Tests for CloudViewModel.cs
+*****************************************************************************/
 using ViewModels.Updater;
 using SECloud.Services;
-using Networking.Communication;
-using System.Linq;
 using Moq;
-using SECloud.Models;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
-using System.Security.Policy;
 using Updater;
 
 namespace TestsUpdater;
 
+/// <summary>
+/// Unit test class for CLoud. This class contains tests that simulate cloud events 
+///between server and cloud.
+/// </summary>
 [TestClass]
 public class CloudViewModelTests
 {
-    private Mock<CloudViewModel> _cloudViewModel;
-    private Mock<LogServiceViewModel> _mockLogServiceViewModel;
-    private Mock<ServerViewModel> _mockServerViewModel;
-    private Mock<CloudService> _cloudService;
-    private Mock<ToolAssemblyLoader> _loader;
-    private Mock<Server> _server;
+    private Mock<CloudViewModel>? _cloudViewModel;
+    private Mock<LogServiceViewModel>? _mockLogServiceViewModel;
+    private Mock<ServerViewModel>? _mockServerViewModel;
+    private Mock<CloudService>? _cloudService;
+    private Mock<ToolAssemblyLoader>? _loader;
+    private Mock<Server>? _server;
+    /// <summary>
+    /// Setup method to initialize the cloud instance before each test.
+    /// </summary>
+
     [TestInitialize]
     public void Setup()
     {
@@ -32,11 +40,14 @@ public class CloudViewModelTests
         _mockLogServiceViewModel = new Mock<LogServiceViewModel>();
         _cloudService = new Mock<CloudService>();
         _server = new Mock<Server>();
-        // Create an instance of CloudViewModel with mocked dependencies
-        _cloudViewModel = new Mock<CloudViewModel>(_mockLogServiceViewModel, _mockServerViewModel);
         _loader = new Mock<ToolAssemblyLoader>();
         _mockServerViewModel = new Mock<ServerViewModel>(_mockLogServiceViewModel, _loader, _server);
+        // Create an instance of CloudViewModel with mocked dependencies
+        _cloudViewModel = new Mock<CloudViewModel>(_mockLogServiceViewModel, _mockServerViewModel);
     }
+    /// <summary>
+    /// Tests the removal of invalid entries from the list, specifically those with "N/A" values in the Name or Id fields.
+    /// </summary>
 
     [TestMethod]
     public void TestRemoveNAEntries_RemovesInvalidEntries()
@@ -54,8 +65,12 @@ public class CloudViewModelTests
 
         // Assert
         Assert.AreEqual(1, result.Count);
-        Assert.AreEqual("ValidFile", result[0].Name[0]);
+        Assert.AreEqual("ValidFile", result[0]?.Name?[0]);
     }
+    /// <summary>
+    /// Tests if the ServerHasMoreData method correctly identifies files that are only present on the server, not in the cloud.
+    /// </summary>
+
     [TestMethod]
     public void TestServerHasMoreData_IdentifiesServerOnlyFiles()
     {
@@ -68,10 +83,12 @@ public class CloudViewModelTests
 
         // Assert
         Assert.AreEqual(1, result.Count);
-        Assert.AreEqual("ServerFile", result[0].Name[0]);
-        Assert.AreEqual("1", result[0].Id[0]);
+        Assert.AreEqual("ServerFile", result[0]?.Name?[0]);
+        Assert.AreEqual("1", result[0]?.Id?[0]);
     }
-
+    /// <summary>
+    /// Tests if the CloudHasMoreData method correctly identifies files that are only present in the cloud, not on the server.
+    /// </summary>
 
     [TestMethod]
     public void TestCloudHasMoreData_IdentifiesCloudOnlyFiles()
@@ -85,9 +102,12 @@ public class CloudViewModelTests
 
         // Assert
         Assert.AreEqual(1, result.Count);
-        Assert.AreEqual("CloudFile", result[0].Name[0]);
-        Assert.AreEqual("2", result[0].Id[0]);
+        Assert.AreEqual("CloudFile", result[0]?.Name?[0]);
+        Assert.AreEqual("2", result[0]?.Id?[0]);
     }
+    /// <summary>
+    /// Tests if the ServerHasMoreData method correctly filters out files that are only present on the server and not the cloud.
+    /// </summary>
 
     [TestMethod]
     public void ServerHasMoreData_FiltersCorrectFiles()
@@ -101,8 +121,11 @@ public class CloudViewModelTests
 
         // Assert: Ensure the correct files are identified for upload to the cloud
         Assert.AreEqual(1, result.Count);
-        Assert.AreEqual("File2", result[0].Name[0]);
+        Assert.AreEqual("File2", result[0]?.Name?[0]);
     }
+    /// <summary>
+    /// Tests if the CloudHasMoreData method correctly filters out files that are only present in the cloud and not on the server.
+    /// </summary>
 
     [TestMethod]
     public void CloudHasMoreData_FiltersCorrectFiles()
