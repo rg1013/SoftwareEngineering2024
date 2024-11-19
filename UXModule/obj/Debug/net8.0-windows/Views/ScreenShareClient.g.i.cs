@@ -94,7 +94,7 @@ namespace UXModule.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/UXModule;V1.0.0.0;component/views/screenshareclient.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/UXModule;component/views/screenshareclient.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ScreenShareClient.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

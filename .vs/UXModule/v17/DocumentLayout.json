@@ -1,101 +1,177 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\Final-SE\\SoftwareEngineering2024\\",
+  "WorkspaceRootPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screensharestarter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screensharestarter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\uxmodule\\views\\updaterpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\updaterpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\datapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\datapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1CCEBD4C-6BD7-487F-8A9A-4C859F595001}|Updater\\Updater.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\updater\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CCEBD4C-6BD7-487F-8A9A-4C859F595001}|Updater\\Updater.csproj|solutionrelative:updater\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\clientdataheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\clientdataheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareserver\\sharedclientscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\sharedclientscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testlogserviceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testlogserviceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareserver\\screenstitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenstitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testbinarysemaphore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testbinarysemaphore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareserver\\screenshareserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenshareserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareserver\\screenshareserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenshareserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testtoollistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testtoollistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screenshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testtoolassemblyloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testtoolassemblyloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screensharestopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screensharestopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testtool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testtool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screenshareclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenshareclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screenprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testfilemetadata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testfilemetadata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshareclient\\screencapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screencapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testfilecontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testfilecontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\clientviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\clientviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testfilechangenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testfilechangenotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screenshotunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenshotunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testdirectorymetadatacomparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testdirectorymetadatacomparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\utilsunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\utilsunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testdatapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testdatapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screensharestitcherunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screensharestitcherunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testcloudviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testcloudviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screensharestarterunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screensharestarterunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screenclientsharedunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenclientsharedunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testsupdater\\testclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testsupdater\\testclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screenshareserverunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenshareserverunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screenserverviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenserverviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screenprocessorunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenprocessorunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\screenshare\\screencaptureunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screencaptureunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|f:\\final-se\\softwareengineering2024\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|f:\\final-se\\softwareengineering2024\\screenshare\\screenshare.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{5ED4F792-0C72-46BA-A6A2-750A10D7349E}|ViewModel\\ViewModel.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\viewmodel\\updaterviewmodel\\cloudviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED4F792-0C72-46BA-A6A2-750A10D7349E}|ViewModel\\ViewModel.csproj|solutionrelative:viewmodel\\updaterviewmodel\\cloudviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareserver\\screenshareserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenshareserverviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screensharestarter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screensharestarter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\datapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\datapacket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\clientdataheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\clientdataheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareserver\\sharedclientscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\sharedclientscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareserver\\screenstitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenstitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareserver\\screenshareserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareserver\\screenshareserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screenshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screensharestopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screensharestopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screenshareclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenshareclientviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screenprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screenprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshareclient\\screencapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshareclient\\screencapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\clientviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\clientviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screenshotunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenshotunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\utilsunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\utilsunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screensharestitcherunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screensharestitcherunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screensharestarterunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screensharestarterunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screenclientsharedunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenclientsharedunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screenshareserverunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenshareserverunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screenserverviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenserverviewmodelunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screenprocessorunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screenprocessorunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\screenshare\\screencaptureunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\screenshare\\screencaptureunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\screenshare\\screenshare.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{4B650E36-A2DE-4CE7-ABAA-144CBAAD7E56}|Screenshare\\Screenshare.csproj|solutionrelative:screenshare\\screenshare.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -109,168 +185,443 @@
           "SelectedChildIndex": 8,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DataPacket.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\DataPacket.cs",
-              "RelativeDocumentMoniker": "Screenshare\\DataPacket.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\DataPacket.cs",
-              "RelativeToolTip": "Screenshare\\DataPacket.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:31:54.436Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientDataHeader.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ClientDataHeader.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ClientDataHeader.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ClientDataHeader.cs",
-              "RelativeToolTip": "Screenshare\\ClientDataHeader.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:31:52.076Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SharedClientScreen.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:27:54.561Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ScreenStitcher.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:27:44.037Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ScreenShareServerViewModel.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:27:33.397Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ScreenShareClientViewModel.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:27:08.4Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ScreenShot.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShot.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShot.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShot.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShot.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
+              "Title": "TestToolAssemblyLoader.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestToolAssemblyLoader.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestToolAssemblyLoader.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestToolAssemblyLoader.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestToolAssemblyLoader.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:26:57.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ScreenShareStopper.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:26:39.651Z",
+              "WhenOpened": "2024-11-19T14:11:45.063Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ScreenShareStarter.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Title": "UpdaterPage.xaml",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\UpdaterPage.xaml",
+              "RelativeDocumentMoniker": "UXModule\\Views\\UpdaterPage.xaml",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\UpdaterPage.xaml",
+              "RelativeToolTip": "UXModule\\Views\\UpdaterPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-19T13:11:46.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestLogServiceViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestLogServiceViewModel.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestLogServiceViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestLogServiceViewModel.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestLogServiceViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:26:26.241Z",
+              "WhenOpened": "2024-11-19T14:11:04.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TestUtils.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestUtils.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestUtils.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestUtils.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestUtils.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:11:57.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Server.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Updater\\Server.cs",
+              "RelativeDocumentMoniker": "Updater\\Server.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Updater\\Server.cs",
+              "RelativeToolTip": "Updater\\Server.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAawF8AAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:33:01.289Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "ScreenShareServer.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Title": "TestToolListViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestToolListViewModel.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestToolListViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestToolListViewModel.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestToolListViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:19:14.231Z",
+              "WhenOpened": "2024-11-19T14:11:48.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TestBinarySemaphore.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestBinarySemaphore.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestBinarySemaphore.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestBinarySemaphore.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestBinarySemaphore.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:07:41.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TestTool.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestTool.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestTool.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestTool.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestTool.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:11:36.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestServer.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestServer.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestServer.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestServer.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestServer.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAuwFMAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:11:11.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TestServerViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestServerViewModel.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestServerViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestServerViewModel.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestServerViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:11:16.901Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "ScreenProcessor.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Title": "TestFileMetadata.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileMetadata.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestFileMetadata.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileMetadata.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestFileMetadata.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:11:33.073Z",
+              "WhenOpened": "2024-11-19T14:10:51.762Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "ScreenCapture.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenCapture.cs",
-              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenCapture.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenCapture.cs",
-              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenCapture.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Title": "TestFileContent.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileContent.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestFileContent.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileContent.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestFileContent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:11:20.271Z",
+              "WhenOpened": "2024-11-19T14:10:52.71Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TestFileChangeNotifier.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileChangeNotifier.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestFileChangeNotifier.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestFileChangeNotifier.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestFileChangeNotifier.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:10:39.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TestDirectoryMetadataComparer.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestDirectoryMetadataComparer.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestDirectoryMetadataComparer.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestDirectoryMetadataComparer.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestDirectoryMetadataComparer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:10:26.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TestDataPacket.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestDataPacket.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestDataPacket.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestDataPacket.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestDataPacket.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:10:27.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TestCloudViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestCloudViewModel.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestCloudViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestCloudViewModel.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestCloudViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:09:30.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TestClientViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestClientViewModel.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestClientViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestClientViewModel.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestClientViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:08:13.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "TestClient.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestClient.cs",
+              "RelativeDocumentMoniker": "TestProject\\TestsUpdater\\TestClient.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestsUpdater\\TestClient.cs",
+              "RelativeToolTip": "TestProject\\TestsUpdater\\TestClient.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T14:08:06.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CloudViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\ViewModel\\UpdaterViewModel\\CloudViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\UpdaterViewModel\\CloudViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\ViewModel\\UpdaterViewModel\\CloudViewModel.cs",
+              "RelativeToolTip": "ViewModel\\UpdaterViewModel\\CloudViewModel.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACYAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T13:55:30.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "TestProject.csproj",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+              "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+              "RelativeToolTip": "TestProject\\TestProject.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-19T11:57:40.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ScreenShareServerViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenShareServerViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:27:33.397Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ScreenShareClientViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareClientViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:27:08.4Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ScreenShareStarter.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareStarter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:26:26.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ScreenStitcher.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenStitcher.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:27:44.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ScreenShot.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShot.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShot.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShot.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:26:57.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ScreenShareStopper.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenShareStopper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:26:39.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SharedClientScreen.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareServer\\SharedClientScreen.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:27:54.561Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 23,
-              "Title": "Screenshare",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+              "Title": "ClientDataHeader.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ClientDataHeader.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ClientDataHeader.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ClientDataHeader.cs",
+              "RelativeToolTip": "Screenshare\\ClientDataHeader.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:31:52.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DataPacket.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\DataPacket.cs",
+              "RelativeDocumentMoniker": "Screenshare\\DataPacket.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\DataPacket.cs",
+              "RelativeToolTip": "Screenshare\\DataPacket.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:31:54.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ScreenShareServer.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareServer\\ScreenShareServer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:19:14.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ScreenProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenProcessor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:11:33.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ScreenCapture.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenCapture.cs",
+              "RelativeDocumentMoniker": "Screenshare\\ScreenShareClient\\ScreenCapture.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\ScreenShareClient\\ScreenCapture.cs",
+              "RelativeToolTip": "Screenshare\\ScreenShareClient\\ScreenCapture.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T12:11:20.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Screenshare.csproj",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
               "RelativeDocumentMoniker": "Screenshare\\Screenshare.csproj",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Screenshare\\Screenshare.csproj",
               "RelativeToolTip": "Screenshare\\Screenshare.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -279,154 +630,123 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 34,
               "Title": "UtilsUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\UtilsUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\UtilsUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\UtilsUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\UtilsUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\UtilsUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\UtilsUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:08:43.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:08:43.699Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 33,
               "Title": "ScreenShotUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShotUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShotUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenShotUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShotUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShotUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenShotUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:08:06.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:08:06.812Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 35,
               "Title": "ScreenShareStitcherUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenShareStitcherUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:07:15.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:07:15.748Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 36,
               "Title": "ScreenShareStarterUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenShareStarterUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:06:19.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:06:19.271Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 38,
               "Title": "ScreenShareServerUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenShareServerUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:05:49.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:05:49.795Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 39,
               "Title": "ScreenServerViewModelUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenServerViewModelUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:04:45.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:04:45.652Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 40,
               "Title": "ScreenProcessorUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenProcessorUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:03:43.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:03:43.179Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 37,
               "Title": "ScreenClientSharedUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenClientSharedUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:02:55.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:02:55.942Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 41,
               "Title": "ScreenCaptureUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ScreenCaptureUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T12:00:27.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T12:00:27.64Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 32,
               "Title": "ClientViewModelUnit.cs",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ClientViewModelUnit.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ClientViewModelUnit.cs",
               "RelativeDocumentMoniker": "TestProject\\ScreenShare\\ClientViewModelUnit.cs",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ClientViewModelUnit.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\ScreenShare\\ClientViewModelUnit.cs",
               "RelativeToolTip": "TestProject\\ScreenShare\\ClientViewModelUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T11:59:50.044Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "TestProject",
-              "DocumentMoniker": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
-              "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
-              "ToolTip": "F:\\Final-SE\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
-              "RelativeToolTip": "TestProject\\TestProject.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-11-19T11:57:40.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+              "WhenOpened": "2024-11-19T11:59:50.044Z"
             }
           ]
         }

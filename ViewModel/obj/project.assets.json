@@ -5011,19 +5011,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\harik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Final-SE\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
+      "projectUniqueName": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
       "projectName": "ViewModel",
-      "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "F:\\Final-SE\\SoftwareEngineering2024\\ViewModel\\obj\\",
+      "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\ViewModel\\ViewModel.csproj",
+      "packagesPath": "C:\\Users\\harik\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\ViewModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\harik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5037,20 +5037,20 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "F:\\Final-SE\\SoftwareEngineering2024\\Content\\Content.csproj": {
-              "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Content\\Content.csproj"
+            "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Content\\Content.csproj": {
+              "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Content\\Content.csproj"
             },
-            "F:\\Final-SE\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
-              "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
+            "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj": {
+              "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Dashboard\\Dashboard.csproj"
             },
-            "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
-              "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
+            "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+              "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj"
             },
-            "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-              "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+            "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+              "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj"
             },
-            "F:\\Final-SE\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
-              "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Updater\\Updater.csproj"
+            "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Updater\\Updater.csproj": {
+              "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Updater\\Updater.csproj"
             }
           }
         }

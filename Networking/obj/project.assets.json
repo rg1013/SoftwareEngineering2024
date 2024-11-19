@@ -1113,19 +1113,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\harik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+      "projectUniqueName": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj",
       "projectName": "Networking",
-      "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\obj\\",
+      "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+      "packagesPath": "C:\\Users\\harik\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\harik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

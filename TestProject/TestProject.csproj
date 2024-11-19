@@ -26,6 +26,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Networking\Networking.csproj" />
     <ProjectReference Include="..\Screenshare\Screenshare.csproj" />
+    <ProjectReference Include="..\Updater\Updater.csproj" />
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SECloud">
+      <HintPath>..\SECloud.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

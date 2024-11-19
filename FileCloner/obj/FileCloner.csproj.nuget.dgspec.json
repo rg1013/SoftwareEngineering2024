@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {}
+    "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {}
   },
   "projects": {
-    "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
+    "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
+        "projectUniqueName": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
         "projectName": "FileCloner",
-        "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "F:\\Final-SE\\SoftwareEngineering2024\\FileCloner\\obj\\",
+        "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\FileCloner.csproj",
+        "packagesPath": "C:\\Users\\harik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\FileCloner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\harik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
-                "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj"
+              "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+                "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj"
               }
             }
           }
@@ -77,17 +77,17 @@
         }
       }
     },
-    "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
+    "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "projectUniqueName": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj",
         "projectName": "Networking",
-        "projectPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\Networking.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "F:\\Final-SE\\SoftwareEngineering2024\\Networking\\obj\\",
+        "projectPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\Networking.csproj",
+        "packagesPath": "C:\\Users\\harik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\Networking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\harik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

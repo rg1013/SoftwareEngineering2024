@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:UXModule.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UpdaterPage">
+      Title="UpdaterPage"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch">
 
 
 
@@ -62,7 +64,7 @@
     </Page.Resources>
 
     <!-- Main Grid Layout -->
-    <Grid>
+    <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <!-- Outer Grid with additional rows for spacing -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -76,7 +78,9 @@
         <StackPanel Margin="20 0 20 0" Grid.Row="1">
             <TextBlock Text="Available Tools" FontSize="16" FontWeight="Bold" Foreground="#FBE4D8" Margin="10,20,0,20" />
             <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#DFB6B2" Grid.Column="1">
-                <ListView x:Name="ToolViewList" ItemsSource="{Binding AvailableToolsList}" Margin="0,0,0,0" BorderThickness="2" BorderBrush="#FBE4D8" Height="190" Background="#DFB6B2" Width="Auto">
+                <ListView x:Name="ToolViewList" ItemsSource="{Binding AvailableToolsList}" 
+          Margin="0,0,0,0" BorderThickness="2" BorderBrush="#FBE4D8" 
+          Height="131" Background="#DFB6B2">
                     <ListView.Resources>
                         <!-- Style for Column Header -->
                         <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -86,19 +90,22 @@
                             <Setter Property="FontSize" Value="15"/>
                             <Setter Property="FontFamily" Value="Segoe UI"/>
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="IsHitTestVisible" Value="False"/>
+                            <!-- Prevent resizing -->
                         </Style>
                     </ListView.Resources>
                     <ListView.View>
-                        <GridView>
-                            <!-- Set Width="Auto" to ensure the columns adjust based on content -->
+                        <GridView AllowsColumnReorder="False">
+                            <!-- Prevent column drag/drop -->
+                            <!-- Adjust the column widths to fit the available space exactly -->
                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150" />
-                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="120" />
+                            <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version}" Width="100" />
                             <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="200" />
                             <GridViewColumn Header="Deprecated" DisplayMemberBinding="{Binding Deprecated}" Width="100" />
                             <GridViewColumn Header="Created By" DisplayMemberBinding="{Binding CreatedBy}" Width="150" />
                             <GridViewColumn Header="Last Updated/Created" DisplayMemberBinding="{Binding LastUpdated}" Width="150" />
                             <GridViewColumn Header="Last Modified" DisplayMemberBinding="{Binding LastModified}" Width="150" />
-                            <GridViewColumn Header="Creator Email" DisplayMemberBinding="{Binding CreatorEmail}" Width="200"/>
+                            <GridViewColumn Header="Creator Email" DisplayMemberBinding="{Binding CreatorEmail}" Width="150" />
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -108,8 +115,8 @@
 
 
 
-        <StackPanel Margin="20,278,20,37" Grid.Row="1" Grid.RowSpan="2">
-            <TextBlock Text="Log Details:" FontSize="16" FontWeight="Bold" Margin="10,20,0,20" Foreground="#FBE4D8"/>
+        <StackPanel Margin="20,225,20,90" Grid.Row="1">
+            <TextBlock Text="Log Details:" FontSize="16" FontWeight="Bold" Margin="10,10,0,20" Foreground="#FBE4D8"/>
 
             <!-- Expand/Collapse Toggle Button with Show/Hide Text -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -135,7 +142,7 @@
             </StackPanel>
 
             <!-- Log Details ScrollViewer -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="250" Visibility="{Binding LogDetailsVisibility}" Background="Transparent">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="72" Visibility="{Binding LogDetailsVisibility}" Background="Transparent">
                 <StackPanel>
                     <TextBlock Text="{Binding LogDetails}" TextWrapping="Wrap" Margin="0,0,0,10" FontSize="12" Foreground="#Dfb6b2"/>
                 </StackPanel>
@@ -143,7 +150,15 @@
         </StackPanel>
 
         <!-- Buttons for Upload and Update in a separate row for more space from log details -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,620,0,10" RenderTransformOrigin="0.628,0.52">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,391,0,10" RenderTransformOrigin="0.628,0.52">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
             <Button Content="Sync up" Click="SyncButtonClick" Width="170" Height="35"/>
             <Button Content="Cloud Sync" Click="SyncCloudButtonClick" x:Name="CloudSyncButton" Width="156"/>
         </StackPanel>

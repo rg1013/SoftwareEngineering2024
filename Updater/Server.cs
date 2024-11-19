@@ -61,7 +61,7 @@ public class Server : INotificationHandler
         return s_instance;
     }
 
-    private void Broadcasting(string serializedPacket)
+    public void Broadcasting(string serializedPacket)
     {
         _semaphore.Wait();
 
@@ -97,7 +97,7 @@ public class Server : INotificationHandler
     /// Send SyncUp request to client
     /// </summary>
     /// <param name="clientId">ID of the client</param>
-    private void SyncUp(string clientId)
+    public void SyncUp(string clientId)
     {
         try
         {
