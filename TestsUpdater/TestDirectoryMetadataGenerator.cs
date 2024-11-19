@@ -29,7 +29,7 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void Constructor_ShouldCreateDirectory_WhenDirectoryDoesNotExist()
+    public void TestConstructorShouldCreateDirectoryWhenDirectoryDoesNotExist()
     {
         // Arrange
         string nonExistentDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -48,7 +48,7 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void Constructor_ShouldInitializeMetadata_WhenDirectoryExists()
+    public void TestConstructorShouldInitializeMetadataWhenDirectoryExists()
     {
         // Arrange
         string fileName = "testfile.txt";
@@ -66,7 +66,7 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void CreateFileMetadata_ShouldGenerateCorrectMetadata_WhenFilesExist()
+    public void TestCreateFileMetadataShouldGenerateCorrectMetadataWhenFilesExist()
     {
         // Arrange
         string fileName1 = "file1.txt";
@@ -80,7 +80,7 @@ public class TestDirectoryMetadataGenerator
         List<FileMetadata> metadata = DirectoryMetadataGenerator.CreateFileMetadata(_testDirectory);
 
         HashSet<string> fileNames = new HashSet<string>();
-        foreach (var file in metadata)
+        foreach (FileMetadata file in metadata)
         {
             if (!string.IsNullOrEmpty(file.FileName))
             {
@@ -99,7 +99,7 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void ComputeFileHash_ShouldReturnCorrectHash()
+    public void TestComputeFileHashShouldReturnCorrectHash()
     {
         // Arrange
         string fileName = "file1.txt";
@@ -115,14 +115,14 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void CreateFileMetadata_ShouldReturnEmptyList_WhenDirectoryHasNoFiles()
+    public void TestCreateFileMetadataShouldReturnEmptyListWhenDirectoryHasNoFiles()
     {
         // Arrange
         string emptyDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(emptyDirectory);
 
         // Act
-        var metadata = DirectoryMetadataGenerator.CreateFileMetadata(emptyDirectory);
+        List<FileMetadata> metadata = DirectoryMetadataGenerator.CreateFileMetadata(emptyDirectory);
 
         // Assert
         Assert.IsNotNull(metadata, "Metadata should not be null.");
@@ -136,26 +136,24 @@ public class TestDirectoryMetadataGenerator
     }
 
     [TestMethod]
-    public void Constructor_ShouldLogMessage_WhenDirectoryDoesNotExist()
+    public void TestConstructorShouldLogMessageWhenDirectoryDoesNotExist()
     {
         // Arrange
         string nonExistentDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
-        using (var stringWriter = new System.IO.StringWriter())
-        {
-            // Add a `trace` listener to capture the log message
-            // Now, log message will be captured in the stringWriter, so that we can asses log messages
-            Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
+        using var stringWriter = new System.IO.StringWriter();
+        // Add a `trace` listener to capture the log message
+        // Now, log message will be captured in the stringWriter, so that we can asses log messages
+        Trace.Listeners.Add(new TextWriterTraceListener(stringWriter));
 
-            // Act
-            var generator = new DirectoryMetadataGenerator(nonExistentDirectory);
+        // Act
+        var generator = new DirectoryMetadataGenerator(nonExistentDirectory);
 
-            // Assert
-            string output = stringWriter.ToString();
-            Assert.IsTrue(output.Contains("Directory does not exist"), "Log message not found.");
+        // Assert
+        string output = stringWriter.ToString();
+        Assert.IsTrue(output.Contains("Directory does not exist"), "Log message not found.");
 
-            // Remove the listener from `Trace.Listeners` collection to clean up after the test
-            Trace.Listeners.RemoveAt(Trace.Listeners.Count - 1);
-        }
+        // Remove the listener from `Trace.Listeners` collection to clean up after the test
+        Trace.Listeners.RemoveAt(Trace.Listeners.Count - 1);
     }
 }

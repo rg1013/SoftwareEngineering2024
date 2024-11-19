@@ -46,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CopyTestFolder\" />
     <Folder Include="EmptyTestingFolder\" />
   </ItemGroup>
 

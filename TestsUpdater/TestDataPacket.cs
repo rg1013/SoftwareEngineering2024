@@ -15,7 +15,7 @@ public class DataPacketTests
     /// Verifies that the DataPacket type defaults to SyncUp if no type is explicitly set.
     /// </summary>
     [TestMethod]
-    public void Test_DataPacket_Constructor_WithoutType()
+    public void TestDataPacketConstructorWithoutType()
     {
         // Arrange & Act
         var dataPacket = new DataPacket();
@@ -28,7 +28,7 @@ public class DataPacketTests
     /// Test default constructor
     /// </summary>
     [TestMethod]
-    public void Test_DataPacket_DefaultConstructor()
+    public void TestDataPacketDefaultConstructor()
     {
         // Arrange & Act
         var dataPacket = new DataPacket();
@@ -44,7 +44,7 @@ public class DataPacketTests
     /// Tests datapacket constructor with multiple files
     /// </summary>
     [TestMethod]
-    public void Test_DataPacket_Constructor_WithMultipleFiles()
+    public void TestDataPacketConstructorWithMultipleFiles()
     {
         // Arrange
         var fileContents = new List<FileContent>

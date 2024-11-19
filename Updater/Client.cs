@@ -16,6 +16,9 @@ using System.Diagnostics;
 
 namespace Updater;
 
+/// <summary>
+/// Client class
+/// </summary>
 public class Client : INotificationHandler
 {
     private readonly ICommunicator _communicator;
@@ -24,6 +27,9 @@ public class Client : INotificationHandler
     private static readonly object s_lock = new object();
     private string? _clientId;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
     private Client()
     {
         _communicator = CommunicationFactory.GetCommunicator(isClientSide: true);
@@ -34,6 +40,7 @@ public class Client : INotificationHandler
     {
         _clientId = clientId;
     }
+
     public static Client GetClientInstance(Action<string>? notificationReceived = null)
     {
         lock (s_lock)
@@ -58,8 +65,12 @@ public class Client : INotificationHandler
     {
         try
         {
-            string serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId: _clientId) ?? throw new Exception("Failed to serialize SyncUpPacket");
+            if (_clientId == null)
+            {
+                throw new Exception("Client ID is null");
+            }
 
+            string? serializedSyncUpPacket = Utils.SerializedSyncUpPacket(clientId: _clientId) ?? throw new Exception("Failed to serialize SyncUpPacket");
             UpdateUILogs("Sending syncup request to the server");
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler from Manual Sync up...");
             _communicator.Send(serializedSyncUpPacket, "FileTransferHandler", null);
@@ -87,6 +98,9 @@ public class Client : INotificationHandler
         UpdateUILogs("Sync up failed");
     }
 
+    /// <summary>
+    /// Identifies the type of packet and calls the appropriate handler
+    /// </summary>
     public static void PacketDemultiplexer(string serializedData, ICommunicator communicator)
     {
         try
@@ -120,12 +134,15 @@ public class Client : INotificationHandler
         }
     }
 
-    private static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator)
+    /// <summary>
+    /// Handler for SyncUp packet. Sends metadata to server. 
+    /// </summary>
+    public static void SyncUpHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
             UpdateUILogs("Received SyncUp request from server");
-            string serializedMetaData = Utils.SerializedMetadataPacket() ?? throw new Exception("Failed to serialize metadata");
+            string? serializedMetaData = Utils.SerializedMetadataPacket() ?? throw new Exception("Failed to serialize metadata");
 
             // Sending data to server
             Trace.WriteLine("[Updater] Sending data as FileTransferHandler...");
@@ -139,7 +156,7 @@ public class Client : INotificationHandler
         }
     }
 
-    private static void InvalidSyncHandler(DataPacket dataPacket, ICommunicator communicator)
+    public static void InvalidSyncHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
@@ -159,7 +176,10 @@ public class Client : INotificationHandler
         }
     }
 
-    private static void BroadcastHandler(DataPacket dataPacket, ICommunicator communicator)
+    /// <summary>
+    /// Handler for Broadcast packet. Updates client with files from server.
+    /// </summary>
+    public static void BroadcastHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
@@ -190,7 +210,10 @@ public class Client : INotificationHandler
         }
     }
 
-    private static void DifferencesHandler(DataPacket dataPacket, ICommunicator communicator)
+    /// <summary>
+    /// Handler for Differences packet. Sends requested files to server.
+    /// </summary>
+    public static void DifferencesHandler(DataPacket dataPacket, ICommunicator communicator)
     {
         try
         {
@@ -243,7 +266,7 @@ public class Client : INotificationHandler
             }
 
             // Using the deserialized differences list to retrieve UniqueClientFiles
-            List<string> filenameList = differencesList
+            List<string?> filenameList = differencesList
                 .Where(difference => difference != null && difference.Key == "-1")
                 .SelectMany(difference => difference.Value?.Select(fileDetail => fileDetail.FileName) ?? new List<string>())
                 .Distinct()
@@ -254,7 +277,7 @@ public class Client : INotificationHandler
             // Create list of FileContent to send back
             List<FileContent> fileContentToSend = new List<FileContent>();
 
-            foreach (string filename in filenameList)
+            foreach (string? filename in filenameList)
             {
                 if (filename == differenceFileName)
                 {
@@ -285,6 +308,9 @@ public class Client : INotificationHandler
         }
     }
 
+    /// <summary>
+    /// Method to handle data received from the server
+    /// </summary>
     public void OnDataReceived(string serializedData)
     {
         try

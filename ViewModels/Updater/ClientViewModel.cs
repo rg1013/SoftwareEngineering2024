@@ -19,8 +19,8 @@ namespace ViewModels.Updater;
 
 public class ClientViewModel : INotifyPropertyChanged
 {
-    private Client _client;
-    private LogServiceViewModel _logServiceViewModel;
+    private readonly Client _client;
+    private readonly LogServiceViewModel _logServiceViewModel;
     public ClientViewModel(LogServiceViewModel logServiceViewModel)
     {
         _logServiceViewModel = logServiceViewModel;

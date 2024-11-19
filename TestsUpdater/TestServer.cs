@@ -41,8 +41,8 @@ public class TestServer
         _server = Server.GetServerInstance();
 
         // Use reflection to set the private field or property where the communicator is set
-        FieldInfo? communicatorField = typeof(Server).GetField("_communicator", BindingFlags.NonPublic | BindingFlags.Instance);
-        communicatorField.SetValue(_server, _mockCommunicator.Object);
+        FieldInfo? communicatorField = typeof(Server).GetField("s_communicator", BindingFlags.NonPublic | BindingFlags.Instance);
+        communicatorField?.SetValue(_server, _mockCommunicator.Object);
     }
 
 

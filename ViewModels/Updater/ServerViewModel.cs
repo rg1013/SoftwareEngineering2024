@@ -11,6 +11,7 @@
 *****************************************************************************/
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -57,7 +58,7 @@ public class ServerViewModel : INotifyPropertyChanged
     /// Adds a log message to the log service ViewModel.
     /// </summary>
     /// <param name="message">The log message to add.</param>
-    private void AddLogMessage(string message)
+    public void AddLogMessage(string message)
     {
         _logServiceViewModel.UpdateLogDetails(message);
     }
@@ -65,9 +66,19 @@ public class ServerViewModel : INotifyPropertyChanged
     /// Retrieves metadata about tools stored in the server directory and returns it as a JSON string.
     /// </summary>
     /// <returns>JSON-formatted string containing tool metadata.</returns>
-    public virtual string GetServerData()
+
+
+    public string GetServerData(string? folderPath = null)
     {
-        string serverFolderPath = AppConstants.ToolsDirectory;
+        string serverFolderPath;
+        if (folderPath == null)
+        {
+            serverFolderPath = AppConstants.ToolsDirectory;
+        }
+        else
+        {
+            serverFolderPath = folderPath;
+        }
         var fileDataList = new List<object>();
 
         if (Directory.Exists(serverFolderPath))
@@ -78,17 +89,17 @@ public class ServerViewModel : INotifyPropertyChanged
                 Dictionary<string, List<string>> toolProperties = _loader.LoadToolsFromFolder(serverFolderPath);
 
                 // Extract properties for each file if keys exist
-                Dictionary<string, List<string>> toolProperties1 = toolProperties;
+                Dictionary<string, List<string>> toolPropertiesCopy = toolProperties;
 
                 var fileData = new {
-                    Id = toolProperties1.ContainsKey("Id") ? toolProperties["Id"] : new List<string> { "N/A" },
-                    Name = toolProperties1.ContainsKey("Name") ? toolProperties["Name"] : new List<string> { "N/A" },
-                    Description = toolProperties1.ContainsKey("Description") ? toolProperties["Description"] : new List<string> { "N/A" },
-                    FileVersion = toolProperties1.ContainsKey("Version") ? toolProperties["Version"] : new List<string> { "N/A" },
-                    LastUpdate = toolProperties1.ContainsKey("LastUpdated") ? toolProperties["LastUpdated"] : new List<string> { "N/A" },
-                    LastModified = toolProperties1.ContainsKey("LastModified") ? toolProperties["LastModified"] : new List<string> { "N/A" },
-                    CreatorName = toolProperties1.ContainsKey("CreatorName") ? toolProperties["CreatorName"] : new List<string> { "N/A" },
-                    CreatorMail = toolProperties1.ContainsKey("CreatorEmail") ? toolProperties["CreatorEmail"] : new List<string> { "N/A" }
+                    Id = toolPropertiesCopy.ContainsKey("Id") ? toolProperties["Id"] : ["N/A"],
+                    Name = toolPropertiesCopy.ContainsKey("Name") ? toolProperties["Name"] : ["N/A"],
+                    Description = toolPropertiesCopy.ContainsKey("Description") ? toolProperties["Description"] : ["N/A"],
+                    FileVersion = toolPropertiesCopy.ContainsKey("Version") ? toolProperties["Version"] : ["N/A"],
+                    LastUpdate = toolPropertiesCopy.ContainsKey("LastUpdated") ? toolProperties["LastUpdated"] : ["N/A"],
+                    LastModified = toolPropertiesCopy.ContainsKey("LastModified") ? toolProperties["LastModified"] : ["N/A"],
+                    CreatorName = toolPropertiesCopy.ContainsKey("CreatorName") ? toolProperties["CreatorName"] : ["N/A"],
+                    CreatorMail = toolPropertiesCopy.ContainsKey("CreatorEmail") ? toolProperties["CreatorEmail"] : ["N/A"]
                 };
 
 
@@ -96,12 +107,12 @@ public class ServerViewModel : INotifyPropertyChanged
             }
             catch (IOException ex)
             {
-                Console.WriteLine($"Error accessing directory {serverFolderPath}: {ex.Message}");
+                Trace.WriteLine($"Error accessing directory {serverFolderPath}: {ex.Message}");
             }
         }
         else
         {
-            Console.WriteLine("Server directory not found.");
+            Trace.WriteLine("Server directory not found.");
         }
 
         // Serialize the list of file data to JSON
@@ -128,7 +139,7 @@ public class ServerViewModel : INotifyPropertyChanged
         // Create data packet to send
         var dataPacketToSend = new DataPacket(
                         DataPacket.PacketType.Broadcast,
-                        new List<FileContent> { fileContentToSend }
+                        [fileContentToSend]
                         );
 
         // Set the target directory where files will be saved
@@ -152,8 +163,11 @@ public class ServerViewModel : INotifyPropertyChanged
         }
 
         // Broadcast the serialized packet
-        string serializedPacket = Utils.SerializeObject(dataPacketToSend);
-        _server.Broadcast(serializedPacket);
+        string? serializedPacket = Utils.SerializeObject(dataPacketToSend);
+        if (serializedPacket != null)
+        {
+            _server.Broadcast(serializedPacket);
+        }
     }
 
     /// <summary>
