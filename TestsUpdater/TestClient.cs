@@ -2,25 +2,26 @@
 using Updater;
 using Networking;
 using Networking.Communication;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace TestsUpdater;
 
 public class StringWriterTraceListener : TraceListener
 {
-    private StringWriter _stringWriter;
+    private readonly StringWriter _stringWriter;
 
     public StringWriterTraceListener(StringWriter stringWriter)
     {
         _stringWriter = stringWriter ?? throw new ArgumentNullException(nameof(stringWriter));
     }
 
-    public override void Write(string message)
+    public override void Write(string? message)
     {
         _stringWriter.Write(message);
     }
 
-    public override void WriteLine(string message)
+    public override void WriteLine(string? message)
     {
         _stringWriter.WriteLine(message);
     }
@@ -32,7 +33,7 @@ public class StringWriterTraceListener : TraceListener
 }
 
 [TestClass]
-public class ClientTests
+public class TestClient
 {
     private static ICommunicator? s_communicator;
     private static Client? s_client;
@@ -40,7 +41,7 @@ public class ClientTests
 
     // Test initialization
     [ClassInitialize]
-    public static void ClassInit(TestContext? context)
+    public static void ClassInit(TestContext context)
     {
         s_communicator = CommunicationFactory.GetCommunicator(isClientSide: true);
         s_client = Client.GetClientInstance(notificationReceived: (message) => Trace.WriteLine(message));
@@ -77,15 +78,15 @@ public class ClientTests
     [TestMethod]
     public void TestStop()
     {
-        s_client.Stop();
+        s_client?.Stop();
         Assert.IsTrue(s_traceOutput?.ToString().Contains("Client disconnected"),
                       "Stop method did not log expected message");
     }
 
     [TestMethod]
-    public void TestPacketDemultiplexer_SyncUp()
+    public void TestPacketDemultiplexerSyncUp()
     {
-        var dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, new List<FileContent>());
+        var dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, []);
         string serializedData = Utils.SerializeObject(dataPacket)!;
 
         if (s_communicator != null)
@@ -98,9 +99,68 @@ public class ClientTests
     }
 
     [TestMethod]
+    public void TestPacketDemultiplexerInvalidSync()
+    {
+        // Create an InvalidSync packet with some file content
+        var fileContent = new FileContent("invalid.txt", Utils.SerializeObject(new List<string> { "file1.txt" })!);
+        var dataPacket = new DataPacket(DataPacket.PacketType.InvalidSync, [fileContent]);
+        string serializedData = Utils.SerializeObject(dataPacket)!;
+
+        // Call the PacketDemultiplexer
+        if (s_communicator != null)
+        {
+            Client.PacketDemultiplexer(serializedData, s_communicator);
+
+            // Assert that the InvalidSyncHandler is called by checking the trace output
+            Assert.IsTrue(s_traceOutput?.ToString().Contains("Received invalid file names from server"),
+                          "InvalidSyncHandler was not called correctly");
+        }
+    }
+
+    [TestMethod]
+    public void TestPacketDemultiplexerBroadcast()
+    {
+        // Create a Broadcast packet with some file content
+        var fileContent = new FileContent("test.txt", Utils.SerializeObject("test content")!);
+        var dataPacket = new DataPacket(DataPacket.PacketType.Broadcast, [fileContent]);
+        string serializedData = Utils.SerializeObject(dataPacket)!;
+
+        // Call the PacketDemultiplexer
+        if (s_communicator != null)
+        {
+            Client.PacketDemultiplexer(serializedData, s_communicator);
+
+            // Assert that the BroadcastHandler is called by checking the trace output
+            Assert.IsTrue(s_traceOutput?.ToString().Contains("Up-to-date with the server"),
+                          "BroadcastHandler was not called correctly");
+        }
+    }
+
+    [TestMethod]
+    public void TestPacketDemultiplexerDifferences()
+    {
+        // Create a Differences packet with metadata differences and file content
+        var diffContent = new FileContent("differences", Utils.SerializeObject(new List<MetadataDifference>())!);
+        var fileContent = new FileContent("file.txt", Utils.SerializeObject("content")!);
+        var dataPacket = new DataPacket(DataPacket.PacketType.Differences, [diffContent, fileContent]);
+        string serializedData = Utils.SerializeObject(dataPacket)!;
+
+        // Call the PacketDemultiplexer
+        if (s_communicator != null)
+        {
+            Client.PacketDemultiplexer(serializedData, s_communicator);
+
+            // Assert that the DifferencesHandler is called by checking the trace output
+            Assert.IsTrue(s_traceOutput?.ToString().Contains("Sending requested files to server"),
+                          "DifferencesHandler was not called correctly");
+        }
+    }
+
+
+    [TestMethod]
     public void TestSyncUpHandler()
     {
-        var syncUpPacket = new DataPacket(DataPacket.PacketType.SyncUp, new List<FileContent>());
+        var syncUpPacket = new DataPacket(DataPacket.PacketType.SyncUp, []);
         if (s_communicator != null)
         {
             Client.SyncUpHandler(syncUpPacket, s_communicator);
@@ -114,7 +174,7 @@ public class ClientTests
     public void TestInvalidSyncHandler()
     {
         var fileContent = new FileContent("invalid.txt", Utils.SerializeObject(new List<string> { "file1.txt" })!);
-        var dataPacket = new DataPacket(DataPacket.PacketType.InvalidSync, new List<FileContent> { fileContent });
+        var dataPacket = new DataPacket(DataPacket.PacketType.InvalidSync, [fileContent]);
 
         if (s_communicator != null)
         {
@@ -129,7 +189,7 @@ public class ClientTests
     public void TestBroadcastHandler()
     {
         var fileContent = new FileContent("test.txt", Utils.SerializeObject("test content")!);
-        var dataPacket = new DataPacket(DataPacket.PacketType.Broadcast, new List<FileContent> { fileContent });
+        var dataPacket = new DataPacket(DataPacket.PacketType.Broadcast, [fileContent]);
 
         if (s_communicator != null)
         {
@@ -145,7 +205,7 @@ public class ClientTests
     {
         var diffContent = new FileContent("differences", Utils.SerializeObject(new List<MetadataDifference>())!);
         var fileContent = new FileContent("file.txt", Utils.SerializeObject("content")!);
-        var dataPacket = new DataPacket(DataPacket.PacketType.Differences, new List<FileContent> { diffContent, fileContent });
+        var dataPacket = new DataPacket(DataPacket.PacketType.Differences, [diffContent, fileContent]);
 
         if (s_communicator != null)
         {
@@ -159,7 +219,7 @@ public class ClientTests
     [TestMethod]
     public void TestOnDataReceived()
     {
-        var dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, new List<FileContent>());
+        var dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, []);
         string serializedData = Utils.SerializeObject(dataPacket)!;
 
         s_client?.OnDataReceived(serializedData);
@@ -171,8 +231,60 @@ public class ClientTests
     [TestMethod]
     public void TestShowInvalidFilesInUI()
     {
-        Client.ShowInvalidFilesInUI(new List<string> { "file1.txt", "file2.txt" });
+        Client.ShowInvalidFilesInUI(["file1.txt", "file2.txt"]);
         Assert.IsTrue(s_traceOutput?.ToString().Contains("Invalid filenames"),
                       "ShowInvalidFilesInUI did not log expected message");
+    }
+
+    [TestMethod]
+    public void TestPacketDemultiplexer_DefaultCase_Exception()
+    {
+        // Simulate an invalid packet type (e.g., an undefined type in the enum)
+        var invalidPacketType = (DataPacket.PacketType)999; // Using a value that isn't defined
+        var dataPacket = new DataPacket(invalidPacketType, []);
+        string serializedData = Utils.SerializeObject(dataPacket)!;
+
+        try
+        {
+            // Call the PacketDemultiplexer with invalid data
+            if (s_communicator != null)
+            {
+                Client.PacketDemultiplexer(serializedData, s_communicator);
+            }
+
+            // If no exception is thrown, fail the test
+            Assert.Fail("[Updater] Error in PacketDemultiplexer: Object reference not set to an instance of an object.");
+        }
+        catch (Exception ex)
+        {
+            // Assert that the exception message matches the one thrown in the default case
+            Assert.IsTrue(ex.Message.Contains("[Updater] Error in PacketDemultiplexer: Object reference not set to an instance of an object."),
+                          $"Expected exception message not found. Actual message: {ex.Message}");
+        }
+    }
+
+    [TestMethod]
+    public void TestInvalidSyncHandler_Trace_Exception()
+    {
+        var fileContent = new FileContent("invalid.txt", null);
+        var dataPacket = new DataPacket(DataPacket.PacketType.InvalidSync, [fileContent]);
+
+        try
+        {
+            // Call InvalidSyncHandler with the invalid packet
+            if (s_communicator != null)
+            {
+                Client.InvalidSyncHandler(dataPacket, s_communicator);
+            }
+
+            // If no exception is thrown, fail the test
+            Assert.Fail("Expected exception due to null SerializedContent");
+        }
+        catch (Exception)
+        {
+            // Assert the trace log for the exception
+            Assert.IsTrue(s_traceOutput?.ToString().Contains("Error in InvalidSyncHandler: SerializedContent in FileContent is null"),
+                          "InvalidSyncHandler did not log the expected error message");
+        }
     }
 }

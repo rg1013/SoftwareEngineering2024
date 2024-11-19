@@ -89,8 +89,7 @@ public class TestToolAssemblyLoader
 
         // Constructing the full path to the TestingFolder
         string testFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _testFolderPath);
-
-        string validDllPath = Path.Combine(testFolderPath, "ValidTool.dll");
+        _ = Path.Combine(testFolderPath, "ValidTool.dll");
 
         // Load tools from the folder
         Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(testFolderPath);
@@ -131,7 +130,7 @@ public class TestToolAssemblyLoader
     {
         _loader = new ToolAssemblyLoader();
         string testFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../CopyTestFolder");
-        string invalidDllPath = Path.Combine(testFolderPath, "InvalidDLL.dll");
+        _ = Path.Combine(testFolderPath, "InvalidDLL.dll");
 
         // Attempting to load tools from the folder containing the invalid DLL
         Dictionary<string, List<string>> result = _loader.LoadToolsFromFolder(testFolderPath);

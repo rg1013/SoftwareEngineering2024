@@ -83,7 +83,7 @@ public class Utils
     {
         try
         {
-            ISerializer serializer = new Serializer();
+            Serializer serializer = new Serializer();
             return serializer.Serialize(obj);
         }
         catch (Exception ex)
@@ -101,7 +101,7 @@ public class Utils
     /// <returns>An instance of the specified type.</returns>
     public static T DeserializeObject<T>(string serializedData)
     {
-        ISerializer serializer = new Serializer();
+        Serializer serializer = new Serializer();
         return serializer.Deserialize<T>(serializedData);
     }
 
@@ -133,7 +133,7 @@ public class Utils
             return null;
         }
         FileContent fileContent = new FileContent("metadata.json", serializedMetadata);
-        List<FileContent> fileContents = new List<FileContent> { fileContent };
+        List<FileContent> fileContents = [fileContent];
 
         DataPacket dataPacket = new DataPacket(DataPacket.PacketType.Metadata, fileContents);
         return SerializeObject(dataPacket);
@@ -145,10 +145,10 @@ public class Utils
     /// <returns>Serialized SyncUp packet</returns>
     public static string? SerializedSyncUpPacket(string clientId)
     {
-        List<FileContent> fileContents = new List<FileContent>
-        {
+        List<FileContent> fileContents =
+        [
             new FileContent(clientId, clientId)
-        };
+        ];
         DataPacket dataPacket = new DataPacket(DataPacket.PacketType.SyncUp, fileContents);
         if (dataPacket == null)
         {

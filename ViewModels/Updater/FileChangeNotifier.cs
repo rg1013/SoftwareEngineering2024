@@ -42,8 +42,8 @@ public class FileChangeNotifier : INotifyPropertyChanged
     public FileChangeNotifier()
     {
         //Intialize the list for created and deleted files.
-        _createdFiles = new List<string>();
-        _deletedFiles = new List<string>();
+        _createdFiles = [];
+        _deletedFiles = [];
         StartMonitoring();
     }
 
@@ -100,10 +100,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
     /// <param name="e">A FileSystemEventArgs thta contains the event data.</param>
     private void OnFileCreated(object sender, FileSystemEventArgs e)
     {
-        if (_createdFiles == null)
-        {
-            _createdFiles = new List<string>(); // Initialize the list if null
-        }
+        _createdFiles ??= []; // Initialize the list if null
         // Add the file to the list
         lock (_createdFiles)
         {
@@ -124,10 +121,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
 
     private void OnFileDeleted(object sender, FileSystemEventArgs e)
     {
-        if (_deletedFiles == null)
-        {
-            _deletedFiles = new List<string>(); // Initialize the list if null
-        }
+        _deletedFiles ??= []; // Initialize the list if null
         // Add the file to the list
         lock (_deletedFiles)
         {
@@ -148,7 +142,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
         List<string> filesToProcess;
 
         // Lock and extract the current batch of files
-        lock (_createdFiles ??= new List<string>())
+        lock (_createdFiles ??= [])
         {
             filesToProcess = new List<string>(_createdFiles);
             _createdFiles.Clear();
@@ -156,7 +150,7 @@ public class FileChangeNotifier : INotifyPropertyChanged
 
         List<string> deletedFilesToProcess;
 
-        lock (_deletedFiles ??= new List<string>())
+        lock (_deletedFiles ??= [])
         {
             deletedFilesToProcess = new List<string>(_deletedFiles);
             _deletedFiles.Clear();
@@ -165,13 +159,13 @@ public class FileChangeNotifier : INotifyPropertyChanged
 
         var message = new StringBuilder();
 
-        if (filesToProcess.Any())
+        if (filesToProcess.Count != 0)
         {
             string fileList = string.Join(", ", filesToProcess.Select(Path.GetFileName));
             message.AppendLine($"Files created: {fileList}");
         }
 
-        if (deletedFilesToProcess.Any())
+        if (deletedFilesToProcess.Count != 0)
         {
             string deletedFileList = string.Join(", ", deletedFilesToProcess.Select(Path.GetFileName));
             message.AppendLine($"Files removed: {deletedFileList}");

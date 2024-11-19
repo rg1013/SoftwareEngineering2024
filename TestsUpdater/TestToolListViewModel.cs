@@ -24,7 +24,7 @@ using ViewModels.Updater;
 namespace TestsUpdater;
 
 [TestClass]
-public class ToolListViewModelTests
+public class TestToolListViewModel
 {
     private Mock<IToolAssemblyLoader>? _mockDllLoader;
     private ToolListViewModel? _viewModel;
@@ -32,11 +32,11 @@ public class ToolListViewModelTests
     private string _testFolderPath = @"../../../TestingFolder";
 
     // contains v2 of a tool
-    private string _copyTestFolderPath = @"../../../CopyTestFolder";
+    private readonly string _copyTestFolderPath = @"../../../CopyTestFolder";
 
     private class TestTraceListener : TraceListener
     {
-        public List<string> Messages { get; } = new();
+        public List<string> Messages { get; } = [];
 
         public override void Write(string? message)
         {
@@ -61,7 +61,7 @@ public class ToolListViewModelTests
     public void Setup()
     {
         _mockDllLoader = new Mock<IToolAssemblyLoader>();
-        string testFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _testFolderPath);
+        _ = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _testFolderPath);
 
         // Add custom trace listener for capturing trace messages
         _traceListener = new TestTraceListener();

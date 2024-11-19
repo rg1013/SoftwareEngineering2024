@@ -4,7 +4,7 @@ using Updater;
 namespace TestsUpdater;
 
 [TestClass]
-public class BinarySemaphoreTests
+public class TestBinarySemaphore
 {
     /// <summary>
     /// Test semaphore acquiring by a thread.
@@ -14,11 +14,10 @@ public class BinarySemaphoreTests
     {
         // Arrange
         BinarySemaphore semaphore = new BinarySemaphore();
-        bool semaphoreAcquired = false;
 
         // Act
         semaphore.Wait();  // Acquire the semaphore
-        semaphoreAcquired = true;
+        bool semaphoreAcquired = true;
 
         // Assert
         Assert.IsTrue(semaphoreAcquired, "Semaphore should be acquired by the current thread.");
@@ -101,13 +100,12 @@ public class BinarySemaphoreTests
     {
         // Arrange
         BinarySemaphore semaphore = new BinarySemaphore();
-        bool semaphoreAcquired = false;
 
         // Act
         // Acquire the semaphore and release it immediately
         semaphore.Wait();
         semaphore.Signal();
-        semaphoreAcquired = true;
+        bool semaphoreAcquired = true;
 
         // Assert
         Assert.IsTrue(semaphoreAcquired, "Semaphore should be acquired and released correctly.");

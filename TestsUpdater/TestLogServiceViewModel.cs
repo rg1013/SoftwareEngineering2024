@@ -11,7 +11,7 @@ namespace TestsUpdater;
 [TestClass]
 public class TestLogServiceViewModel
 {
-    private LogServiceViewModel _viewModel = new LogServiceViewModel(); // Explicitly initializing to avoid nullability issues
+    private LogServiceViewModel _viewModel = new(); // Explicitly initializing to avoid nullability issues
 
     /// <summary>
     /// Setup method to initialize the ViewModel before each test.

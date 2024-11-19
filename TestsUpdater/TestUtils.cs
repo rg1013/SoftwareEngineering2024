@@ -7,9 +7,9 @@ namespace TestsUpdater;
 [TestClass]
 public class TestUtils
 {
-    private string _testFilePath = Path.Combine(Path.GetTempPath(), "testFile.bin");
-    private string _testTextFilePath = Path.Combine(Path.GetTempPath(), "testTextFile.txt");
-    private string _base64TestData = Convert.ToBase64String(Encoding.UTF8.GetBytes("test binary content"));
+    private readonly string _testFilePath = Path.Combine(Path.GetTempPath(), "testFile.bin");
+    private readonly string _testTextFilePath = Path.Combine(Path.GetTempPath(), "testTextFile.txt");
+    private readonly string _base64TestData = Convert.ToBase64String(Encoding.UTF8.GetBytes("test binary content"));
 
     [TestMethod]
     public void TestReadBinaryFileShouldReturnNullWhenFileDoesNotExist()

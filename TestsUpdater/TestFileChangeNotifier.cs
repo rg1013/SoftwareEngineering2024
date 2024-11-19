@@ -22,7 +22,7 @@ public class TestFileChangeNotifier
 {
 
     private FileChangeNotifier? _fileMonitor;
-    private string _testFolderPath = @"C:\temp";
+    private readonly string _testFolderPath = @"C:\temp";
 
     /// <summary>
     /// Setup method to initialize the FileMonitor instance before each test and ensure the folder exists.
@@ -69,7 +69,7 @@ public class TestFileChangeNotifier
         // Act: Simulate file creation event using reflection to call private method
         _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath)) });
+            ?.Invoke(_fileMonitor, [this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath))]);
 
         // Simulate timer elapse
         Thread.Sleep(1100);
@@ -91,7 +91,7 @@ public class TestFileChangeNotifier
         // Simulate file deletion event using reflection
         _fileMonitor?.GetType()
             .GetMethod("OnFileDeleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath)) });
+            ?.Invoke(_fileMonitor, [this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(testFilePath ?? "") ?? "", Path.GetFileName(testFilePath))]);
 
         // Simulate timer elapse
         Thread.Sleep(1100);
@@ -115,15 +115,15 @@ public class TestFileChangeNotifier
         // Simulate multiple file events using reflection
         _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file1)) });
+            ?.Invoke(_fileMonitor, [this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file1))]);
 
         _fileMonitor?.GetType()
             .GetMethod("OnFileCreated", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file2)) });
+            ?.Invoke(_fileMonitor, [this, new FileSystemEventArgs(WatcherChangeTypes.Created, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(file2))]);
 
         _fileMonitor?.GetType()
             .GetMethod("OnFileDeleted", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-            ?.Invoke(_fileMonitor, new object[] { this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(deletedFile)) });
+            ?.Invoke(_fileMonitor, [this, new FileSystemEventArgs(WatcherChangeTypes.Deleted, Path.GetDirectoryName(file1 ?? "") ?? "", Path.GetFileName(deletedFile))]);
 
         // Simulate timer elapse
         Thread.Sleep(1100);

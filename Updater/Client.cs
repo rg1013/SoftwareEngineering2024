@@ -24,7 +24,7 @@ public class Client : INotificationHandler
     private readonly ICommunicator _communicator;
     private static readonly string s_clientDirectory = AppConstants.ToolsDirectory;
     private static Client? s_instance;
-    private static readonly object s_lock = new object();
+    private static readonly object s_lock = new();
     private string? _clientId;
 
     /// <summary>
@@ -45,10 +45,7 @@ public class Client : INotificationHandler
     {
         lock (s_lock)
         {
-            if (s_instance == null)
-            {
-                s_instance = new Client();
-            }
+            s_instance ??= new Client();
 
             if (notificationReceived != null)
             {
@@ -268,14 +265,14 @@ public class Client : INotificationHandler
             // Using the deserialized differences list to retrieve UniqueClientFiles
             List<string?> filenameList = differencesList
                 .Where(difference => difference != null && difference.Key == "-1")
-                .SelectMany(difference => difference.Value?.Select(fileDetail => fileDetail.FileName) ?? new List<string>())
+                .SelectMany(difference => difference.Value?.Select(fileDetail => fileDetail.FileName) ?? [])
                 .Distinct()
                 .ToList();
 
             UpdateUILogs("Recieved request for files from Server");
 
             // Create list of FileContent to send back
-            List<FileContent> fileContentToSend = new List<FileContent>();
+            List<FileContent> fileContentToSend = [];
 
             foreach (string? filename in filenameList)
             {

@@ -19,15 +19,15 @@ namespace Updater;
 public class DirectoryMetadataComparer
 {
     [XmlElement("MetadataDifference")]
-    public List<MetadataDifference> Differences { get; private set; } = new List<MetadataDifference>();
+    public List<MetadataDifference> Differences { get; private set; } = [];
 
     // Properties for storing unique files in server and client directories
     [XmlElement("UniqueServerFiles")]
-    public List<string> UniqueServerFiles { get; private set; } = new List<string>();
+    public List<string> UniqueServerFiles { get; private set; } = [];
     [XmlElement("UniqueClientFiles")]
 
-    public List<string> UniqueClientFiles { get; private set; } = new List<string>();
-    public List<string>? InvalidSyncUpFiles { get; private set; } = new List<string>();
+    public List<string> UniqueClientFiles { get; private set; } = [];
+    public List<string>? InvalidSyncUpFiles { get; private set; } = [];
 
     // Parameterless constructor for XML serialization
     public DirectoryMetadataComparer() { }
@@ -52,7 +52,7 @@ public class DirectoryMetadataComparer
         // Initialize differences for three cases
         Differences.Add(new MetadataDifference { Key = "-1", Value = [] }); // In B but not in A
         Differences.Add(new MetadataDifference { Key = "0", Value = [] });  // Files with same hash but different names
-        Differences.Add(new MetadataDifference { Key = "1", Value = new List<FileDetail>() });    // In A but not in B
+        Differences.Add(new MetadataDifference { Key = "1", Value = [] });    // In A but not in B
 
         List<KeyValuePair<string, string>> hashToFileA = CreateHashToFileDictionary(metadataA);
         List<KeyValuePair<string, string>> hashToFileB = CreateHashToFileDictionary(metadataB);
@@ -69,7 +69,12 @@ public class DirectoryMetadataComparer
     /// <returns>List of key-value pairs containing the mapping.</returns>
     private static List<KeyValuePair<string, string>> CreateHashToFileDictionary(List<FileMetadata> metadata)
     {
-        return metadata.Select(file => new KeyValuePair<string, string>(file.FileHash, file.FileName)).ToList();
+        return metadata
+        .Select(static file => new KeyValuePair<string, string>(
+            file.FileHash ?? string.Empty,
+            file.FileName ?? string.Empty))
+        .ToList();
+
     }
 
     /// <summary>
@@ -99,7 +104,11 @@ public class DirectoryMetadataComparer
                     FileName = fileB.FileName,
                     FileHash = fileB.FileHash
                 });
-                UniqueClientFiles.Add(fileB.FileName);
+                if (!string.IsNullOrEmpty(fileB.FileName))
+                {
+                    UniqueClientFiles.Add(fileB.FileName);
+                }
+
             }
         }
     }
@@ -119,7 +128,10 @@ public class DirectoryMetadataComparer
                     FileName = fileA.FileName,
                     FileHash = fileA.FileHash
                 });
-                UniqueServerFiles.Add(fileA.FileName);
+                if (!string.IsNullOrEmpty(fileA.FileName))
+                {
+                    UniqueServerFiles.Add(fileA.FileName);
+                }
             }
         }
     }
@@ -140,7 +152,11 @@ public class DirectoryMetadataComparer
             if (fileB != null && fileA.FileHash != fileB.FileHash)
             {
                 // Found files with the same name but different hashes
-                InvalidSyncUpFiles?.Add(fileA.FileName);
+                InvalidSyncUpFiles ??= [];
+                if (!string.IsNullOrEmpty(fileA.FileName))
+                {
+                    InvalidSyncUpFiles.Add(fileA.FileName);
+                }
             }
         }
     }

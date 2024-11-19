@@ -35,7 +35,7 @@ public class TestDirectoryMetadataGenerator
         string nonExistentDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
 
         // Act
-        var generator = new DirectoryMetadataGenerator(nonExistentDirectory);
+        _ = new DirectoryMetadataGenerator(nonExistentDirectory);
 
         // Assert
         Assert.IsTrue(Directory.Exists(nonExistentDirectory), "Directory was not created.");
@@ -79,7 +79,7 @@ public class TestDirectoryMetadataGenerator
         // Act
         List<FileMetadata> metadata = DirectoryMetadataGenerator.CreateFileMetadata(_testDirectory);
 
-        HashSet<string> fileNames = new HashSet<string>();
+        HashSet<string> fileNames = [];
         foreach (FileMetadata file in metadata)
         {
             if (!string.IsNullOrEmpty(file.FileName))

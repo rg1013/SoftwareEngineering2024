@@ -6,12 +6,12 @@ using System.Diagnostics;
 namespace TestsUpdater;
 
 [TestClass]
-public class ServerViewModelTests
+public class TestServerViewModel
 {
     private Mock<LogServiceViewModel>? _mockLogServiceViewModel;
     private Mock<ToolAssemblyLoader>? _mockLoader;
     private ServerViewModel? _serverViewModel;
-    private string _testFolderPath = @"../../../TestingFolder";
+    private readonly string _testFolderPath = @"../../../TestingFolder";
     private string? _validTestFolderPath;
 
     [TestInitialize]

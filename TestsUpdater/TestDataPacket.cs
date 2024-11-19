@@ -7,7 +7,7 @@ namespace TestsUpdater;
 /// Tests for the DataPacket class
 /// </summary>
 [TestClass]
-public class DataPacketTests
+public class TestDataPacket
 {
 
     /// <summary>
@@ -49,8 +49,8 @@ public class DataPacketTests
         // Arrange
         var fileContents = new List<FileContent>
             {
-                new FileContent("file1.txt", "Content1"),
-                new FileContent("file2.txt", "Content2")
+                new("file1.txt", "Content1"),
+                new("file2.txt", "Content2")
             };
         DataPacket.PacketType packetType = DataPacket.PacketType.Differences;
 

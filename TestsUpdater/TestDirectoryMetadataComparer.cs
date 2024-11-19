@@ -9,33 +9,33 @@ namespace TestsUpdater;
 [TestClass]
 public class TestDirectoryMetadataComparer
 {
-    private List<FileMetadata> _metadataA;
-    private List<FileMetadata> _metadataB;
+    private List<FileMetadata>? _metadataA;
+    private List<FileMetadata>? _metadataB;
 
     [TestInitialize]
     public void Setup()
     {
         // Prepare some sample metadata for testing
-        _metadataA = new List<FileMetadata>
-        {
-            new FileMetadata { FileName = "file1.txt", FileHash = "hash1" },
-            new FileMetadata { FileName = "file2.txt", FileHash = "hash2" },
-            new FileMetadata { FileName = "file5.txt", FileHash = "hash5" },
-        };
+        _metadataA =
+        [
+            new () { FileName = "file1.txt", FileHash = "hash1" },
+            new () { FileName = "file2.txt", FileHash = "hash2" },
+            new () { FileName = "file5.txt", FileHash = "hash5" },
+        ];
 
-        _metadataB = new List<FileMetadata>
-        {
-            new FileMetadata { FileName = "file2.txt", FileHash = "hash2" },
-            new FileMetadata { FileName = "file3.txt", FileHash = "hash3" },
-            new FileMetadata { FileName = "file4.txt", FileHash = "hash1" },
-        };
+        _metadataB =
+        [
+            new () { FileName = "file2.txt", FileHash = "hash2" },
+            new () { FileName = "file3.txt", FileHash = "hash3" },
+            new (){ FileName = "file4.txt", FileHash = "hash1" },
+        ];
     }
 
     [TestMethod]
     public void TestCompareMetadataShouldIdentifyDifferences()
     {
         // Arrange
-        var comparer = new DirectoryMetadataComparer(_metadataA, _metadataB);
+        var comparer = new DirectoryMetadataComparer(_metadataA!, _metadataB!);
 
         // Act
         List<MetadataDifference> differences = comparer.Differences;
@@ -50,7 +50,7 @@ public class TestDirectoryMetadataComparer
     public void TestCheckForRenamesAndMissingFilesShouldIdentifyMissingFilesInA()
     {
         // Arrange
-        var comparer = new DirectoryMetadataComparer(_metadataA, _metadataB);
+        var comparer = new DirectoryMetadataComparer(_metadataA!, _metadataB!);
 
         // Act
         List<string> uniqueClientFiles = comparer.UniqueClientFiles;
@@ -64,7 +64,7 @@ public class TestDirectoryMetadataComparer
     public void TestCheckForOnlyInAFilesShouldIdentifyMissingFilesInB()
     {
         // Arrange
-        var comparer = new DirectoryMetadataComparer(_metadataA, _metadataB);
+        var comparer = new DirectoryMetadataComparer(_metadataA!, _metadataB!);
 
         // Act
         List<string> uniqueServerFiles = comparer.UniqueServerFiles;
@@ -78,19 +78,24 @@ public class TestDirectoryMetadataComparer
     public void TestCheckForSameNameDifferentHashShouldIdentifyFileHashMismatch()
     {
         // Arrange
-        var comparer = new DirectoryMetadataComparer(_metadataA, _metadataB);
+        // Using null-forgiving operator if you are confident they are initialized in Setup
+        var comparer = new DirectoryMetadataComparer(_metadataA!, _metadataB!);
 
         // Act
-        List<string> invalidSyncUpFiles = comparer.InvalidSyncUpFiles;
+        // Ensure invalidSyncUpFiles is non-null
+        List<string> invalidSyncUpFiles = comparer.InvalidSyncUpFiles ?? [];
 
+        // Assert
         Assert.AreEqual(0, invalidSyncUpFiles.Count);
     }
+
+
 
     [TestMethod]
     public void TestValidateSyncShouldReturnTrueWhenNoInvalidFilesExist()
     {
         // Arrange
-        var comparer = new DirectoryMetadataComparer(_metadataA, _metadataB);
+        var comparer = new DirectoryMetadataComparer(_metadataA!, _metadataB!);
 
         // Act
         bool canSync = comparer.ValidateSync();
@@ -105,11 +110,11 @@ public class TestDirectoryMetadataComparer
         // Arrange
         var metadataBInvalidFiles = new List<FileMetadata>
         {
-            new FileMetadata { FileName = "file1.txt", FileHash = "hash1" },
-            new FileMetadata { FileName = "file2.txt", FileHash = "hash2" },
-            new FileMetadata { FileName = "file5.txt", FileHash = "hash7" }
+            new () { FileName = "file1.txt", FileHash = "hash1" },
+            new () { FileName = "file2.txt", FileHash = "hash2" },
+            new () { FileName = "file5.txt", FileHash = "hash7" }
         };
-        var comparer = new DirectoryMetadataComparer(_metadataA, metadataBInvalidFiles);
+        var comparer = new DirectoryMetadataComparer(_metadataA!, metadataBInvalidFiles);
 
         // Act
         bool canSync = comparer.ValidateSync();

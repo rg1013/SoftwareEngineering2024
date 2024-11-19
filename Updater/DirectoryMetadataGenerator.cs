@@ -21,7 +21,7 @@ namespace Updater;
 public class DirectoryMetadataGenerator
 {
 
-    private List<FileMetadata>? _metadata;
+    private readonly List<FileMetadata>? _metadata;
 
     /// <summary>
     /// Create metadata of directory
@@ -29,7 +29,7 @@ public class DirectoryMetadataGenerator
     /// <param name="directoryPath">Path of the directory</param>
     public DirectoryMetadataGenerator(string? directoryPath)
     {
-        directoryPath = directoryPath ??= AppConstants.ToolsDirectory;
+        directoryPath = directoryPath ?? AppConstants.ToolsDirectory;
         if (!Directory.Exists(directoryPath))
         {
             Trace.WriteLine($"Directory does not exist: {directoryPath}");
@@ -56,7 +56,7 @@ public class DirectoryMetadataGenerator
     public static List<FileMetadata> CreateFileMetadata(string? directoryPath)
     {
         directoryPath ??= AppConstants.ToolsDirectory;
-        List<FileMetadata> metadata = new List<FileMetadata>();
+        List<FileMetadata> metadata = [];
 
         foreach (string filePath in Directory.GetFiles(directoryPath))
         {
