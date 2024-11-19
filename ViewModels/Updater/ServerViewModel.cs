@@ -66,6 +66,8 @@ public class ServerViewModel : INotifyPropertyChanged
     /// Retrieves metadata about tools stored in the server directory and returns it as a JSON string.
     /// </summary>
     /// <returns>JSON-formatted string containing tool metadata.</returns>
+
+
     public string GetServerData(string? folderPath = null)
     {
         string serverFolderPath;
