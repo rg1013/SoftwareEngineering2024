@@ -50,7 +50,7 @@ public class CloudViewModelTests
     /// </summary>
 
     [TestMethod]
-    public void TestRemoveNAEntries_RemovesInvalidEntries()
+    public void TestRemoveNAEntries()
     {
         // Arrange
         var files = new List<CloudViewModel.FileData>
@@ -72,7 +72,7 @@ public class CloudViewModelTests
     /// </summary>
 
     [TestMethod]
-    public void TestServerHasMoreData_IdentifiesServerOnlyFiles()
+    public void TestServerHasMoreDataAndIdentifiesServerOnlyFiles()
     {
         // Arrange
         string cloudData = "[]"; // Empty cloud
@@ -91,7 +91,7 @@ public class CloudViewModelTests
     /// </summary>
 
     [TestMethod]
-    public void TestCloudHasMoreData_IdentifiesCloudOnlyFiles()
+    public void TestCloudHasMoreDataAndIdentifiesCloudOnlyFiles()
     {
         // Arrange
         string serverData = "[]"; // Empty server
@@ -110,7 +110,7 @@ public class CloudViewModelTests
     /// </summary>
 
     [TestMethod]
-    public void ServerHasMoreData_FiltersCorrectFiles()
+    public void ServerHasMoreDataAndFiltersCorrectFiles()
     {
         // Arrange: Setup mock data for cloud and server
         string cloudData = "[{\"Id\": [\"1\"], \"Name\": [\"File1\"], \"FileVersion\": [\"1.0\"]}]";
@@ -128,7 +128,7 @@ public class CloudViewModelTests
     /// </summary>
 
     [TestMethod]
-    public void CloudHasMoreData_FiltersCorrectFiles()
+    public void CloudHasMoreDataAndFiltersCorrectFiles()
     {
         // Arrange: Setup mock data for cloud and server
         string cloudData = "[{\"Id\": [\"1\"], \"Name\": [\"File1\"], \"FileVersion\": [\"1.0\"]}]";
