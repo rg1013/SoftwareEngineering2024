@@ -608,3 +608,15 @@ C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\TestProject\obj\Debug\
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\AutoRegisteredExtensions.cs
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestPlatformEntryPoint.cs
 C:\Users\Asus\OneDrive\Desktop\SE\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.sourcelink.json
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\bin\Debug\net8.0-windows\.msCoverageSourceRootsMapping_TestProject
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\bin\Debug\net8.0-windows\.msCoverageExtensionSourceRootsMapping_TestProject
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.csproj.AssemblyReference.cache
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.AssemblyInfoInputs.cache
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.AssemblyInfo.cs
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.csproj.CoreCompileInputs.cache
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.gentestingplatformentrypointinputcache.cache
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.genautoregisteredextensionsinputcache.cache
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\AutoRegisteredExtensions.cs
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestPlatformEntryPoint.cs
+C:\Users\harik\source\repos\SoftwareEngineering2024\TestProject\obj\Debug\net8.0-windows\TestProject.sourcelink.json

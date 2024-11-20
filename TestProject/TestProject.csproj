@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <Reference Include="SECloud">
-      <HintPath>..\..\..\SoftwareEngineering2024-final\SECloud.dll</HintPath>
+      <HintPath>..\SECloud.dll</HintPath>
     </Reference>
   </ItemGroup>
 

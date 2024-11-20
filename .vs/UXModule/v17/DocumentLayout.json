@@ -1,13 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\SoftwareEngineering2024\\",
+  "WorkspaceRootPath": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|d:\\softwareengineering2024\\uxmodule\\views\\screenshareserver.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{868F2CB0-8AB8-48D7-86A0-5ECF83A39CFE}|TestCases\\TestCases.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testcases\\networkingtests\\queues\\receivequeuelistenertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{868F2CB0-8AB8-48D7-86A0-5ECF83A39CFE}|TestCases\\TestCases.csproj|solutionrelative:testcases\\networkingtests\\queues\\receivequeuelistenertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\testproject\\content\\mainviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{692AA595-A997-4907-87AB-4074C9A750E0}|TestProject\\TestProject.csproj|solutionrelative:testproject\\content\\mainviewmodeltests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\uxmodule\\views\\screenshareserver.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\screenshareserver.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|d:\\softwareengineering2024\\uxmodule\\views\\screenshareclient.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|c:\\users\\harik\\source\\repos\\softwareengineering2024\\uxmodule\\views\\screenshareclient.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4CEC5659-2D01-4F4E-BDA6-7957E27A099B}|UXModule\\UXModule.csproj|solutionrelative:uxmodule\\views\\screenshareclient.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -18,35 +30,95 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ScreenShareServer.xaml",
-              "DocumentMoniker": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
-              "RelativeDocumentMoniker": "UXModule\\Views\\ScreenShareServer.xaml",
-              "ToolTip": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
-              "RelativeToolTip": "UXModule\\Views\\ScreenShareServer.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-19T14:13:11.113Z",
+              "Title": "TestProject",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+              "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\TestProject.csproj",
+              "RelativeToolTip": "TestProject\\TestProject.csproj",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-20T17:08:27.369Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ReceiveQueueListenerTests.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestCases\\NetworkingTests\\Queues\\ReceiveQueueListenerTests.cs",
+              "RelativeDocumentMoniker": "TestCases\\NetworkingTests\\Queues\\ReceiveQueueListenerTests.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestCases\\NetworkingTests\\Queues\\ReceiveQueueListenerTests.cs",
+              "RelativeToolTip": "TestCases\\NetworkingTests\\Queues\\ReceiveQueueListenerTests.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T17:04:20.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainViewModelTests.cs",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\Content\\MainViewModelTests.cs",
+              "RelativeDocumentMoniker": "TestProject\\Content\\MainViewModelTests.cs",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\TestProject\\Content\\MainViewModelTests.cs",
+              "RelativeToolTip": "TestProject\\Content\\MainViewModelTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T17:03:52.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ScreenShareServer.xaml",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
+              "RelativeDocumentMoniker": "UXModule\\Views\\ScreenShareServer.xaml",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareServer.xaml",
+              "RelativeToolTip": "UXModule\\Views\\ScreenShareServer.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-19T14:13:11.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ScreenShareClient.xaml",
-              "DocumentMoniker": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
+              "DocumentMoniker": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
               "RelativeDocumentMoniker": "UXModule\\Views\\ScreenShareClient.xaml",
-              "ToolTip": "D:\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
+              "ToolTip": "C:\\Users\\harik\\source\\repos\\SoftwareEngineering2024\\UXModule\\Views\\ScreenShareClient.xaml",
               "RelativeToolTip": "UXModule\\Views\\ScreenShareClient.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-19T14:12:40.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T14:12:40.505Z"
             }
           ]
         }
